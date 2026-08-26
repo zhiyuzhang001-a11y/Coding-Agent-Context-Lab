@@ -2,7 +2,7 @@
 
 ## Requirements
 
-- Python 3.10 or later
+- Python 3.11 or later (`tomllib` is used by the frozen protocol checks)
 - Git
 - pytest
 

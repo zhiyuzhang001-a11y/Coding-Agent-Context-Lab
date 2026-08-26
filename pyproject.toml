@@ -7,7 +7,7 @@ name = "coding-agent-context-lab"
 version = "0.1.0"
 description = "Research archive for coding-agent context-cost measurement and intervention boundaries"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 license = { text = "MIT" }
 authors = [{ name = "Zhiyu Zhang" }]
 dependencies = []
