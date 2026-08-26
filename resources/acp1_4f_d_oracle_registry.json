@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-4f-d-oracle-registry-v1",
+  "pool_id": "acp1-4f-d-24-case-development-pool-v1",
+  "access": "outer_harness_only",
+  "cases": {
+    "d_read_delta_timeout_v1": {"expected": "37"},
+    "d_read_delta_cache_limit_v1": {"expected": "640"},
+    "d_search_delta_maintenance_v1": {"expected": "staff_only"},
+    "d_search_delta_retired_v1": {"expected": "legacy"},
+    "d_bash_delta_summary_v1": {"expected": "review"},
+    "d_bash_delta_failures_v1": {"expected": "2"},
+    "d_read_epsilon_page_size_v1": {"expected": "73"},
+    "d_read_epsilon_retention_v1": {"expected": "48"},
+    "d_search_epsilon_archive_v1": {"expected": "lifecycle"},
+    "d_search_epsilon_legacy_v1": {"expected": "hidden"},
+    "d_bash_epsilon_status_v1": {"expected": "attention"},
+    "d_bash_epsilon_invalid_v1": {"expected": "3"},
+    "d_read_zeta_batch_v1": {"expected": "84"},
+    "d_read_zeta_parallel_v1": {"expected": "7"},
+    "d_search_zeta_retention_v1": {"expected": "scheduled"},
+    "d_search_zeta_quarantine_v1": {"expected": "enabled"},
+    "d_bash_zeta_status_v1": {"expected": "quarantine"},
+    "d_bash_zeta_invalid_v1": {"expected": "4"},
+    "d_read_eta_borrow_v1": {"expected": "23"},
+    "d_read_eta_search_limit_v1": {"expected": "68"},
+    "d_search_eta_rare_v1": {"expected": "supervised"},
+    "d_search_eta_legacy_v1": {"expected": "disabled"},
+    "d_bash_eta_status_v1": {"expected": "partial"},
+    "d_bash_eta_unindexed_v1": {"expected": "2"}
+  }
+}

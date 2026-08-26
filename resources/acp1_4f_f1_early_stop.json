@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-4f-native-qualification-early-stop-v1",
+  "experiment_id": "acp1-4f-combined-prospective-generalization-v2.1",
+  "status": "stopped_insufficient_native_coverage",
+  "verdict": "INSUFFICIENT_NATIVE_COVERAGE",
+  "planned_run_count": 120,
+  "attempted_run_count": 55,
+  "completed_run_count": 54,
+  "interrupted_run_count": 1,
+  "not_started_run_count": 65,
+  "agent_run_budget_hard_max": 366,
+  "host": {
+    "version": "codex-cli 0.148.0-alpha.15",
+    "binary_sha256": "7645c3caf5607e4528eb3a15b12496c284c2a918939aed34e863c760c1b421e7",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "medium"
+  },
+  "frozen_inputs": {
+    "f0_index_sha256": "a7cf74be567c281385b2388056ea9e2de70fbd2e9fed3aef62af7991dfa47dd6",
+    "runner_sha256": "119b2740067b0ab7243599383c246acfe3eeee415d2d1456a7acea0000d10d52",
+    "private_inventory_logical_id": "acp1-4f-native-v21-early-stop-20260819",
+    "private_completed_result_inventory_sha256": "2dad2422363ba330a761659842d91c9dc98166c2cbf4813381fbb65298d6c634",
+    "private_paths_persisted_publicly": false
+  },
+  "case_observations": [
+    {
+      "case_id": "f_read_alpha_retry_v1",
+      "family": "read",
+      "completed": 10,
+      "correct": 10,
+      "candidate_recurrence": 10,
+      "ambiguous": 0,
+      "dominant_path_frequency": 9,
+      "status": "qualified"
+    },
+    {
+      "case_id": "f_read_alpha_maintenance_method_v1",
+      "family": "read",
+      "completed": 10,
+      "correct": 10,
+      "candidate_recurrence": 10,
+      "ambiguous": 0,
+      "dominant_path_frequency": 7,
+      "status": "diagnostic_only",
+      "reason": "dominant_path_below_8_of_10"
+    },
+    {
+      "case_id": "f_read_beta_result_limit_v1",
+      "family": "read",
+      "completed": 10,
+      "correct": 10,
+      "candidate_recurrence": 10,
+      "ambiguous": 0,
+      "dominant_path_frequency": 5,
+      "status": "diagnostic_only",
+      "reason": "dominant_path_below_8_of_10"
+    },
+    {
+      "case_id": "f_read_gamma_batch_size_v1",
+      "family": "read",
+      "completed": 10,
+      "correct": 10,
+      "candidate_recurrence": 10,
+      "ambiguous": 0,
+      "dominant_path_frequency": 5,
+      "status": "diagnostic_only",
+      "reason": "dominant_path_below_8_of_10"
+    },
+    {
+      "case_id": "f_search_alpha_maintenance_status_v1",
+      "family": "search",
+      "completed": 10,
+      "correct": 10,
+      "candidate_recurrence": 2,
+      "ambiguous": 0,
+      "dominant_path_frequency": 7,
+      "status": "rejected",
+      "reason": "candidate_recurrence_below_8_of_10"
+    },
+    {
+      "case_id": "f_search_beta_archive_category_v1",
+      "family": "search",
+      "completed": 4,
+      "correct": 4,
+      "candidate_recurrence": 0,
+      "ambiguous": 0,
+      "dominant_path_frequency": 3,
+      "status": "early_rejected",
+      "reason": "maximum_possible_candidate_recurrence_6_below_8"
+    }
+  ],
+  "coverage_impossibility": {
+    "minimum_formal_admitted_per_family": 3,
+    "read_qualified": 1,
+    "read_maximum_possible_qualified": 1,
+    "search_qualified": 0,
+    "search_maximum_possible_qualified": 2,
+    "bash_qualified": 0,
+    "bash_maximum_possible_qualified": 4,
+    "native_coverage_gate_can_still_pass": false
+  },
+  "objective_path_audit": {
+    "scope": "three sampled completed Search runs after stop",
+    "observation": "natural Search commands commonly used dot as the scope rather than repeating the project-form term required by the frozen identity",
+    "identity_changed_after_observation": false,
+    "runs_reclassified": false
+  },
+  "process_deviation": {
+    "code": "DELAYED_AUTOMATIC_STOP",
+    "description": "The runner emitted per-run facts but deferred dominant-path aggregation until normal completion. Read-family impossibility was therefore recognized after 54 completed runs rather than after run 40.",
+    "extra_completed_runs_after_gate_was_knowable": 14,
+    "data_deleted": false,
+    "effect_on_verdict": "none",
+    "runner_resume_allowed": false
+  },
+  "policy": {
+    "treatment_builder_used": false,
+    "collector_or_hook_used": false,
+    "intervention_used": false,
+    "failed_or_low_recurrence_case_replaced": false,
+    "identity_or_threshold_changed_after_results": false,
+    "outliers_or_completed_runs_deleted": false,
+    "f2_authorized": false,
+    "pilot_or_formal_authorized": false,
+    "production_slicing_replacement_or_recommendation": false
+  }
+}
+

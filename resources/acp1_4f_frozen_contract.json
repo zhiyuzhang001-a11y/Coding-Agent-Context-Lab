@@ -1,0 +1,321 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-4f-frozen-contract-v1",
+  "experiment_id": "acp1-4f-combined-prospective-generalization-v2.1",
+  "status": "f0_frozen_agent_runs_not_started",
+  "sampling": {
+    "method": "fixed_prospective_enumeration",
+    "case_count": 12,
+    "family_counts": {"read": 4, "search": 4, "bash": 4},
+    "project_forms": ["alpha_service", "beta_cli", "gamma_pipeline"],
+    "minimum_project_forms": 3,
+    "minimum_project_forms_per_family": 2,
+    "replacement_allowed": false,
+    "historical_primary_cases_allowed": false
+  },
+  "execution": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "medium",
+    "sandbox": "read-only",
+    "multi_agent": false,
+    "web_plugins_skills_forbidden": true,
+    "builder_enabled_during_native": false,
+    "repetitions_are_sequential_and_complete": true
+  },
+  "candidate_identity": {
+    "method": "family_request_shape_and_success-v1",
+    "minimum_result_chars": 16,
+    "success_required": true,
+    "exactly_one_match_means_recurred": true,
+    "multiple_matches_mean_ambiguous": true,
+    "zero_matches_mean_not_recurred": true,
+    "read_executable_kinds": ["read"],
+    "search_executable_kinds": ["search"],
+    "bash_match": "normalized_ordered_argv_terms",
+    "path_signature": "sha256_ordered_tool_family_executable_kind_candidate_relation_success_semantics",
+    "raw_command_persisted_publicly": false,
+    "raw_result_persisted_publicly": false
+  },
+  "builder_contract": {
+    "module": "scripts/acp1_4f_treatment_contract.py",
+    "version": "acp1-4f-treatment-builder-v1",
+    "allowed_input_fields": [
+      "tool_family",
+      "request_shape",
+      "requested_path_identity",
+      "requested_range",
+      "query_shape",
+      "command_shape",
+      "structural_result",
+      "frozen_template_params"
+    ],
+    "prohibited_input_keys": [
+      "answer",
+      "case_id",
+      "correctness",
+      "expected",
+      "ground_truth",
+      "historical_correctness",
+      "pilot_result",
+      "scorer",
+      "target_line",
+      "target_regex"
+    ],
+    "outer_harness_may_retain_case_id": true,
+    "builder_may_receive_case_id": false,
+    "builder_file_or_registry_access": false,
+    "violation_policy": "invalidate_experiment_version_restart_without_run_reuse"
+  },
+  "templates": {
+    "R1-read-structural-window-v1": {
+      "family": "read",
+      "anchor_source": "request_shape.anchors_only",
+      "unique_anchor_required": true,
+      "context_before": 2,
+      "context_after": 3,
+      "always_preserve_kinds": ["header", "import"],
+      "non_unique_disposition": "passthrough"
+    },
+    "S1-search-structural-grouping-v1": {
+      "family": "search",
+      "selector_order": ["stable_path", "structural_key", "ordinal"],
+      "selection": "first_n_per_path_and_structural_key",
+      "first_n_per_group": 1,
+      "preserve_conflict_and_ambiguous": true,
+      "semantic_ranking_allowed": false
+    },
+    "B1-bash-structured-projection-v1": {
+      "family": "bash",
+      "supported_kinds": ["exit", "failure", "error", "summary", "requested_field"],
+      "free_text_disposition": "passthrough",
+      "parse_failure_disposition": "passthrough",
+      "command_rewrite_allowed": false
+    }
+  },
+  "qualification": {
+    "native_repetitions_per_case": 10,
+    "completed_with_usage": 10,
+    "correct_min": 9,
+    "candidate_recurrence_min": 8,
+    "ambiguous_max": 0,
+    "dominant_path_frequency_min": 8,
+    "builder_runs_during_native": false,
+    "all_native_evidence_frozen": true,
+    "native_evidence_selection_allowed": false
+  },
+  "offline_activation": {
+    "agent_run_count": 0,
+    "all_ten_native_observations_required": true,
+    "reliable_identity_min": 8,
+    "minimum_median_evidence_reduction_ratio": 0.35,
+    "nonempty_required": true,
+    "uncensored_required": true,
+    "correctness_visible_to_builder": false
+  },
+  "formal_admission": {
+    "native_qualified_and_offline_eligible_required": true,
+    "minimum_cases": 9,
+    "minimum_cases_per_family": 3
+  },
+  "pilot": {
+    "control_per_template": 1,
+    "treatment_per_template": 1,
+    "included_in_formal_statistics": false,
+    "threshold_tuning_allowed": false,
+    "template_mutation_allowed": false
+  },
+  "formal": {
+    "blocks_per_case": 10,
+    "arms": ["control", "treatment"],
+    "order": "balanced_ab_ba",
+    "minimum_median_evidence_reduction_ratio": 0.35,
+    "candidate_recurrence_min": 8,
+    "control_correct_min": 9,
+    "treatment_correct_min": 9,
+    "accuracy_delta_min": -0.10,
+    "dominant_path_retention_delta_min": -0.10,
+    "paired_median_tool_call_delta_max": 0,
+    "paired_median_cycle_delta_max": 0,
+    "repeated_compensation_path_min": 2,
+    "confirmed_projection_induced_semantic_regression_max": 0,
+    "possible_or_unknown_regression_verdict": "INCONCLUSIVE",
+    "outlier_deletion_allowed": false,
+    "failed_run_replacement_allowed": false
+  },
+  "overall": {
+    "supported_verdict": "SUPPORTED_WITH_BOUNDARIES",
+    "pass_rate_denominator": "all_formal_admitted_cases",
+    "inconclusive_in_denominator": true,
+    "minimum_pass_rate": 0.75,
+    "minimum_pass_per_family": 2,
+    "confirmed_projection_induced_semantic_regression_max": 0,
+    "global_savings_claim_allowed": false
+  },
+  "run_budget": {
+    "native_max": 120,
+    "pilot_max": 6,
+    "formal_max": 240,
+    "primary_agent_run_hard_max": 366
+  },
+  "stop_conditions": [
+    "formal_admission_coverage_failed",
+    "required_family_or_template_pilot_failed",
+    "telemetry_identity_or_denominator_unreliable",
+    "g0_oracle_leakage"
+  ],
+  "policy": {
+    "collector_or_hook_mutation": false,
+    "production_slicing": false,
+    "production_replacement": false,
+    "real_time_recommendation": false,
+    "transparent_smart_read_reopened": false,
+    "waste_claim": false,
+    "global_generalization_claim": false
+  },
+  "cases": [
+    {
+      "case_id": "f_read_alpha_retry_v1",
+      "case_version": 1,
+      "family": "read",
+      "project_form": "alpha_service",
+      "template_id": "R1-read-structural-window-v1",
+      "subject_path": "resources/acp1_4f_subjects/alpha_service/settings.py",
+      "subject_sha256": "fe68d9b02e81298a4a1670fe60b2f57e1731e7f45d0eb3f6eb717d39fc5dd841",
+      "prompt": "Use Read to inspect alpha_service/settings.py. What integer is MAX_RETRIES? Reply only with the integer.",
+      "request_anchors": ["MAX_RETRIES"],
+      "candidate_identity": {"required_command_terms": ["settings.py"], "allowed_executable_kinds": ["read"]}
+    },
+    {
+      "case_id": "f_read_alpha_maintenance_method_v1",
+      "case_version": 1,
+      "family": "read",
+      "project_form": "alpha_service",
+      "template_id": "R1-read-structural-window-v1",
+      "subject_path": "resources/acp1_4f_subjects/alpha_service/routes.py",
+      "subject_sha256": "858d74882dc127da0996779f1291045215a2bf3b2446a3c4c0b9c755ce75e9f9",
+      "prompt": "Use Read to inspect alpha_service/routes.py. What HTTP method belongs to the maintenance route? Reply only with the method.",
+      "request_anchors": ["maintenance"],
+      "candidate_identity": {"required_command_terms": ["routes.py"], "allowed_executable_kinds": ["read"]}
+    },
+    {
+      "case_id": "f_read_beta_result_limit_v1",
+      "case_version": 1,
+      "family": "read",
+      "project_form": "beta_cli",
+      "template_id": "R1-read-structural-window-v1",
+      "subject_path": "resources/acp1_4f_subjects/beta_cli/config.json",
+      "subject_sha256": "8d8cdc41013f02b05980d873c6d8dddbf59febe28c35418b7714d64a6949fd52",
+      "prompt": "Use Read to inspect beta_cli/config.json. What integer is output.result_limit? Reply only with the integer.",
+      "request_anchors": ["result_limit"],
+      "candidate_identity": {"required_command_terms": ["config.json"], "allowed_executable_kinds": ["read"]}
+    },
+    {
+      "case_id": "f_read_gamma_batch_size_v1",
+      "case_version": 1,
+      "family": "read",
+      "project_form": "gamma_pipeline",
+      "template_id": "R1-read-structural-window-v1",
+      "subject_path": "resources/acp1_4f_subjects/gamma_pipeline/pipeline.toml",
+      "subject_sha256": "6dca36f77e2b4a566feab75455006d887943fde01500a938dfa025a828d1bf42",
+      "prompt": "Use Read to inspect gamma_pipeline/pipeline.toml. What integer is batch_size? Reply only with the integer.",
+      "request_anchors": ["batch_size"],
+      "candidate_identity": {"required_command_terms": ["pipeline.toml"], "allowed_executable_kinds": ["read"]}
+    },
+    {
+      "case_id": "f_search_alpha_maintenance_status_v1",
+      "case_version": 1,
+      "family": "search",
+      "project_form": "alpha_service",
+      "template_id": "S1-search-structural-grouping-v1",
+      "subject_path": "resources/acp1_4f_subjects/alpha_service",
+      "subject_tree_sha256": "701b861c91319e85b22fa69253d527892947addd9a85395f8c2437052194dabd",
+      "prompt": "Use Search for maintenance in alpha_service. What access status belongs to the maintenance route? Reply only with the status.",
+      "query_shape": {"term": "maintenance", "case_sensitive": false},
+      "candidate_identity": {"required_command_terms": ["maintenance", "alpha_service"], "allowed_executable_kinds": ["search"]}
+    },
+    {
+      "case_id": "f_search_beta_archive_category_v1",
+      "case_version": 1,
+      "family": "search",
+      "project_form": "beta_cli",
+      "template_id": "S1-search-structural-grouping-v1",
+      "subject_path": "resources/acp1_4f_subjects/beta_cli",
+      "subject_tree_sha256": "e5a947e06ada309e7934a529ec4a92da75fa57647d5001a2d08e6a346ce770a4",
+      "prompt": "Use Search for archive in beta_cli. What category is assigned to the archive command? Reply only with the category.",
+      "query_shape": {"term": "archive", "case_sensitive": false},
+      "candidate_identity": {"required_command_terms": ["archive", "beta_cli"], "allowed_executable_kinds": ["search"]}
+    },
+    {
+      "case_id": "f_search_beta_default_color_v1",
+      "case_version": 1,
+      "family": "search",
+      "project_form": "beta_cli",
+      "template_id": "S1-search-structural-grouping-v1",
+      "subject_path": "resources/acp1_4f_subjects/beta_cli",
+      "subject_tree_sha256": "e5a947e06ada309e7934a529ec4a92da75fa57647d5001a2d08e6a346ce770a4",
+      "prompt": "Use Search for color in beta_cli. What is the default output color mode in config.json? Reply only with the value.",
+      "query_shape": {"term": "color", "case_sensitive": false},
+      "candidate_identity": {"required_command_terms": ["color", "beta_cli"], "allowed_executable_kinds": ["search"]}
+    },
+    {
+      "case_id": "f_search_gamma_production_retention_v1",
+      "case_version": 1,
+      "family": "search",
+      "project_form": "gamma_pipeline",
+      "template_id": "S1-search-structural-grouping-v1",
+      "subject_path": "resources/acp1_4f_subjects/gamma_pipeline",
+      "subject_tree_sha256": "c5f3cb43c18733addb148a6b7b2815fd738c9cf7c4926a72b8b5a7304fe4ee59",
+      "prompt": "Use Search for retention_days in gamma_pipeline. What integer applies to production? Reply only with the integer.",
+      "query_shape": {"term": "retention_days", "case_sensitive": false},
+      "candidate_identity": {"required_command_terms": ["retention_days", "gamma_pipeline"], "allowed_executable_kinds": ["search"]}
+    },
+    {
+      "case_id": "f_bash_alpha_failed_checks_v1",
+      "case_version": 1,
+      "family": "bash",
+      "project_form": "alpha_service",
+      "template_id": "B1-bash-structured-projection-v1",
+      "subject_path": "resources/acp1_4f_subjects/alpha_service/status_report.py",
+      "subject_sha256": "cba85780dfac5e9950b14fc38c92cceb3e728b49f3b89d54d245bc44eea652f9",
+      "prompt": "Use Bash to run python3 status_report.py in alpha_service. According to the JSON summary, how many checks failed? Reply only with the integer.",
+      "command_shape": {"argv": ["python3", "status_report.py"], "format": "json", "requested_fields": ["summary.failed"]},
+      "candidate_identity": {"required_command_terms": ["python3", "status_report.py"], "allowed_executable_kinds": ["program"]}
+    },
+    {
+      "case_id": "f_bash_beta_command_count_v1",
+      "case_version": 1,
+      "family": "bash",
+      "project_form": "beta_cli",
+      "template_id": "B1-bash-structured-projection-v1",
+      "subject_path": "resources/acp1_4f_subjects/beta_cli/verify_manifest.py",
+      "subject_sha256": "1ae790edf6ca0035599ed49b0f1f608ba55fd47b5563fa2ae7636ad757928128",
+      "prompt": "Use Bash to run python3 verify_manifest.py in beta_cli. According to the JSON summary, what is command_count? Reply only with the integer.",
+      "command_shape": {"argv": ["python3", "verify_manifest.py"], "format": "json", "requested_fields": ["summary.command_count"]},
+      "candidate_identity": {"required_command_terms": ["python3", "verify_manifest.py"], "allowed_executable_kinds": ["program"]}
+    },
+    {
+      "case_id": "f_bash_gamma_valid_shards_v1",
+      "case_version": 1,
+      "family": "bash",
+      "project_form": "gamma_pipeline",
+      "template_id": "B1-bash-structured-projection-v1",
+      "subject_path": "resources/acp1_4f_subjects/gamma_pipeline/validate_pipeline.py",
+      "subject_sha256": "053cb5f299706e7b20c6f4507cdd26894591e0d73b2903f517f00709e73c2aa0",
+      "prompt": "Use Bash to run python3 validate_pipeline.py in gamma_pipeline. According to the JSON summary, how many shards are valid? Reply only with the integer.",
+      "command_shape": {"argv": ["python3", "validate_pipeline.py"], "format": "json", "requested_fields": ["summary.valid_shards"]},
+      "candidate_identity": {"required_command_terms": ["python3", "validate_pipeline.py"], "allowed_executable_kinds": ["program"]}
+    },
+    {
+      "case_id": "f_bash_gamma_total_stages_v1",
+      "case_version": 1,
+      "family": "bash",
+      "project_form": "gamma_pipeline",
+      "template_id": "B1-bash-structured-projection-v1",
+      "subject_path": "resources/acp1_4f_subjects/gamma_pipeline/pipeline_summary.py",
+      "subject_sha256": "f105b7ce1f7995bf4034d0d48815032e596cab902905188264cc9b518d8470f2",
+      "prompt": "Use Bash to run python3 pipeline_summary.py in gamma_pipeline. According to the JSON summary, what is total_stages? Reply only with the integer.",
+      "command_shape": {"argv": ["python3", "pipeline_summary.py"], "format": "json", "requested_fields": ["summary.total_stages"]},
+      "candidate_identity": {"required_command_terms": ["python3", "pipeline_summary.py"], "allowed_executable_kinds": ["program"]}
+    }
+  ]
+}

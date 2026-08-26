@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp0-4a-variance-attribution-v1",
+  "status": "inconclusive",
+  "graduation_verdict": "fail",
+  "measurement_foundation_complete": false,
+  "fixture_id": "acp0-4-natural-paired-v1",
+  "subject_commit": "b506818b3db87be62064ad64e62b1ad262d5a4b9",
+  "harness_commit": "e069f29b45bff2bbda6d6130212effb78063dbcf",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "medium",
+  "design": {
+    "case_count": 12,
+    "repetitions_per_case_arm": 5,
+    "scheduled_run_count": 120,
+    "off_run_count": 60,
+    "on_run_count": 60,
+    "pilot_run7_included": false,
+    "outliers_removed": false,
+    "failed_runs_removed": false,
+    "single_case_reruns": false
+  },
+  "frozen_thresholds": {
+    "token_ratio_ceiling": 1.02,
+    "tool_entry_rate_delta": 0.1,
+    "mean_call_or_cycle_delta": 0.25,
+    "case_direction_count": 8,
+    "minimum_conditional_coverage": 0.5
+  },
+  "hard_checks": {
+    "all_120_runs_present": true,
+    "all_runs_completed_with_usage": true,
+    "correctness_zero_regression": false,
+    "host_hard_gates_pass": true,
+    "collector_observed_every_on_tool_call": true,
+    "collector_never_invokes_tools": true,
+    "equal_repetitions_per_case_arm": true,
+    "no_runs_excluded": true
+  },
+  "correctness_evidence": {
+    "off_correct": 58,
+    "on_correct": 58,
+    "failed_case": "single_file_range_count",
+    "expected": "7",
+    "failed_runs": [
+      {"run_id": "single_file_range_count__r01-off", "actual": "10"},
+      {"run_id": "single_file_range_count__r01-on", "actual": "5"},
+      {"run_id": "single_file_range_count__r02-on", "actual": "8"},
+      {"run_id": "single_file_range_count__r04-off", "actual": "10"}
+    ],
+    "interpretation": "symmetric correctness instability blocks the zero-regression hard gate; runs are retained without reclassification"
+  },
+  "path_neutrality": {
+    "off_tool_entry_rate": 1.0,
+    "on_tool_entry_rate": 1.0,
+    "tool_entry_rate_delta": 0.0,
+    "off_mean_tool_calls": 1.383333,
+    "on_mean_tool_calls": 1.4,
+    "mean_tool_call_delta": 0.016667,
+    "off_mean_model_cycles": 2.383333,
+    "on_mean_model_cycles": 2.4,
+    "mean_model_cycle_delta": 0.016667,
+    "any_preregistered_systematic_signal": false
+  },
+  "cost_neutrality": {
+    "off_total_tokens": 2357897,
+    "on_total_tokens": 2374426,
+    "pooled_token_ratio": 1.0070100602358796,
+    "pooled_gate_pass": true,
+    "case_balanced_median_ratio": 1.0004823300944712,
+    "off_token_median": 31815.0,
+    "on_token_median": 31660.5,
+    "off_token_range": [31103, 84033],
+    "on_token_range": [31117, 84276]
+  },
+  "conditional_cost_neutrality": {
+    "matched_run_count_per_arm": 57,
+    "coverage": 0.95,
+    "pooled_token_ratio": 0.9990219236895692
+  },
+  "collector_evidence": {
+    "on_tool_calls": 84,
+    "collector_events": 84,
+    "collector_total_duration_ms": 7.362,
+    "collector_sha256": "81efee8b5ae05fe2f9c76f73e5edacec1e8269ae5923a6ebc0019f1479f96de2",
+    "hooks_manifest_sha256": "797b72b678ddba104acd93285f3c34542e75a58f69016fb01c99bf4ebac394dd"
+  },
+  "conclusion": {
+    "attribution": "inconclusive",
+    "cost_observation": "repeated evidence is consistent with cost neutrality and shows no preregistered path shift",
+    "blocking_evidence": "correctness zero-regression hard gate failed symmetrically in OFF and ON",
+    "next_state": "ACP-0 remains incomplete; ACP-1 remains not started"
+  },
+  "private_artifact_directory": ".agent-token-manager/acp0-4a-repeat5-20260817"
+}

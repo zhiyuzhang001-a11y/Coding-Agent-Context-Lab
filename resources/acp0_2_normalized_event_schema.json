@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "normalized-event-v1",
+  "title": "ACP normalized event v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "schema_id", "source_event_schema", "event_id", "session_id_hash",
+    "call_id", "call_index", "timestamp", "tool_family", "command_shape", "result_status",
+    "raw_output_chars", "estimated_raw_tokens", "estimation_method", "output_sha256",
+    "code_bearing", "path_hashes", "explicit_ranges", "model_visible_chars",
+    "estimated_model_visible_tokens", "model_visible_estimation_method",
+    "collector_duration_ms", "source_coverage_state", "coverage_state", "coverage_reason",
+    "normalization_status", "normalization_reason", "linkage_status", "linkage_reason",
+    "collector_sha256", "normalizer_version"
+  ],
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "nonnegativeInteger": {"type": "integer", "minimum": 0},
+    "coverageState": {
+      "enum": ["observed_and_matched", "observed_not_matched", "transcript_only", "unsupported_tool_path", "parse_unknown"]
+    }
+  },
+  "properties": {
+    "schema_version": {"const": 1},
+    "schema_id": {"const": "normalized-event-v1"},
+    "source_event_schema": {"const": "acp-event-v1"},
+    "event_id": {"$ref": "#/$defs/hash"},
+    "session_id_hash": {"$ref": "#/$defs/hash"},
+    "call_id": {"anyOf": [{"$ref": "#/$defs/hash"}, {"type": "null"}]},
+    "call_index": {"anyOf": [{"$ref": "#/$defs/nonnegativeInteger"}, {"type": "null"}]},
+    "timestamp": {"type": "string", "minLength": 1},
+    "tool_family": {"type": "string", "minLength": 1},
+    "command_shape": {"type": "string", "minLength": 1},
+    "result_status": {"enum": ["success", "error", "unknown"]},
+    "raw_output_chars": {"$ref": "#/$defs/nonnegativeInteger"},
+    "estimated_raw_tokens": {"$ref": "#/$defs/nonnegativeInteger"},
+    "estimation_method": {"const": "chars_div_4_v1"},
+    "output_sha256": {"$ref": "#/$defs/hash"},
+    "code_bearing": {"type": "boolean"},
+    "path_hashes": {"type": "array", "items": {"$ref": "#/$defs/hash"}, "uniqueItems": true},
+    "explicit_ranges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path_hash", "start_line", "end_line"],
+        "properties": {
+          "path_hash": {"$ref": "#/$defs/hash"},
+          "start_line": {"type": "integer", "minimum": 1},
+          "end_line": {"type": "integer", "minimum": 1}
+        }
+      }
+    },
+    "model_visible_chars": {"anyOf": [{"$ref": "#/$defs/nonnegativeInteger"}, {"type": "null"}]},
+    "estimated_model_visible_tokens": {"anyOf": [{"$ref": "#/$defs/nonnegativeInteger"}, {"type": "null"}]},
+    "model_visible_estimation_method": {"enum": ["chars_div_4_v1", null]},
+    "collector_duration_ms": {"type": ["number", "null"], "minimum": 0},
+    "source_coverage_state": {"$ref": "#/$defs/coverageState"},
+    "coverage_state": {"$ref": "#/$defs/coverageState"},
+    "coverage_reason": {"type": "string", "minLength": 1},
+    "normalization_status": {"enum": ["complete", "partial"]},
+    "normalization_reason": {"type": ["string", "null"]},
+    "linkage_status": {"enum": ["matched", "unmatched", "ambiguous"]},
+    "linkage_reason": {"type": "string", "minLength": 1},
+    "collector_sha256": {"$ref": "#/$defs/hash"},
+    "normalizer_version": {"const": "acp-normalizer-v0.1"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"linkage_status": {"const": "matched"}}},
+      "then": {
+        "properties": {
+          "call_id": {"$ref": "#/$defs/hash"},
+          "call_index": {"$ref": "#/$defs/nonnegativeInteger"},
+          "model_visible_chars": {"$ref": "#/$defs/nonnegativeInteger"},
+          "estimated_model_visible_tokens": {"$ref": "#/$defs/nonnegativeInteger"},
+          "model_visible_estimation_method": {"const": "chars_div_4_v1"}
+        }
+      },
+      "else": {
+        "properties": {
+          "call_id": {"type": "null"},
+          "call_index": {"type": "null"},
+          "model_visible_chars": {"type": "null"},
+          "estimated_model_visible_tokens": {"type": "null"},
+          "model_visible_estimation_method": {"type": "null"}
+        }
+      }
+    }
+  ]
+}

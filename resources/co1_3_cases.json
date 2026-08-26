@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "subject_commit": "b506818",
+  "cases": [
+    {
+      "id": "hit_signature_limit",
+      "cohort": "expected_hit",
+      "target_path": "plugins/agent-token-manager/scripts/smart_read.py",
+      "symbol": "signature_from_content",
+      "question": "According to signature_from_content, at most how many input lines are inspected? Reply with only the integer.",
+      "expected": "20",
+      "order": ["native", "co"]
+    },
+    {
+      "id": "hit_truncate_small_budget",
+      "cohort": "expected_hit",
+      "target_path": "plugins/agent-token-manager/scripts/smart_read.py",
+      "symbol": "truncate_lines",
+      "question": "When max_chars is 32, what exact string is returned as the first tuple element? Reply EMPTY if it is the empty string, otherwise reply with that string.",
+      "expected": "EMPTY",
+      "order": ["co", "native"]
+    },
+    {
+      "id": "hit_merged_spans",
+      "cohort": "expected_hit",
+      "target_path": "plugins/agent-token-manager/scripts/python_syntax_slice.py",
+      "symbol": "merged_line_count",
+      "question": "What integer does merged_line_count([(1, 3), (4, 5), (9, 10)]) return? Reply with only the integer.",
+      "expected": "7",
+      "order": ["native", "co"]
+    },
+    {
+      "id": "hit_base_value",
+      "cohort": "expected_hit",
+      "target_path": "plugins/agent-token-manager/scripts/ast_navigation_provider.py",
+      "symbol": "base_value",
+      "question": "What numeric value does base_value('method', 'Service.run', True) return? Reply with only the number including one decimal place.",
+      "expected": "3.0",
+      "order": ["co", "native"]
+    },
+    {
+      "id": "hit_payload_bucket",
+      "cohort": "expected_hit",
+      "target_path": "plugins/agent-token-manager/scripts/run_m2e_cost_attribution.py",
+      "symbol": "payload_bucket",
+      "question": "What exact string does payload_bucket(['query', 'next']) return? Reply with only that string.",
+      "expected": "compound",
+      "order": ["native", "co"]
+    },
+    {
+      "id": "hit_normalize_term",
+      "cohort": "expected_hit",
+      "target_path": "plugins/agent-token-manager/scripts/discovery_sources.py",
+      "symbol": "_normalize_term",
+      "question": "What exact string does _normalize_term('analyses') return? Reply with only that string.",
+      "expected": "analys",
+      "order": ["co", "native"]
+    },
+    {
+      "id": "fail_import_dependency",
+      "cohort": "expected_fail_open",
+      "expected_gate_reason": "external_dependency_risk",
+      "target_path": "plugins/agent-token-manager/scripts/run_co1_gate2.py",
+      "symbol": "command_shape",
+      "question": "For command_shape(\"rg -n needle file.py\"), what is the first tuple element? Reply with only that string.",
+      "expected": "rg",
+      "order": ["native", "co"]
+    },
+    {
+      "id": "fail_external_helper",
+      "cohort": "expected_fail_open",
+      "expected_gate_reason": "external_helper_risk",
+      "target_path": "plugins/agent-token-manager/scripts/context_optimizer_hook.py",
+      "symbol": "parsed_words",
+      "question": "Which standard-library parser does parsed_words call to split a supported command? Reply with only the module-qualified function name.",
+      "expected": "shlex.split",
+      "order": ["co", "native"]
+    },
+    {
+      "id": "fail_class_state",
+      "cohort": "expected_fail_open",
+      "expected_gate_reason": "class_state_risk",
+      "target_path": "plugins/agent-token-manager/scripts/task_navigator.py",
+      "symbol": "TaskStateStore.exists",
+      "question": "Which SQLite table does TaskStateStore.exists query? Reply with only the table name.",
+      "expected": "navigation_tasks",
+      "order": ["native", "co"]
+    },
+    {
+      "id": "fail_sibling_method",
+      "cohort": "expected_fail_open",
+      "expected_gate_reason": "sibling_method_risk",
+      "target_path": "plugins/agent-token-manager/scripts/navigation_store.py",
+      "symbol": "NavigationStore.counts",
+      "question": "What is the last dictionary key returned by NavigationStore.counts? Reply with only the key.",
+      "expected": "unresolved_relations",
+      "order": ["co", "native"]
+    },
+    {
+      "id": "fail_dynamic_semantics",
+      "cohort": "expected_fail_open",
+      "expected_gate_reason": "dynamic_semantics_risk",
+      "target_path": "plugins/agent-token-manager/scripts/serena_adapter_server.py",
+      "symbol": "result_text",
+      "question": "What exact separator does result_text use when joining text blocks? Reply NEWLINE if it is a newline character.",
+      "expected": "NEWLINE",
+      "order": ["native", "co"]
+    },
+    {
+      "id": "fail_task_intent",
+      "cohort": "expected_fail_open",
+      "expected_gate_reason": "task_intent_risk",
+      "task_intent": "compute",
+      "target_path": "plugins/agent-token-manager/scripts/ast_navigation_provider.py",
+      "symbol": "base_value",
+      "question": "Compute base_value('class', '__Hidden__', False). Reply with only the number including one decimal place.",
+      "expected": "2.5",
+      "order": ["co", "native"]
+    }
+  ]
+}

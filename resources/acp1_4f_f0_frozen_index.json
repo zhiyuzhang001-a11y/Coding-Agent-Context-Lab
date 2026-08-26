@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-4f-f0-frozen-index-v1",
+  "experiment_id": "acp1-4f-combined-prospective-generalization-v2.1",
+  "status": "f0_refrozen_with_candidate_identity_under_contract_scope",
+  "verdict": "READY_FOR_NATIVE_QUALIFICATION",
+  "agent_run_count": 0,
+  "agent_runs_authorized": false,
+  "case_count": 12,
+  "family_counts": {"read": 4, "search": 4, "bash": 4},
+  "project_form_count": 3,
+  "artifacts": {
+    "contract": {"path": "resources/acp1_4f_frozen_contract.json", "sha256": "90aea5df50dbf79f0aa85db0e89448c956018296703c753a57c518b9efdf2962"},
+    "oracle_registry": {"path": "resources/acp1_4f_oracle_registry.json", "sha256": "2cf58fc2bf42efd2174e6523b6f65b5016fad6f452689c1c3b4397c3df047c9d"},
+    "treatment_builder": {"path": "scripts/acp1_4f_treatment_contract.py", "sha256": "e62e66f7370dca5739b94782c45f0b26797c067faec809141482598b5b82b372"},
+    "verifier": {"path": "scripts/verify_acp1_4f_f0.py", "sha256": "ca53d79694f260d291c4c029d5b5ae0cdbbc89d91debfafa5400e6a54fa9c780"},
+    "native_runner": {"path": "scripts/run_acp1_4f_native_qualification.py", "sha256": "119b2740067b0ab7243599383c246acfe3eeee415d2d1456a7acea0000d10d52"},
+    "alpha_routes": {"path": "resources/acp1_4f_subjects/alpha_service/routes.py", "sha256": "858d74882dc127da0996779f1291045215a2bf3b2446a3c4c0b9c755ce75e9f9"},
+    "alpha_settings": {"path": "resources/acp1_4f_subjects/alpha_service/settings.py", "sha256": "fe68d9b02e81298a4a1670fe60b2f57e1731e7f45d0eb3f6eb717d39fc5dd841"},
+    "alpha_status": {"path": "resources/acp1_4f_subjects/alpha_service/status_report.py", "sha256": "cba85780dfac5e9950b14fc38c92cceb3e728b49f3b89d54d245bc44eea652f9"},
+    "beta_commands": {"path": "resources/acp1_4f_subjects/beta_cli/commands.py", "sha256": "e79e7ea3eeaf86f7134595fe5d0fc1428b3fc03318f45c91c2bd6f098859787c"},
+    "beta_config": {"path": "resources/acp1_4f_subjects/beta_cli/config.json", "sha256": "8d8cdc41013f02b05980d873c6d8dddbf59febe28c35418b7714d64a6949fd52"},
+    "beta_verify": {"path": "resources/acp1_4f_subjects/beta_cli/verify_manifest.py", "sha256": "1ae790edf6ca0035599ed49b0f1f608ba55fd47b5563fa2ae7636ad757928128"},
+    "gamma_pipeline": {"path": "resources/acp1_4f_subjects/gamma_pipeline/pipeline.toml", "sha256": "6dca36f77e2b4a566feab75455006d887943fde01500a938dfa025a828d1bf42"},
+    "gamma_summary": {"path": "resources/acp1_4f_subjects/gamma_pipeline/pipeline_summary.py", "sha256": "f105b7ce1f7995bf4034d0d48815032e596cab902905188264cc9b518d8470f2"},
+    "gamma_regions": {"path": "resources/acp1_4f_subjects/gamma_pipeline/regions.json", "sha256": "2b3f7b85f70e88b2d9345e8d462fbe5fae84a28d5621cc9ce1fda4500f19487f"},
+    "gamma_validate": {"path": "resources/acp1_4f_subjects/gamma_pipeline/validate_pipeline.py", "sha256": "053cb5f299706e7b20c6f4507cdd26894591e0d73b2903f517f00709e73c2aa0"}
+  },
+  "authorization_boundary": {
+    "f0_contract_frozen": true,
+    "native_qualification_ready": true,
+    "native_qualification_started": false,
+    "offline_activation_started": false,
+    "pilot_started": false,
+    "formal_started": false
+  },
+  "policy": {
+    "collector_hash_changed": false,
+    "hook_hash_changed": false,
+    "transparent_smart_read_reopened": false,
+    "production_slicing_or_replacement": false,
+    "real_time_recommendation": false
+  }
+}

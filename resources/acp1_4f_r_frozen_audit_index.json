@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-4f-r-frozen-audit-index-v1",
+  "audit_id": "acp1-4f-r-native-path-benchmark-semantics-v1",
+  "status": "complete_under_read_only_audit_scope",
+  "audit_exit": "PROCEED_TO_BENCHMARK_DEVELOPMENT_POOL",
+  "agent_run_count": 0,
+  "artifacts": {
+    "audit_contract": {
+      "path": "resources/acp1_4f_r_audit_contract.json",
+      "sha256": "3a4b57e298f977a46531f1af0c4c684f9b4d3aab5e9d0114636262639364f919"
+    },
+    "audit_runner": {
+      "path": "scripts/audit_acp1_4f_native_paths.py",
+      "sha256": "ce73fb3e18b35e80f4f8e1b86719cbb9d51704c7e2e1ae3ce41c66ae8d1f3e00"
+    },
+    "audit_result": {
+      "path": "resources/acp1_4f_r_audit_result.json",
+      "sha256": "bfad229d90337206cd98cb39fcc870b2f1f2987caaa73c7ff26a996819e76ec6"
+    },
+    "future_futility_helper": {
+      "path": "scripts/acp1_4f_futility.py",
+      "sha256": "aba78ac3a4c7c89449a49f2e21e9580a09317226d5e72ff65cc1361f70d152fa"
+    }
+  },
+  "source_v2_1": {
+    "verdict_unchanged": "INSUFFICIENT_NATIVE_COVERAGE",
+    "completed_run_count": 54,
+    "interrupted_run_count": 1,
+    "private_completed_inventory_sha256": "2dad2422363ba330a761659842d91c9dc98166c2cbf4813381fbb65298d6c634",
+    "historical_reclassification": false,
+    "future_formal_reuse": false
+  },
+  "authorization_boundary": {
+    "development_pool_design_ready": true,
+    "development_pool_agent_runs_authorized": false,
+    "new_experiment_version_created": false,
+    "f2_pilot_formal_authorized": false
+  }
+}

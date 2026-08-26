@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "schema_id": "fact-report-semantic-dictionary-v1",
+  "report_schema_id": "fact-report-v1",
+  "reporter_version": "acp-reporter-v0.1",
+  "canonical_layers": {
+    "observed_tool_result_cost": "Collector-observed tool-result volume; it is not model billing.",
+    "model_visible_tool_context": "Only uniquely linked transcript-visible tool-result volume.",
+    "session_level_cost": "Cumulative session usage and model cycles when supplied by a frozen usage source; unavailable values remain unknown.",
+    "profiler_cost": "Profiler execution and behavioral overhead; unavailable paired evidence remains unknown."
+  },
+  "drilldown_views": [
+    "sessions",
+    "model_cycles",
+    "tool_calls",
+    "tool_families",
+    "command_shapes",
+    "distributions",
+    "largest_calls",
+    "evidence_coverage"
+  ],
+  "status_values": ["complete", "partial", "unknown", "unsupported"],
+  "raw_volume_unit": "characters",
+  "canonical_fact_source": "JSON",
+  "cycle_inference": "prohibited",
+  "new_correlation": "prohibited",
+  "repeated_observation_semantics": "Factual relationship only; no necessity or actionability conclusion."
+}

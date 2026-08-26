@@ -1,0 +1,24 @@
+{
+  "application": "epsilon-tools",
+  "default_page_size": 73,
+  "history_retention_days": 48,
+  "parallel_workers": 6,
+  "output_color": "violet",
+  "network_timeout_seconds": 29,
+  "retry_limit": 4,
+  "archive_directory": "records/archive",
+  "manifest_version": 3,
+  "telemetry_enabled": false,
+  "profiles": {
+    "local": {"workers": 2, "page_size": 40},
+    "team": {"workers": 6, "page_size": 73},
+    "batch": {"workers": 10, "page_size": 120}
+  },
+  "feature_flags": {
+    "safe_delete": true,
+    "archive_command": true,
+    "legacy_sync": false,
+    "manifest_checks": true,
+    "colored_output": true
+  }
+}

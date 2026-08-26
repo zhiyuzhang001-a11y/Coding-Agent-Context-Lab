@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "status": "pilot_complete_formal_matrix_not_started",
+  "checks": {
+    "all_completed_correct": true,
+    "one_tool_call_each": true,
+    "two_model_cycles_each": true,
+    "canary_visible_each": true,
+    "observe_has_no_decision": true,
+    "rewrite_has_block_decision": true
+  },
+  "medians": {
+    "native": 31268.5,
+    "observe": 31291.5,
+    "rewrite": 31331.5
+  },
+  "pairs": [
+    {
+      "repetition": 1,
+      "native_total": 31150,
+      "observe_total": 31186,
+      "rewrite_total": 31291,
+      "observe_minus_native": 36,
+      "rewrite_minus_observe": 105
+    },
+    {
+      "repetition": 2,
+      "native_total": 31387,
+      "observe_total": 31397,
+      "rewrite_total": 31372,
+      "observe_minus_native": 10,
+      "rewrite_minus_observe": -25
+    }
+  ],
+  "median_observe_minus_native": 23.0,
+  "median_observe_over_native_percent": 0.074,
+  "median_rewrite_minus_observe": 40.0,
+  "observe_direction_consistent": true,
+  "rewrite_direction_consistent": false,
+  "commit": "544ea69d87bd04589ca4c1f966bac6265559ae7b",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "medium",
+  "token_count_method": "Codex cumulative input_tokens + output_tokens"
+}

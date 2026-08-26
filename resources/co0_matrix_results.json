@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "date": "2026-08-15",
+  "codex_cli": "0.148.0-alpha.9",
+  "plugin_version": "0.1.0+codex.20260815134154",
+  "freeze_commit": "4b03f7d",
+  "scope": "frozen CO-0 synthetic interface and economic matrix",
+  "interface": {
+    "status": "passed",
+    "checks": {
+      "cat": true,
+      "sed": true,
+      "rg": true,
+      "known_symbol": true,
+      "code_mode": true,
+      "passthrough": true,
+      "fail_open": true
+    }
+  },
+  "economic": {
+    "status": "passed",
+    "checks": {
+      "correctness_not_lower": true,
+      "aggregate_net_visible_saving_positive": true,
+      "median_net_visible_saving_positive": true,
+      "median_same_intent_retries_at_most_one": true,
+      "no_retry_loop": true,
+      "rg_and_one_code_read_total_lower": true,
+      "median_total_ratio_at_most_one": true
+    },
+    "pairs": [
+      {
+        "scenario": "cat",
+        "native_visible_tokens": 361,
+        "co_visible_tokens_after_retries": 92,
+        "net_visible_context_saving": 269,
+        "co_same_intent_retries": 0,
+        "native_total_tokens": 33118,
+        "co_total_tokens": 32886,
+        "co_native_total_ratio": 0.993
+      },
+      {
+        "scenario": "sed",
+        "native_visible_tokens": 361,
+        "co_visible_tokens_after_retries": 93,
+        "net_visible_context_saving": 268,
+        "co_same_intent_retries": 0,
+        "native_total_tokens": 33136,
+        "co_total_tokens": 32911,
+        "co_native_total_ratio": 0.9932
+      },
+      {
+        "scenario": "rg",
+        "native_visible_tokens": 286,
+        "co_visible_tokens_after_retries": 97,
+        "net_visible_context_saving": 189,
+        "co_same_intent_retries": 0,
+        "native_total_tokens": 33105,
+        "co_total_tokens": 32885,
+        "co_native_total_ratio": 0.9934
+      },
+      {
+        "scenario": "known_symbol",
+        "native_visible_tokens": 593,
+        "co_visible_tokens_after_retries": 103,
+        "net_visible_context_saving": 490,
+        "co_same_intent_retries": 0,
+        "native_total_tokens": 33515,
+        "co_total_tokens": 33082,
+        "co_native_total_ratio": 0.9871
+      }
+    ],
+    "aggregate_native_visible_tokens": 1601,
+    "aggregate_co_visible_tokens_after_retries": 385,
+    "aggregate_net_visible_context_saving": 1216,
+    "aggregate_visible_context_saving_percent": 75.95,
+    "median_net_visible_context_saving": 268.5,
+    "median_same_intent_retries": 0.0,
+    "median_co_native_total_ratio": 0.9931,
+    "aggregate_native_total_tokens": 132874,
+    "aggregate_co_total_tokens": 131764,
+    "aggregate_complete_session_saving_tokens": 1110
+  },
+  "limitations": [
+    "one paired run per supported scenario",
+    "synthetic fixtures and short answer tasks",
+    "decision:block still has tool-error semantics",
+    "results do not establish general full-development-session savings",
+    "plugin remains observe by default"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "status": "transparent_host_gate_failed",
+  "observe": {
+    "status": "passed",
+    "run_count": 12,
+    "code_bearing_call_count": 16,
+    "model_visible_code_tokens": 17651,
+    "call_coverage": 1.0,
+    "weighted_coverage": 1.0,
+    "end_to_end_correlation": 1.0,
+    "family_call_counts": {
+      "compound_shell": 11,
+      "rg": 1,
+      "sed": 4
+    }
+  },
+  "replaceability": {
+    "status": "failed",
+    "task_commit": "d693547c355820da7a78ad4dd31dd92a1c203978",
+    "plugin_commit": "920a0330de2fb17c3314420efe70ae9530b38969",
+    "plugin_version": "0.1.0+codex.20260816143338",
+    "manifest_sha256": "7463921d7318ca0e26171d1b0eb08146bb2e6454e8b41f33f3b0a838c3132ed7",
+    "pair_count": 4,
+    "run_count": 8,
+    "replaceability_coverage": 1.0,
+    "canary_visible": 4,
+    "raw_result_preserved": 4,
+    "success_semantics_preserved": 0,
+    "observe_correct": 3,
+    "canary_correct": 4,
+    "tool_calls_each": 1,
+    "model_cycles_each": 2,
+    "median_model_cycle_delta": 0.0,
+    "compensation_tool_calls": 0,
+    "failure_reason": "decision_block_surfaces_as_script_failed"
+  },
+  "decision": "pause_transparent_smart_read_and_preserve_observability_path"
+}

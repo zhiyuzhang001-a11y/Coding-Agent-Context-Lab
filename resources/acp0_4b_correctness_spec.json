@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp0-4b-correctness-spec-v1",
+  "case_id": "single_file_range_count",
+  "source_fixture": "resources/acp0_4_cases.json",
+  "subject_commit": "b506818b3db87be62064ad64e62b1ad262d5a4b9",
+  "expected": "7",
+  "specification_audit": {
+    "status": "unambiguous_existing_case",
+    "interval_semantics": "inclusive",
+    "adjacent_ranges_merge": true,
+    "zero_or_one_based_relevant": false,
+    "blank_lines_relevant": false,
+    "answer_unique": true,
+    "tool_evidence_requested": true,
+    "scorer": "strip_outer_whitespace_then_exact_final_text"
+  },
+  "native_calibration": {
+    "arm": "off",
+    "repetitions": 20,
+    "all_runs_in_denominator": true,
+    "single_run_reruns_allowed": false,
+    "empirically_stable_minimum_correct": 19,
+    "stochastic_diagnostic_maximum_correct": 18
+  },
+  "answer_shape_taxonomy": {
+    "correct": ["7"],
+    "off_by_one_like": ["6", "8"],
+    "first_cluster_only_like": ["5"],
+    "endpoint_like": ["10"],
+    "other_integer": "any_other_integer",
+    "malformed_or_missing": "empty_or_non_integer",
+    "execution_failure": "run_not_completed"
+  },
+  "prospective_correctness": {
+    "repetitions_per_arm": 20,
+    "empirically_stable_on_minimum_correct": 19,
+    "empirically_stable_on_not_below_off": true,
+    "stochastic_minimum_accuracy_delta": -0.1,
+    "runs_enter_cost_or_path_gate": false
+  },
+  "inherited_gates": {
+    "evidence_source": "resources/acp0_4a_results.json",
+    "token_ratio_ceiling": 1.02,
+    "require_cost_pass": true,
+    "require_no_preregistered_path_signal": true,
+    "require_host_transparency": true
+  },
+  "frozen_prior_results": {
+    "acp0_4": "FAILED_COST_NEUTRALITY",
+    "acp0_4a": "INCONCLUSIVE_GRADUATION_FAIL",
+    "rewritten": false
+  }
+}

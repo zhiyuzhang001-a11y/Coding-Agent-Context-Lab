@@ -1,0 +1,23 @@
+CO0 interface feasibility fixture.
+The first lines are deliberately safe and should remain in a compact preview.
+This file is not application source code and exists only for the frozen CO-0 gate.
+FILLER-01: alpha beta gamma delta epsilon zeta eta theta.
+FILLER-02: alpha beta gamma delta epsilon zeta eta theta.
+FILLER-03: alpha beta gamma delta epsilon zeta eta theta.
+FILLER-04: alpha beta gamma delta epsilon zeta eta theta.
+FILLER-05: alpha beta gamma delta epsilon zeta eta theta.
+FILLER-06: alpha beta gamma delta epsilon zeta eta theta.
+FILLER-07: alpha beta gamma delta epsilon zeta eta theta.
+FILLER-08: alpha beta gamma delta epsilon zeta eta theta.
+SECRET_TOKEN: CO0_RAW_PAYLOAD_CANARY_5F8A27D1
+FILLER-09: iota kappa lambda mu nu xi omicron pi.
+FILLER-10: iota kappa lambda mu nu xi omicron pi.
+FILLER-11: iota kappa lambda mu nu xi omicron pi.
+FILLER-12: iota kappa lambda mu nu xi omicron pi.
+FILLER-13: iota kappa lambda mu nu xi omicron pi.
+FILLER-14: iota kappa lambda mu nu xi omicron pi.
+FILLER-15: iota kappa lambda mu nu xi omicron pi.
+FILLER-16: iota kappa lambda mu nu xi omicron pi.
+FILLER-17: iota kappa lambda mu nu xi omicron pi.
+FILLER-18: iota kappa lambda mu nu xi omicron pi.
+The final line confirms that the raw payload is intentionally larger than the replacement budget.

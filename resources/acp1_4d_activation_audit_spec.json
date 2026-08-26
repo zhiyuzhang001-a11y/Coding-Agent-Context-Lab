@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-4d-activation-audit-spec-v1",
+  "experiment_id": "acp1-4d-read-search-activation-audit-v1",
+  "activation_gate": 0.35,
+  "source_formal_result": {
+    "path": "resources/acp1_4c_results.json",
+    "sha256": "b95680b3264a53fa3979d0e643405f1b762d145d877d341ec31e83b805b7f2d2"
+  },
+  "source_experiment_spec": {
+    "path": "resources/acp1_4_experiment_spec.json",
+    "sha256": "2690d88413fd628aa16d73a3023184c6754945d5f8c14a19d980d6c55eac2cdb"
+  },
+  "source_frozen_index": {
+    "path": "resources/acp1_4c_frozen_requalification_index.json",
+    "sha256": "3f912b3e648de732fd7a58c0e8ca5249ff1800f2ffc24b3b7de88051bb43a92e"
+  },
+  "cases": [
+    {
+      "case_id": "read_context_router_limit_v1",
+      "expected_reduction_median": 0.28519417475728154,
+      "expected_primary_classification": "RULE_MISMATCH",
+      "prospective_direction": "narrower_deterministic_range_projection"
+    },
+    {
+      "case_id": "search_budget_stop_v1",
+      "expected_reduction_median": 0.056790123456790124,
+      "expected_primary_classification": "RULE_MISMATCH",
+      "prospective_direction": "line_selective_target_preservation_and_unambiguous_scope"
+    },
+    {
+      "case_id": "search_token_router_v1",
+      "expected_reduction_median": 0.006280878621597742,
+      "expected_primary_classification": "MEASUREMENT_MISMATCH",
+      "prospective_direction": "uncensored_scope_then_stronger_nontarget_projection"
+    }
+  ],
+  "policy": {
+    "agent_runs": 0,
+    "historical_verdicts_changed": false,
+    "activation_gate_changed": false,
+    "tasks_replaced": false,
+    "production_slicing_or_replacement": false,
+    "real_time_recommendation": false,
+    "global_savings_claim": false
+  }
+}

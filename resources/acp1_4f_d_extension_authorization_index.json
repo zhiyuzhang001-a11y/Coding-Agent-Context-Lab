@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-4f-d-extension-authorization-index-v1",
+  "protocol_id": "acp1-4f-d-development-protocol-v1",
+  "pool_id": "acp1-4f-d-24-case-development-pool-v1",
+  "status": "extension_authorized_after_frozen_screen",
+  "agent_run_count_at_freeze": 0,
+  "screen_run_count_before_extension": 72,
+  "artifacts": {
+    "extension_contract": {
+      "path": "resources/acp1_4f_d_extension_contract.json",
+      "sha256": "3305ec1ed641a78dfed1112306ce90cfeaf937b3fdd266b2d42c879bf3c5dfd0"
+    },
+    "registry_schema": {
+      "path": "resources/acp1_4f_d_registry_schema.json",
+      "sha256": "6f220f342fd7e90dc520e4011e59e7f3be44742b4bed40b5e67f0a72f8a5f19d"
+    },
+    "case_pool": {
+      "path": "resources/acp1_4f_d_case_pool.json",
+      "sha256": "9d19d34a2b35753b566bc6554b9bc224315dfb4d5394933408f7b440a363cfbf"
+    },
+    "oracle_registry": {
+      "path": "resources/acp1_4f_d_oracle_registry.json",
+      "sha256": "6de7a556ec782d76bafed8dc8fd873af05757187102b22e583fbddf1ef4f038a"
+    },
+    "offline_fixture": {
+      "path": "resources/acp1_4f_d_offline_fixture.json",
+      "sha256": "2d61191ef07fec95b43e7e75db59b01db4e569527e07d8a68c560eb82a79905d"
+    },
+    "development_runner": {
+      "path": "scripts/run_acp1_4f_d_development.py",
+      "sha256": "5e7300d09a2e3dbfc7f39ca4cb543ec6f5819c6f70b792e382acc50294288357"
+    },
+    "shared_futility_helper": {
+      "path": "scripts/acp1_4f_futility.py",
+      "sha256": "aba78ac3a4c7c89449a49f2e21e9580a09317226d5e72ff65cc1361f70d152fa"
+    },
+    "frozen_screen_index": {
+      "path": "resources/acp1_4f_d_frozen_screen_index.json",
+      "sha256": "4975623edc0503df9eba351cc74b99e72dd01007d00b65306de59df980bf638e"
+    },
+    "frozen_screen_registry": {
+      "path": "resources/acp1_4f_d_development_registry.json",
+      "sha256": "bcc7359d9812ff3e814795486c6314329e7d95c4cb493b978d5be83209680df1"
+    }
+  },
+  "subjects": {
+    "path": "resources/acp1_4f_d_subjects",
+    "file_count": 12,
+    "inventory_sha256": "6e9fa44874e691ea41796af191b28c25fcd9ded67238687054830b0e7283f51c"
+  },
+  "admission": {
+    "selection": "programmatic_screen_admitted_state_only",
+    "case_count": 7,
+    "case_ids": [
+      "d_search_delta_maintenance_v1",
+      "d_search_delta_retired_v1",
+      "d_search_epsilon_archive_v1",
+      "d_search_epsilon_legacy_v1",
+      "d_search_zeta_retention_v1",
+      "d_search_zeta_quarantine_v1",
+      "d_bash_zeta_status_v1"
+    ]
+  },
+  "semantic_change": {
+    "allowed_differences_from_protocol_contract": ["status", "authorization.extension_runs_authorized"],
+    "taxonomy_changed": false,
+    "gates_changed": false,
+    "pool_changed": false,
+    "runner_changed": false,
+    "r1_s1_b1_changed": false
+  },
+  "authorization": {
+    "extension": true,
+    "v3": false
+  }
+}

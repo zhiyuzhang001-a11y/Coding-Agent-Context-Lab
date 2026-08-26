@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-4f-r-native-path-audit-contract-v1",
+  "status": "frozen_before_private_path_semantics_audit",
+  "audit_id": "acp1-4f-r-native-path-benchmark-semantics-v1",
+  "source_experiment": {
+    "experiment_id": "acp1-4f-combined-prospective-generalization-v2.1",
+    "verdict": "INSUFFICIENT_NATIVE_COVERAGE",
+    "completed_run_count": 54,
+    "interrupted_run_count": 1,
+    "public_early_stop_sha256": "c1f2d75aae12fbbf0c714955a7d7f0de21dcc63cc4218be913377efc1cbc2780",
+    "public_frozen_index_sha256": "944c5ff36dfa2f7bc305e3d9654b5183c116ddb3077ff56848de6f304627632c",
+    "private_completed_inventory_sha256": "2dad2422363ba330a761659842d91c9dc98166c2cbf4813381fbb65298d6c634",
+    "immutable": true,
+    "historical_reclassification_allowed": false,
+    "formal_statistical_reuse_allowed": false
+  },
+  "scope": {
+    "agent_runs": 0,
+    "treatment_builder_used": false,
+    "collector_or_hook_used": false,
+    "intervention_used": false,
+    "r1_s1_b1_evaluation_allowed": false,
+    "purpose": "diagnose whether v2.1 native qualification measured host-tool trajectory stability instead of intervention-relevant evidence opportunity stability"
+  },
+  "closed_evidence_basis": [
+    "frozen_v2_1_contract",
+    "frozen_f1_early_stop_result",
+    "frozen_f1_early_stop_index",
+    "54_private_completed_result_json_files",
+    "54_private_completed_codex_jsonl_files"
+  ],
+  "forbidden_inputs": [
+    "oracle_registry_expected_values",
+    "scorer_logic_for_evidence_classification",
+    "answer_derived_target_regex",
+    "treatment_builder_output",
+    "pilot_or_formal_results",
+    "new_agent_runs"
+  ],
+  "analysis_units": {
+    "task_correctness": "frozen outer-harness correctness only; used as a descriptive stratum and never to select evidence",
+    "host_tool_path": "the v2.1 ordered sequence of tool family, executable kind, candidate relation, and success semantics",
+    "evidence_opportunity": "a successful model-visible acquisition result whose request-derived subject, query, or structural intent is compatible with a frozen evidence family",
+    "intervention_compatible_carrier": "an evidence opportunity with a deterministic structural carrier potentially routable to R1, S1, or B1 without oracle or answer-derived selectors",
+    "candidate_identity": "the v2.1 exact family/request-shape identity retained only as the historical comparator"
+  },
+  "evidence_families": {
+    "read_like": {
+      "compatible_carriers": ["read", "bash_cat", "bash_sed", "bash_head_tail"],
+      "required_relation": "request-derived subject path or request anchor",
+      "template_mapping_is_audit_only": "R1"
+    },
+    "search_like": {
+      "compatible_carriers": ["search", "bash_rg", "bash_grep"],
+      "required_relation": "request-derived query term and bounded subject scope",
+      "template_mapping_is_audit_only": "S1"
+    },
+    "structured_bash_like": {
+      "compatible_carriers": ["bash_json", "bash_test_summary", "bash_structured_count", "bash_exit_status"],
+      "required_relation": "request-derived command intent and reliably parsed structural output",
+      "template_mapping_is_audit_only": "B1"
+    }
+  },
+  "classification_order": [
+    "MEASUREMENT_UNKNOWN",
+    "NO_EXTERNAL_EVIDENCE",
+    "IDENTITY_FALSE_NEGATIVE",
+    "TOOL_SELECTION_VARIANCE",
+    "TRAJECTORY_ONLY_VARIANCE",
+    "GENUINE_EVIDENCE_INSTABILITY",
+    "STABLE_INTERVENTION_COMPATIBLE_CARRIER",
+    "INSUFFICIENT_DIAGNOSTIC_EVIDENCE"
+  ],
+  "classification_rules": {
+    "MEASUREMENT_UNKNOWN": "required private artifact is missing, malformed, censored, or cannot be linked deterministically",
+    "NO_EXTERNAL_EVIDENCE": "the run is correct but has no successful request-related external evidence opportunity",
+    "IDENTITY_FALSE_NEGATIVE": "v2.1 candidate_recurred is false while exactly one request-related compatible carrier is present",
+    "TOOL_SELECTION_VARIANCE": "runs use more than one host carrier for the same evidence family while retaining request-related evidence opportunities",
+    "TRAJECTORY_ONLY_VARIANCE": "request-related carrier identity is stable but the full v2.1 host path signature varies",
+    "GENUINE_EVIDENCE_INSTABILITY": "request-related intervention-compatible evidence opportunity is absent or non-unique too often to meet the frozen descriptive 8-of-10 reference level",
+    "STABLE_INTERVENTION_COMPATIBLE_CARRIER": "a request-related compatible carrier recurs at the frozen descriptive 8-of-10 reference level without ambiguity",
+    "INSUFFICIENT_DIAGNOSTIC_EVIDENCE": "the observed prefix cannot distinguish the registered causes"
+  },
+  "metrics": {
+    "correctness_stability": "correct completed runs / completed runs",
+    "v2_1_candidate_recurrence": "historical candidate_recurred runs / completed runs",
+    "evidence_opportunity_recurrence": "runs with exactly one request-related evidence opportunity / completed runs",
+    "compatible_carrier_recurrence": "runs with exactly one intervention-compatible carrier / completed runs",
+    "carrier_distribution": "counts by normalized carrier kind",
+    "path_entropy_bits": "Shannon entropy over v2.1 path signatures using log2",
+    "normalized_path_entropy": "path_entropy_bits / log2(number of completed runs), or 0 when completed runs <= 1",
+    "dominant_carrier_frequency": "largest compatible-carrier count",
+    "dominant_path_frequency": "historical largest v2.1 path-signature count"
+  },
+  "case_diagnostic_labels": [
+    "IDENTITY_MISMATCH",
+    "PATH_GATE_MISMATCH",
+    "TOOL_FAMILY_UNSUITABLE",
+    "GENUINE_EVIDENCE_INSTABILITY",
+    "MEASUREMENT_UNKNOWN",
+    "STABLE_AT_EVIDENCE_LEVEL",
+    "INSUFFICIENT_DIAGNOSTIC_EVIDENCE"
+  ],
+  "audit_exit_values": [
+    "PROCEED_TO_BENCHMARK_DEVELOPMENT_POOL",
+    "BENCHMARK_SEMANTICS_UNSUITABLE",
+    "INCONCLUSIVE"
+  ],
+  "privacy": {
+    "public_raw_commands": false,
+    "public_raw_outputs": false,
+    "public_absolute_paths": false,
+    "public_final_answers": false,
+    "public_run_ids": false,
+    "public_values": "aggregate counts, normalized carrier labels, reason codes, and digests only"
+  },
+  "downstream_boundary": {
+    "development_pool_requires_separate_authorization": true,
+    "development_pool_is_formal_statistics": false,
+    "future_holdout_must_be_new": true,
+    "v2_1_runs_may_enter_future_formal_statistics": false,
+    "qualification_threshold_changes_allowed_in_this_audit": false,
+    "new_experiment_version_created_by_this_audit": false
+  }
+}

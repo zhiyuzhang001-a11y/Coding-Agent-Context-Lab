@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-4f-d-development-contract-v1",
+  "protocol_id": "acp1-4f-d-development-protocol-v1",
+  "status": "screen_complete_extension_authorized",
+  "upstream": {
+    "f_r_audit_exit": "PROCEED_TO_BENCHMARK_DEVELOPMENT_POOL",
+    "f_r_frozen_index": "resources/acp1_4f_r_frozen_audit_index.json",
+    "v2_1_verdict_unchanged": "INSUFFICIENT_NATIVE_COVERAGE",
+    "v3_status": "BLOCKED_BY_BENCHMARK_DEVELOPMENT"
+  },
+  "scope": {
+    "purpose": "benchmark development only",
+    "qualification_unit": "evidence_opportunity",
+    "treatment_builder_enabled": false,
+    "collector_or_hook_mutation": false,
+    "intervention_enabled": false,
+    "r1_s1_b1_status": "frozen",
+    "development_data_is_formal": false,
+    "future_holdout_must_be_new": true
+  },
+  "object_layers": [
+    "task",
+    "evidence_opportunity",
+    "compatible_carrier",
+    "observed_host_path"
+  ],
+  "pool": {
+    "case_count": 24,
+    "project_form_minimum": 4,
+    "design_target": {
+      "read_like_approximate": 8,
+      "search_like_approximate": 8,
+      "structured_bash_like_approximate": 8
+    },
+    "observed_family_overrides_intended_form": true,
+    "case_replacement_after_freeze": false,
+    "case_edit_after_first_run": false
+  },
+  "execution": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "medium",
+    "sandbox": "read-only",
+    "multi_agent": false,
+    "screen_repetitions": 3,
+    "extension_repetitions": 7,
+    "maximum_repetitions_per_case": 10,
+    "screen_run_count": 72,
+    "hard_agent_run_cap": 240,
+    "automatic_checkpoint_after_each_attempt": true,
+    "automatic_futility_stop": true
+  },
+  "taxonomy": {
+    "evidence_families": [
+      "read_like",
+      "search_like",
+      "structured_bash_like"
+    ],
+    "carrier_to_family": {
+      "read": "read_like",
+      "bash_sed": "read_like",
+      "bash_cat": "read_like",
+      "bash_head_tail": "read_like",
+      "search": "search_like",
+      "bash_rg": "search_like",
+      "bash_grep": "search_like",
+      "bash_json": "structured_bash_like",
+      "bash_test_summary": "structured_bash_like",
+      "bash_structured_count": "structured_bash_like",
+      "bash_exit_status": "structured_bash_like"
+    },
+    "unknown_carrier": "unsupported",
+    "free_text_structured_bash": "unsupported",
+    "parse_failure": "measurement_unknown"
+  },
+  "identity": {
+    "case_independent": true,
+    "request_derived_fields": [
+      "subject_scope",
+      "request_anchor",
+      "query_shape",
+      "requested_structural_kind"
+    ],
+    "forbidden_fields": [
+      "expected",
+      "scorer",
+      "final_answer",
+      "case_specific_target_regex",
+      "prior_correctness",
+      "pilot_or_formal_result"
+    ],
+    "exactly_one_related_opportunity": "stable",
+    "multiple_related_opportunities": "ambiguous",
+    "zero_related_opportunities": "not_identified"
+  },
+  "measurement": {
+    "token_estimator": "chars_div_4_v1",
+    "minimum_meaningful_evidence_tokens": 200,
+    "minimum_result_chars": 16,
+    "truncated_result": "measurement_unknown",
+    "unlinked_result": "measurement_unknown",
+    "raw_commands_public": false,
+    "raw_outputs_public": false,
+    "final_answers_public": false,
+    "absolute_paths_public": false,
+    "run_ids_public": false
+  },
+  "final_case_gates": {
+    "completed_with_usage": 10,
+    "correct_min": 9,
+    "evidence_opportunity_recurrence_min": 8,
+    "compatible_carrier_recurrence_min": 8,
+    "meaningful_evidence_recurrence_min": 8,
+    "dominant_observed_evidence_family_min": 8,
+    "ambiguous_identity_max": 0,
+    "measurement_unknown_max": 0,
+    "prompt_inferable": false,
+    "oracle_free": true
+  },
+  "futility_reason_codes": [
+    "F_CORRECTNESS_UNSTABLE",
+    "F_EVIDENCE_NOT_IDENTIFIABLE",
+    "F_NO_COMPATIBLE_CARRIER",
+    "F_TOOL_PATH_UNSTABLE",
+    "F_TRUNCATION_UNRESOLVED",
+    "F_EVIDENCE_TOO_SMALL",
+    "F_AMBIGUOUS_IDENTITY",
+    "F_PROMPT_INFERABLE",
+    "F_INTERVENTION_NOT_MEANINGFUL"
+  ],
+  "verdict": {
+    "minimum_qualified_cases_per_observed_family": 3,
+    "READY_FOR_NEW_HOLDOUT": "at least three observed evidence families meet the minimum with case-independent oracle-free semantics",
+    "SUPPORTED_FOR_SUBSET_ONLY": "exactly two observed evidence families meet the minimum",
+    "BENCHMARK_SEMANTICS_NOT_SUPPORTED": "fewer than two observed evidence families meet the minimum or case-independent semantics fail"
+  },
+  "authorization": {
+    "protocol_freeze_ready": true,
+    "case_pool_freeze_ready": true,
+    "screen_runs_authorized": true,
+    "extension_runs_authorized": true,
+    "v3_authorized": false
+  }
+}

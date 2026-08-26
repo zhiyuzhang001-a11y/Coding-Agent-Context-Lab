@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "case_id": "fixture_read_observed_as_search",
+      "project_form": "fixture_project",
+      "intended_evidence_form": "read_like",
+      "answer_uniqueness": "verified",
+      "prompt": "Inspect fixture_project and report the deployment state. Reply only with the state.",
+      "request_identity": {
+        "subject_scopes": ["fixture_project"],
+        "request_anchors": [],
+        "query_terms": ["deployment_state"],
+        "structural_fields": []
+      }
+    },
+    {
+      "case_id": "fixture_structured_json",
+      "project_form": "fixture_project",
+      "intended_evidence_form": "structured_bash_like",
+      "answer_uniqueness": "verified",
+      "prompt": "Inspect fixture_project's validation report and report its summary status. Reply only with the status.",
+      "request_identity": {
+        "subject_scopes": ["fixture_project"],
+        "request_anchors": [],
+        "query_terms": [],
+        "structural_fields": ["summary_status"]
+      }
+    }
+  ],
+  "oracles": {
+    "fixture_read_observed_as_search": {"expected": "ready"},
+    "fixture_structured_json": {"expected": "pass"}
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "dictionary_id": "acp1-1-repeated-evidence-semantics-v1",
+  "output_schema_id": "repeated-evidence-analysis-v1",
+  "relation_scope": "within_session",
+  "source_range_convention": "one_based_closed",
+  "canonical_range_convention": "one_based_half_open",
+  "relation_types": [
+    "exact_payload_repeat",
+    "same_path_repeat",
+    "exact_range_repeat",
+    "range_contains",
+    "range_overlap"
+  ],
+  "evidence_basis": ["output_hash", "path_identity", "explicit_range"],
+  "content_stability_values": ["same", "changed", "unknown"],
+  "observed_payload_equality_values": [true, false, "unknown"],
+  "cross_cycle_values": [true, false, "unknown"],
+  "formulas": {
+    "unique_repeated_observation_tokens": "sum(later_call_tokens for unique eligible later calls having at least one reliable within-session earlier relation)",
+    "repeated_observation_share": "unique_repeated_observation_tokens / eligible_observed_visible_estimated_tokens",
+    "relation_count": "count of all retained objective relations; not a token multiplier"
+  },
+  "rules": {
+    "cross_session_relations": false,
+    "requires_unique_call_order": true,
+    "multiple_relation_types_per_later_call": true,
+    "later_call_tokens_counted_once": true,
+    "exact_is_not_contains": true,
+    "contains_is_not_partial_overlap": true,
+    "path_identity_proves_content_stability": false,
+    "payload_hash_equality_proves_file_version": false,
+    "unknown_is_valid": true,
+    "repetition_implies_unnecessary": false
+  },
+  "forbidden_interpretations": [
+    "wasted_tokens",
+    "avoidable_tokens",
+    "potential_savings",
+    "waste_ratio",
+    "savings_ratio",
+    "necessity_verdict",
+    "optimization_opportunity",
+    "recommendation"
+  ]
+}

@@ -1,0 +1,52 @@
+ACP COST ATTRIBUTION MAP
+schema=cost-attribution-baseline-v1
+engine=acp-attributor-v0.1
+renderer=acp-attribution-renderer-v0.1
+attribution_input_sha256=f71ca615902b9e2ed6cd31644d89a89eff188fa1758ad377d285756331419973
+source_fact_report_sha256=65bdcac9f6cc53053bac8b848283600b4c2f1846bdeabca7f3f5b8c979001291
+
+SESSION SUMMARY
+observed_calls=16 status=complete
+attributed_visible_estimated_tokens=17651
+unknown_visible_estimated_tokens=0
+eligible_calls=16
+coverage_status=complete
+session_total_tokens=unknown
+model_cycles=unknown
+
+CONCENTRATION
+top1_share=0.139085604215 status=complete
+top3_share=0.374596340151 status=complete
+topk_share=0.907710611297 status=complete
+top10_percent_share=0.257265877287 status=complete
+top20_percent_share=0.491926803014 status=complete
+call_hhi=0.100553287061 status=complete
+tool_family_hhi=1.0 status=complete
+
+TOOL FAMILIES
+bash calls=16 tokens=17651 share=1.0 median=573.0 p90=2086 max=2455
+
+TOP CALLS
+rank=1 call_index=0 call_id=f38b46c71e831aa94322206135a0e6c3b4975239d3e5f3b8d076c33dba1cf0fd family=bash tokens=2455 share=0.139085604215
+rank=2 call_index=0 call_id=6fee2f2cdd7fb881d750bbab33f83bc8a8e2305659ffea1d6a8e80b4c60f4b85 family=bash tokens=2086 share=0.118180273072
+rank=3 call_index=0 call_id=87b10ee8c1130ba5661b95573ffba470eeae12a35259104934faf2748ad87dfc family=bash tokens=2071 share=0.117330462863
+rank=4 call_index=0 call_id=b00805c90d6aaf46054e03a0096ffa3da58d50a343f3629fc67821dfdc1c1c30 family=bash tokens=2071 share=0.117330462863
+rank=5 call_index=0 call_id=20a3be8874668f11767d57a3d316dd8d2e4748727e2c75862c1a7f675ed5fac7 family=bash tokens=2052 share=0.116254036598
+rank=6 call_index=0 call_id=3f02c36ac2795750903a07cf5800d23ef8fb4c4d14e59a327ac717bcaf313c26 family=bash tokens=1896 share=0.107416010424
+rank=7 call_index=0 call_id=6913075bf901d59510aa015c423d70b9e489f332d017cc8cf849f16abffbd93e family=bash tokens=1756 share=0.099484448473
+rank=8 call_index=1 call_id=a00bbf53e55b6c823fcd40a1312f7f8d071268285682b3ed619756114f689c5f family=bash tokens=573 share=0.032462749986
+rank=9 call_index=1 call_id=82e100a693d764b9b5420b2b96996ac148f1d6cb8a92a1c758b541efdc69d577 family=bash tokens=573 share=0.032462749986
+rank=10 call_index=1 call_id=d882654095c0a049c15a770753d0b088f7ea2394ba6fde47ff2ae06c56fd07ee family=bash tokens=489 share=0.027703812815
+
+REPETITION FACTS
+Factual relationships only; no necessity or actionability conclusion is made.
+exact_payload_duplicate status=complete relations=2 group_observation_visible_tokens=5288
+same_file_repeat status=unknown relations=0 group_observation_visible_tokens=unknown
+range_overlap status=unknown relations=0 group_observation_visible_tokens=unknown
+
+COVERAGE / UNKNOWN
+status=complete
+unknown_count=0
+unknown_visible_estimated_tokens=0
+
+NON-COMPLETE CALL EVIDENCE

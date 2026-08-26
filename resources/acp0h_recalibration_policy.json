@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "policy_id": "acp-recalibration-policy-v1",
+  "state_schema_id": "acp-calibration-state-v1",
+  "decision_schema_id": "recalibration-decision-v1",
+  "mode_precedence": ["none", "smoke", "full_paired"],
+  "smoke_suite": {
+    "suite_id": "smoke-calibration-v1",
+    "checks": [
+      "frozen_hash_contract", "privacy_allowlist", "fixture_replay", "schema_compatibility",
+      "canonical_determinism", "fail_open", "traceability"
+    ]
+  },
+  "full_paired_suite": {
+    "suite_id": "paired-no-interference-v1",
+    "includes_smoke_suite": true,
+    "checks": [
+      "cost_neutrality", "path_neutrality", "correctness_parity", "host_transparency",
+      "collector_coverage"
+    ]
+  },
+  "smoke_fields": [
+    "normalizer_sha256", "reporter_sha256", "attributor_sha256", "renderer_sha256",
+    "event_schema_sha256", "normalized_schema_sha256", "ledger_schema_sha256",
+    "fact_report_schema_sha256", "attribution_schema_sha256", "fixture_sha256",
+    "expected_attribution_sha256"
+  ],
+  "full_paired_fields": [
+    "codex_version", "host_binary_sha256", "model_identifier", "hook_api_version", "os",
+    "architecture", "config_digest", "sandbox_digest", "environment_allowlist_digest",
+    "collector_online_path_digest", "measurement_semantics_digest", "collector_sha256"
+  ],
+  "rules": {
+    "all_changed_runs_are_retained": true,
+    "full_paired_includes_smoke": true,
+    "unknown_transition_is_a_change": true,
+    "documentation_only_changes_do_not_trigger": true,
+    "no_manual_memory_required": true
+  }
+}

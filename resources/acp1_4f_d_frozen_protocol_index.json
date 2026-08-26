@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-4f-d-frozen-protocol-index-v1",
+  "protocol_id": "acp1-4f-d-development-protocol-v1",
+  "pool_id": "acp1-4f-d-24-case-development-pool-v1",
+  "status": "development_protocol_and_pool_frozen_before_first_agent_run",
+  "agent_run_count_at_freeze": 0,
+  "artifacts": {
+    "development_contract": {
+      "path": "resources/acp1_4f_d_development_contract.json",
+      "sha256": "347824317e9ee40b71206cf2ac03c4500827ce5250c049b21466b4bc7e1d689e"
+    },
+    "registry_schema": {
+      "path": "resources/acp1_4f_d_registry_schema.json",
+      "sha256": "6f220f342fd7e90dc520e4011e59e7f3be44742b4bed40b5e67f0a72f8a5f19d"
+    },
+    "case_pool": {
+      "path": "resources/acp1_4f_d_case_pool.json",
+      "sha256": "9d19d34a2b35753b566bc6554b9bc224315dfb4d5394933408f7b440a363cfbf"
+    },
+    "oracle_registry": {
+      "path": "resources/acp1_4f_d_oracle_registry.json",
+      "sha256": "6de7a556ec782d76bafed8dc8fd873af05757187102b22e583fbddf1ef4f038a"
+    },
+    "offline_fixture": {
+      "path": "resources/acp1_4f_d_offline_fixture.json",
+      "sha256": "2d61191ef07fec95b43e7e75db59b01db4e569527e07d8a68c560eb82a79905d"
+    },
+    "development_runner": {
+      "path": "scripts/run_acp1_4f_d_development.py",
+      "sha256": "5e7300d09a2e3dbfc7f39ca4cb543ec6f5819c6f70b792e382acc50294288357"
+    },
+    "shared_futility_helper": {
+      "path": "scripts/acp1_4f_futility.py",
+      "sha256": "aba78ac3a4c7c89449a49f2e21e9580a09317226d5e72ff65cc1361f70d152fa"
+    }
+  },
+  "subjects": {
+    "path": "resources/acp1_4f_d_subjects",
+    "file_count": 12,
+    "inventory_schema": "sorted_relative_path_and_sha256_v1",
+    "inventory_sha256": "6e9fa44874e691ea41796af191b28c25fcd9ded67238687054830b0e7283f51c"
+  },
+  "upstream": {
+    "f_r_index_path": "resources/acp1_4f_r_frozen_audit_index.json",
+    "f_r_index_sha256": "e1f5927c46178ae77e0e13a62e82c4e7b6ba796cd19fbc305862cfffeb9c19af",
+    "v2_1_reclassified": false,
+    "v2_1_runs_reused": false
+  },
+  "budget": {
+    "screen": 72,
+    "extension_maximum": 168,
+    "hard_agent_run_cap": 240
+  },
+  "authorization": {
+    "screen": true,
+    "extension": false,
+    "v3": false
+  }
+}

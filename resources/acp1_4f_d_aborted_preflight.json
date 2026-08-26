@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-4f-d-aborted-preflight-v1",
+  "status": "interrupted_before_first_completed_screen_run",
+  "reason": "sandbox_host_connection_stall",
+  "completed_agent_runs": 0,
+  "counted_in_screen": false,
+  "task_or_protocol_changed": false,
+  "private_artifact": {
+    "logical_id": "d-read-delta-timeout-r01-interrupted-sandbox-preflight",
+    "raw_path_public": false,
+    "raw_body_public": false
+  }
+}

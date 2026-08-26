@@ -1,0 +1,7 @@
+{
+  "development": {"region": "local", "retention_days": 7},
+  "staging": {"region": "eu-west", "retention_days": 14},
+  "production": {"region": "ap-east", "retention_days": 45},
+  "archive": {"region": "us-central", "retention_days": 365}
+}
+

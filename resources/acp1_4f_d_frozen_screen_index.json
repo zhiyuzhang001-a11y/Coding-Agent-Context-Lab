@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-4f-d-frozen-screen-index-v1",
+  "protocol_id": "acp1-4f-d-development-protocol-v1",
+  "pool_id": "acp1-4f-d-24-case-development-pool-v1",
+  "status": "screen_complete_under_frozen_development_protocol",
+  "agent_run_count": 72,
+  "completed_run_count": 72,
+  "failed_run_count": 0,
+  "screen_admitted_case_count": 7,
+  "screen_rejected_case_count": 17,
+  "artifacts": {
+    "frozen_protocol_index": {
+      "path": "resources/acp1_4f_d_frozen_protocol_index.json",
+      "sha256": "bf702740ad0eed3472747904ca564277845ef5845d795e1868574cd5345a8263"
+    },
+    "screen_registry": {
+      "path": "resources/acp1_4f_d_development_registry.json",
+      "sha256": "bcc7359d9812ff3e814795486c6314329e7d95c4cb493b978d5be83209680df1"
+    },
+    "aborted_preflight": {
+      "path": "resources/acp1_4f_d_aborted_preflight.json",
+      "sha256": "4bf198f6ebd0980cd1dcff46d1d82fde46c4925f5d32cadfc4e2cd719e98f894"
+    }
+  },
+  "private_source": {
+    "logical_id": "acp1-4f-d-screen-v1-20260819",
+    "completed_result_inventory_sha256": "310b3dd0d8a47314b3a5a5d04bb8255929b9f49a6a1c6f4fa246af737b3173ca",
+    "completed_run_count": 72,
+    "checkpoint_sha256": "447690d111d11720673e3517b8406ec1525644dcb8b5698208a653f0be27ff56",
+    "paths_persisted_publicly": false
+  },
+  "screen_admitted_cases": [
+    "d_search_delta_maintenance_v1",
+    "d_search_delta_retired_v1",
+    "d_search_epsilon_archive_v1",
+    "d_search_epsilon_legacy_v1",
+    "d_search_zeta_retention_v1",
+    "d_search_zeta_quarantine_v1",
+    "d_bash_zeta_status_v1"
+  ],
+  "screen_rejected_reason_counts": {
+    "F_EVIDENCE_TOO_SMALL": 17,
+    "F_INTERVENTION_NOT_MEANINGFUL": 17
+  },
+  "observations": {
+    "correctness": "72/72",
+    "evidence_opportunity_identified": "72/72",
+    "compatible_carrier_identified": "72/72",
+    "measurement_unknown": 0,
+    "truncation_unresolved": 0,
+    "observed_dominant_family_counts": {
+      "search_like": 23,
+      "read_like": 1,
+      "structured_bash_like": 0
+    }
+  },
+  "phase_boundary": {
+    "extension_semantics_changed": false,
+    "extension_requires_phase_authorization_artifact": true,
+    "v3_authorized": false,
+    "r1_s1_b1_frozen": true
+  }
+}

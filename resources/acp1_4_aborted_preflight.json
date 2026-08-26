@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-4-aborted-preflight-v1",
+  "status": "aborted_infrastructure_preflight",
+  "attempted_run_count": 3,
+  "persisted_failure_count": 2,
+  "interrupted_without_result_count": 1,
+  "failure_category": "sandbox_network_unavailable",
+  "failure_evidence": {
+    "completed_model_response": false,
+    "nested_codex_timeout_seconds": 240,
+    "availability_probe_dns_failure": true,
+    "availability_probe_websocket_failure": true,
+    "availability_probe_https_failure": true
+  },
+  "statistical_policy": {
+    "included_in_qualification": false,
+    "included_in_pilot": false,
+    "included_in_formal": false,
+    "answer_or_correctness_inspected_before_abort": false,
+    "treatment_or_threshold_changed": false
+  },
+  "recovery": {
+    "action": "rerun_complete_qualification_epoch_with_model_network_access",
+    "model_changed": false,
+    "reasoning_effort_changed": false,
+    "spec_changed": false,
+    "runner_changed": false
+  }
+}

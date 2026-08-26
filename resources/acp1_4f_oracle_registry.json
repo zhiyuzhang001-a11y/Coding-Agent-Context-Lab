@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-4f-oracle-registry-v1",
+  "visibility": "outer_harness_only_never_builder_input",
+  "cases": {
+    "f_read_alpha_retry_v1": {"scorer": "exact_text_v1", "expected": "7"},
+    "f_read_alpha_maintenance_method_v1": {"scorer": "exact_text_casefold_v1", "expected": "POST"},
+    "f_read_beta_result_limit_v1": {"scorer": "exact_text_v1", "expected": "64"},
+    "f_read_gamma_batch_size_v1": {"scorer": "exact_text_v1", "expected": "256"},
+    "f_search_alpha_maintenance_status_v1": {"scorer": "exact_text_casefold_v1", "expected": "restricted"},
+    "f_search_beta_archive_category_v1": {"scorer": "exact_text_casefold_v1", "expected": "mutation"},
+    "f_search_beta_default_color_v1": {"scorer": "exact_text_casefold_v1", "expected": "auto"},
+    "f_search_gamma_production_retention_v1": {"scorer": "exact_text_v1", "expected": "45"},
+    "f_bash_alpha_failed_checks_v1": {"scorer": "exact_text_v1", "expected": "1"},
+    "f_bash_beta_command_count_v1": {"scorer": "exact_text_v1", "expected": "5"},
+    "f_bash_gamma_valid_shards_v1": {"scorer": "exact_text_v1", "expected": "3"},
+    "f_bash_gamma_total_stages_v1": {"scorer": "exact_text_v1", "expected": "6"}
+  }
+}
+

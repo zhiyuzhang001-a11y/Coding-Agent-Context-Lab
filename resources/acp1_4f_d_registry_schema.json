@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "acp1-4f-d-development-registry-v1",
+  "title": "ACP-1.4F-D Development Registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "schema_id", "protocol_id", "status", "agent_run_count", "cases", "verdict"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "schema_id": {"const": "acp1-4f-d-development-registry-v1"},
+    "protocol_id": {"const": "acp1-4f-d-development-protocol-v1"},
+    "status": {"enum": ["screen_in_progress", "screen_complete", "extension_in_progress", "complete"]},
+    "agent_run_count": {"type": "integer", "minimum": 0, "maximum": 240},
+    "cases": {
+      "type": "array",
+      "maxItems": 24,
+      "items": {"$ref": "#/$defs/case"}
+    },
+    "verdict": {
+      "enum": [null, "READY_FOR_NEW_HOLDOUT", "SUPPORTED_FOR_SUBSET_ONLY", "BENCHMARK_SEMANTICS_NOT_SUPPORTED"]
+    }
+  },
+  "$defs": {
+    "distribution": {
+      "type": "object",
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    },
+    "case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["case_id", "design", "screen", "correctness", "tool_family", "evidence_family", "carrier", "identity", "measurement", "qualification", "status"],
+      "properties": {
+        "case_id": {"type": "string", "minLength": 1},
+        "design": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["project_form", "intended_evidence_form", "answer_uniqueness", "prompt_inferability_check"],
+          "properties": {
+            "project_form": {"type": "string"},
+            "intended_evidence_form": {"enum": ["read_like", "search_like", "structured_bash_like"]},
+            "answer_uniqueness": {"enum": ["verified", "failed", "unknown"]},
+            "prompt_inferability_check": {"enum": ["pass", "fail", "unknown"]}
+          }
+        },
+        "screen": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["runs", "admitted_to_extension"],
+          "properties": {
+            "runs": {"type": "integer", "minimum": 0, "maximum": 3},
+            "admitted_to_extension": {"type": ["boolean", "null"]}
+          }
+        },
+        "correctness": {
+          "type": "object",
+          "required": ["pass_count", "stability"],
+          "properties": {
+            "pass_count": {"type": "integer", "minimum": 0, "maximum": 10},
+            "stability": {"type": ["number", "null"], "minimum": 0, "maximum": 1}
+          }
+        },
+        "tool_family": {
+          "type": "object",
+          "required": ["distribution", "dominant_family", "entropy"],
+          "properties": {
+            "distribution": {"$ref": "#/$defs/distribution"},
+            "dominant_family": {"type": ["string", "null"]},
+            "entropy": {"type": ["number", "null"], "minimum": 0}
+          }
+        },
+        "evidence_family": {
+          "type": "object",
+          "required": ["distribution", "dominant_family", "recurrence"],
+          "properties": {
+            "distribution": {"$ref": "#/$defs/distribution"},
+            "dominant_family": {"type": ["string", "null"]},
+            "recurrence": {"type": "integer", "minimum": 0, "maximum": 10}
+          }
+        },
+        "carrier": {
+          "type": "object",
+          "required": ["compatible_count", "distribution", "recurrence"],
+          "properties": {
+            "compatible_count": {"type": "integer", "minimum": 0, "maximum": 10},
+            "distribution": {"$ref": "#/$defs/distribution"},
+            "recurrence": {"type": "integer", "minimum": 0, "maximum": 10}
+          }
+        },
+        "identity": {
+          "type": "object",
+          "required": ["stable", "ambiguity_rate", "equivalence_scope"],
+          "properties": {
+            "stable": {"type": ["boolean", "null"]},
+            "ambiguity_rate": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+            "equivalence_scope": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+          }
+        },
+        "measurement": {
+          "type": "object",
+          "required": ["evidence_tokens", "truncation_observed", "measurement_unknown"],
+          "properties": {
+            "evidence_tokens": {
+              "type": "object",
+              "required": ["min", "median", "max"],
+              "properties": {
+                "min": {"type": ["integer", "null"], "minimum": 0},
+                "median": {"type": ["number", "null"], "minimum": 0},
+                "max": {"type": ["integer", "null"], "minimum": 0}
+              }
+            },
+            "truncation_observed": {"type": "integer", "minimum": 0, "maximum": 10},
+            "measurement_unknown": {"type": "integer", "minimum": 0, "maximum": 10}
+          }
+        },
+        "qualification": {
+          "type": "object",
+          "required": ["opportunity_recurrence", "oracle_free", "intervention_compatible"],
+          "properties": {
+            "opportunity_recurrence": {"type": "integer", "minimum": 0, "maximum": 10},
+            "oracle_free": {"type": "boolean"},
+            "intervention_compatible": {"type": ["boolean", "null"]}
+          }
+        },
+        "status": {
+          "type": "object",
+          "required": ["state", "reason_codes"],
+          "properties": {
+            "state": {"enum": ["pending", "screen_admitted", "screen_rejected", "qualified", "rejected", "measurement_unknown"]},
+            "reason_codes": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+          }
+        }
+      }
+    }
+  }
+}

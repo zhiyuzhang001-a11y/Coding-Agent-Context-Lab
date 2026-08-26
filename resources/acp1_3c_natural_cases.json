@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-3c-natural-candidate-fixture-v1",
+  "fixture_id": "acp1-3c-prospective-natural-qualification-v1",
+  "subject_commit": "b506818b3db87be62064ad64e62b1ad262d5a4b9",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "medium",
+  "repetitions_per_case": 20,
+  "scorer": "strip-outer-whitespace-exact-final-text-v1",
+  "candidate_identity": {
+    "method": "explicit-command-terms-plus-result-size-v1",
+    "minimum_result_chars": 4000,
+    "token_estimation": "chars_div_4_v1",
+    "minimum_estimated_tokens": 1000,
+    "multiple_matches": "ambiguous_not_selected",
+    "timestamp_linkage": false
+  },
+  "path_semantics": {
+    "method": "candidate-relative-path-v1",
+    "fields": ["tool_family", "first_executable_kind", "candidate_relation"],
+    "tie_policy": "ambiguous_no_selection"
+  },
+  "thresholds": {
+    "completed_with_usage": 20,
+    "correct": 19,
+    "candidate_recurrence": 16,
+    "ambiguous_candidate_matches_max": 0,
+    "dominant_path_frequency": 16
+  },
+  "classification": {
+    "qualified": "all_thresholds_pass",
+    "diagnostic_only": "only_dominant_path_threshold_fails",
+    "rejected": "any_other_hard_threshold_fails"
+  },
+  "cases": [
+    {
+      "case_id": "natural_signature_limit_v1",
+      "source_case_id": "single_file_signature_limit",
+      "category": "single_file_location",
+      "question": "Inspect plugins/agent-token-manager/scripts/smart_read.py. According to signature_from_content, at most how many input lines are inspected? Reply with only the integer.",
+      "expected": "20",
+      "logical_target_id": "signature_from_content_evidence",
+      "candidate_command_terms": ["signature_from_content", "smart_read.py"]
+    },
+    {
+      "case_id": "natural_truncate_budget_v1",
+      "source_case_id": "large_read_truncate_budget",
+      "category": "large_output_read",
+      "question": "Inspect truncate_lines in plugins/agent-token-manager/scripts/smart_read.py. When max_chars is 32, what exact string is returned as the first tuple element? Reply EMPTY if it is empty.",
+      "expected": "EMPTY",
+      "logical_target_id": "truncate_lines_evidence",
+      "candidate_command_terms": ["truncate_lines", "smart_read.py"]
+    },
+    {
+      "case_id": "natural_command_shape_v1",
+      "source_case_id": "multi_file_command_shape",
+      "category": "multi_file_search",
+      "question": "Locate command_shape used by the CO-1 Gate 2 runner. For command_shape(\"rg -n needle file.py\"), what is the first tuple element? Reply only with that string.",
+      "expected": "rg",
+      "logical_target_id": "command_shape_definition_evidence",
+      "candidate_command_terms": ["command_shape"]
+    },
+    {
+      "case_id": "natural_navigation_counts_v1",
+      "source_case_id": "cross_file_count_key",
+      "category": "cross_file_reasoning",
+      "question": "Inspect NavigationStore.counts and its returned mapping. What is the final dictionary key? Reply only with the key.",
+      "expected": "unresolved_relations",
+      "logical_target_id": "navigation_store_counts_evidence",
+      "candidate_command_terms": ["navigationstore", "counts"]
+    }
+  ],
+  "policy": {
+    "native_only": true,
+    "intervention": false,
+    "collector_or_hook": false,
+    "historical_candidate_replay": false,
+    "avoidable_or_savings_estimate": false
+  }
+}

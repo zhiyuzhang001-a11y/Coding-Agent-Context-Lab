@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "model-cycle-cost-analysis-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "schema_id", "analyzer_version", "source_and_scope", "cycle_semantics", "coverage", "arm_analyses", "unknowns", "traceability", "policy"],
+  "properties": {
+    "schema_version": {"const": 1}, "schema_id": {"const": "model-cycle-cost-analysis-v1"}, "analyzer_version": {"const": "acp-cycle-cost-v0.1"},
+    "source_and_scope": {"type": "object"}, "cycle_semantics": {"type": "object"}, "coverage": {"type": "object"},
+    "arm_analyses": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"$ref": "#/$defs/arm"}},
+    "unknowns": {
+      "type": "object", "additionalProperties": false,
+      "required": ["new_content_tokens", "historical_context_tokens", "semantic_history_reprocessing", "counterfactual_added_cycle_cost", "necessity", "avoidability"],
+      "properties": {
+        "new_content_tokens": {"const": "unknown"}, "historical_context_tokens": {"const": "unknown"}, "semantic_history_reprocessing": {"const": "unknown"},
+        "counterfactual_added_cycle_cost": {"const": "unknown"}, "necessity": {"const": "unknown"}, "avoidability": {"const": "unknown"}
+      }
+    },
+    "traceability": {"type": "array", "items": {"type": "object"}},
+    "policy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["fact_only", "descriptive_not_causal", "no_waste_or_savings_estimate", "no_intervention", "no_online_effect", "insufficient_samples_retained", "canonical_fact_source"],
+      "properties": {
+        "fact_only": {"const": true}, "descriptive_not_causal": {"const": true}, "no_waste_or_savings_estimate": {"const": true},
+        "no_intervention": {"const": true}, "no_online_effect": {"const": true}, "insufficient_samples_retained": {"const": true}, "canonical_fact_source": {"const": "json"}
+      }
+    }
+  },
+  "$defs": {
+    "stats": {
+      "type": "object", "additionalProperties": false, "required": ["count", "min", "median", "mean", "max"],
+      "properties": {"count": {"type": "integer", "minimum": 1}, "min": {"type": "number"}, "median": {"type": "number"}, "mean": {"type": "number"}, "max": {"type": "number"}}
+    },
+    "usage_stats": {
+      "type": "object", "additionalProperties": false,
+      "required": ["input_tokens", "cached_input_tokens", "cache_write_input_tokens", "output_tokens", "reasoning_output_tokens", "total_tokens"],
+      "properties": {"input_tokens": {"$ref": "#/$defs/stats"}, "cached_input_tokens": {"$ref": "#/$defs/stats"}, "cache_write_input_tokens": {"$ref": "#/$defs/stats"}, "output_tokens": {"$ref": "#/$defs/stats"}, "reasoning_output_tokens": {"$ref": "#/$defs/stats"}, "total_tokens": {"$ref": "#/$defs/stats"}}
+    },
+    "arm": {
+      "type": "object", "additionalProperties": false,
+      "required": ["arm", "role", "run_count", "cycle_count_groups", "cycle_ordinal_costs", "within_run_transitions", "case_strata"],
+      "properties": {
+        "arm": {"enum": ["off", "on"]}, "role": {"enum": ["primary_native_analysis", "independent_replication"]}, "run_count": {"type": "integer", "minimum": 1},
+        "cycle_count_groups": {"type": "array", "items": {"type": "object"}},
+        "cycle_ordinal_costs": {"type": "array", "items": {"type": "object", "required": ["ordinal", "run_count", "coverage_ratio", "sample_status", "incremental_usage", "cumulative_usage"], "properties": {"ordinal": {"type": "integer"}, "run_count": {"type": "integer"}, "coverage_ratio": {"type": "number"}, "sample_status": {"enum": ["sufficient_descriptive_sample", "insufficient_descriptive_sample"]}, "incremental_usage": {"$ref": "#/$defs/usage_stats"}, "cumulative_usage": {"$ref": "#/$defs/usage_stats"}}}},
+        "within_run_transitions": {"type": "array", "items": {"type": "object"}}, "case_strata": {"type": "array", "items": {"type": "object"}}
+      }
+    }
+  }
+}

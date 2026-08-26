@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "transcript-call-v1",
+  "title": "Privacy-normalized transcript call metadata v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "schema_id", "session_id_hash", "call_id", "call_index",
+    "tool_family", "output_sha256", "model_visible_chars",
+    "estimated_model_visible_tokens", "estimation_method"
+  ],
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "properties": {
+    "schema_version": {"const": 1},
+    "schema_id": {"const": "transcript-call-v1"},
+    "session_id_hash": {"$ref": "#/$defs/hash"},
+    "call_id": {"$ref": "#/$defs/hash"},
+    "call_index": {"type": "integer", "minimum": 0},
+    "tool_family": {"type": "string", "minLength": 1},
+    "output_sha256": {"$ref": "#/$defs/hash"},
+    "model_visible_chars": {"type": "integer", "minimum": 0},
+    "estimated_model_visible_tokens": {"type": "integer", "minimum": 0},
+    "estimation_method": {"const": "chars_div_4_v1"}
+  }
+}

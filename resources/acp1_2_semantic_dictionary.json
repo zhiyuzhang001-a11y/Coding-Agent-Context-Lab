@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "dictionary_id": "acp1-2-cost-necessity-hypothesis-semantics-v1",
+  "output_schema_id": "cost-necessity-hypothesis-catalog-v1",
+  "hypothesis_types": ["high_cost_call_candidate", "cost_concentration_candidate", "repeated_or_overlapping_evidence_candidate"],
+  "thresholds": {
+    "high_cost_min_visible_token_share": 0.1,
+    "high_cost_min_observed_exposure_tokens": 1000,
+    "high_cost_max_candidates": 5,
+    "concentration_min_call_hhi": 0.18,
+    "concentration_min_top3_share": 0.6
+  },
+  "required_validation": [
+    "construct_isolated_paired_task_replay",
+    "apply_controlled_evidence_intervention_in_experimental_harness",
+    "compare_correctness",
+    "compare_tool_path_and_model_cycles",
+    "estimate_delta_only_if_correctness_is_preserved"
+  ],
+  "rules": {
+    "candidate_is_anomaly": false,
+    "candidate_is_recommendation": false,
+    "necessity_status_initial": "unknown",
+    "causal_status_initial": "untested",
+    "repeated_candidate_requires_acp1_1_unique_observation": true,
+    "multiple_relations_create_multiple_candidates": false,
+    "empty_catalog_is_valid": true,
+    "intervention_executed": false,
+    "online_effect": false
+  },
+  "forbidden_outputs": ["wasted_tokens", "avoidable_tokens", "potential_savings", "savings_ratio", "necessity_verdict", "anomaly_verdict", "agent_recommendation"]
+}

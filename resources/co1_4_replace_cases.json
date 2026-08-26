@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "subject_commit": "d693547",
+  "plugin_commit": "920a033",
+  "plugin_version": "0.1.0+codex.20260816143338",
+  "canary": "CO14_HOST_CANARY",
+  "cases": [
+    {
+      "id": "compound_rg_sed",
+      "command": "rg -n \"def base_value|base_value\" plugins/agent-token-manager/scripts/ast_navigation_provider.py && sed -n '270,325p' plugins/agent-token-manager/scripts/ast_navigation_provider.py",
+      "question": "What numeric value does base_value('method', 'Service.run', True) return? Reply with only the number including one decimal place.",
+      "expected": "3.0",
+      "order": ["observe", "canary"]
+    },
+    {
+      "id": "rg_context",
+      "command": "rg -n -C 12 \"def payload_bucket\" plugins/agent-token-manager/scripts/run_m2e_cost_attribution.py",
+      "question": "What exact string does payload_bucket(['query', 'next']) return? Reply with only that string.",
+      "expected": "compound",
+      "order": ["canary", "observe"]
+    },
+    {
+      "id": "sed_region",
+      "command": "sed -n '235,257p' plugins/agent-token-manager/scripts/smart_read.py",
+      "question": "When truncate_lines receives max_chars=32, reply EMPTY if its first returned tuple element is the empty string.",
+      "expected": "EMPTY",
+      "order": ["observe", "canary"]
+    },
+    {
+      "id": "compound_search_slice",
+      "command": "rg -n \"def _normalize_term\" plugins/agent-token-manager/scripts/discovery_sources.py && sed -n '94,112p' plugins/agent-token-manager/scripts/discovery_sources.py",
+      "question": "What exact string does _normalize_term('analyses') return? Reply with only that string.",
+      "expected": "analys",
+      "order": ["canary", "observe"]
+    }
+  ]
+}

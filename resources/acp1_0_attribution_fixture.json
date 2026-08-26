@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-0-attribution-fixture-v1",
+  "cases": [
+    {
+      "case_id": "co1_4_complete",
+      "input_kind": "replay_fixture_via_fact_report",
+      "input_path": "resources/acp0_co1_4_replay_fixture.json",
+      "input_sha256": "369316f8312afae44393c2f8b478155c733943fc43f361a77c08b2d9f00da2d7",
+      "expected": {
+        "session_count": 12,
+        "observed_calls": 16,
+        "observed_matched_model_visible_estimated_tokens": 17651,
+        "model_visible_token_coverage_status": "complete",
+        "model_visible_token_coverage_denominator": 17651,
+        "top1_tokens": 2455,
+        "top1_share": 0.139085604215,
+        "top3_tokens": 6612,
+        "top3_share": 0.374596340151,
+        "top10_percent_share": 0.257265877287,
+        "top20_percent_share": 0.491926803014,
+        "top10_share": 0.907710611297,
+        "call_hhi": 0.100553287061,
+        "tool_family_count": 1,
+        "tool_family_hhi": 1.0,
+        "call_distribution": {"count": 16, "min": 40, "median": 573.0, "p90": 2086, "max": 2455},
+        "exact_payload_repeated_observation_count": 2,
+        "exact_payload_group_observation_visible_estimated_tokens": 5288,
+        "same_file_repeat_status": "unknown",
+        "range_overlap_status": "unknown",
+        "cycle_status": "unknown"
+      }
+    },
+    {
+      "case_id": "synthetic_partial",
+      "input_kind": "synthetic_host_fixture_via_fact_report",
+      "input_path": "resources/acp0_2_synthetic_host_events.json",
+      "input_sha256": "3a65607a6e78ffe574fb30b2845113d8db358759ecb0dd9f665ae4cc507fe433",
+      "expected": {
+        "observed_events": 3,
+        "transcript_calls": 3,
+        "matched_calls": 2,
+        "observed_matched_model_visible_estimated_tokens": 14,
+        "model_visible_token_coverage_status": "partial",
+        "model_visible_token_coverage_denominator": 24,
+        "unknown_count": 2,
+        "unknown_estimated_model_visible_tokens": 10,
+        "tool_family_visible_tokens": {"bash": 7, "local_read": 7, "other": 0},
+        "tool_family_visible_shares": {"bash": 0.5, "local_read": 0.5, "other": 0.0},
+        "call_hhi": 0.5,
+        "tool_family_hhi": 0.5,
+        "top10_percent_share": 0.5,
+        "top20_percent_share": 0.5,
+        "same_file_repeat_status": "partial",
+        "range_overlap_status": "partial",
+        "cycle_status": "unknown"
+      }
+    },
+    {
+      "case_id": "synthetic_ambiguous_linkage",
+      "input_kind": "contract_case",
+      "input": {
+        "linkage_status": "ambiguous",
+        "observed_raw_tokens": 25,
+        "estimated_model_visible_tokens": null,
+        "candidate_count": 2
+      },
+      "expected": {
+        "attributed_visible_tokens": 0,
+        "coverage_status": "partial",
+        "unknown_reason": "ambiguous_linkage",
+        "no_candidate_selection": true
+      }
+    },
+    {
+      "case_id": "synthetic_unsupported_path",
+      "input_kind": "contract_case",
+      "input": {
+        "coverage_state": "unsupported_tool_path",
+        "tool_family": "hosted_tool",
+        "estimated_model_visible_tokens": null
+      },
+      "expected": {
+        "coverage_status": "unsupported",
+        "unknown_reason": "unsupported_tool_path",
+        "no_extrapolation": true
+      }
+    }
+  ],
+  "formula_freeze": {
+    "top_call_share": "sum(top_k_eligible_call_tokens)/observed_matched_model_visible_estimated_tokens",
+    "tool_family_hhi": "sum((family_visible_tokens/observed_matched_model_visible_estimated_tokens)^2)",
+    "p90": "nearest_rank_when_n_at_least_10",
+    "decimal_places": 12
+  },
+  "privacy": {
+    "contains_source_or_output_body": false,
+    "contains_full_command": false,
+    "contains_prompt_or_transcript": false,
+    "contains_absolute_path": false,
+    "contains_raw_session_id": false
+  }
+}

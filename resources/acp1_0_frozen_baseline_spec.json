@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-0-frozen-baseline-spec-v1",
+  "baseline_id": "acp1-0-co1-4-cost-attribution-v1",
+  "logical_started_at": "2026-08-18T03:30:00Z",
+  "logical_completed_at": "2026-08-18T03:30:00Z",
+  "time_block": "2026-08-18T03:30Z",
+  "repository_commit": "e069f29b45bff2bbda6d6130212effb78063dbcf",
+  "environment": {
+    "codex_version": "codex-cli 0.148.0-alpha.9",
+    "host_binary_sha256": "6170ff5578170ee9b74ad92bfcff96e6186f41d02b60815a7c2b01ad424c754f",
+    "model_identifier": "not_applicable_offline_replay",
+    "reasoning_effort": "not_applicable_offline_replay",
+    "os": "Darwin",
+    "architecture": "arm64",
+    "hook_api_version": "unknown",
+    "safe_config": {
+      "execution_mode": "offline_frozen_replay",
+      "network_used": false,
+      "model_invocation_used": false,
+      "collector_online_invocation_used": false
+    },
+    "sandbox_profile": {
+      "filesystem": "workspace_write",
+      "network": "restricted"
+    }
+  },
+  "source_observation": {
+    "fixture_id": "acp0-co1-4-observe-replay-v1",
+    "task_commit": "d693547c355820da7a78ad4dd31dd92a1c203978",
+    "plugin_version": "0.1.0+codex.20260816143338",
+    "model_identifier": "unknown",
+    "reasoning_effort": "unknown"
+  },
+  "governance": {
+    "registry_version": "1.0.0",
+    "formal_input_id": "co1_4_observe_replay",
+    "formal_input_version": 1
+  },
+  "component_hashes": {
+    "fixture": {"path": "resources/acp0_co1_4_replay_fixture.json", "sha256": "369316f8312afae44393c2f8b478155c733943fc43f361a77c08b2d9f00da2d7"},
+    "registry": {"path": "resources/acp0h_benchmark_registry.json", "sha256": "41fb30ae3090d0ee41557a9c60830a45e54316ebe9f35d5ae67c84c45e53e7c9"},
+    "collector": {"path": "scripts/acp_collector.py", "sha256": "81efee8b5ae05fe2f9c76f73e5edacec1e8269ae5923a6ebc0019f1479f96de2"},
+    "hooks_manifest": {"path": "hooks/hooks.json", "sha256": "797b72b678ddba104acd93285f3c34542e75a58f69016fb01c99bf4ebac394dd"},
+    "normalizer": {"path": "scripts/acp_normalizer.py", "sha256": "a2b65f711fe828c091c770a6890fc9f4b9a85409e2820326cb2a970dd334721a"},
+    "reporter": {"path": "scripts/acp_reporter.py", "sha256": "fb9ca5b04fefa08649884758ab53c0fd7edc4bdf707a07c6572687f6e65b4fd9"},
+    "attributor": {"path": "scripts/acp_attributor.py", "sha256": "288a442c3d6b93b85da882f0747abaa16623164f99ea66481f5de91f8883e986"},
+    "renderer": {"path": "scripts/acp_attribution_renderer.py", "sha256": "f9e0c2e258662f6da81b0e510b22e403cf6b44693bf6f13eb0c6318dc74b80e2"},
+    "manifest_generator": {"path": "scripts/build_experiment_manifest.py", "sha256": "75756c29345521540a4dffb85ba0534e0547a62c2d704c5cd72272e4c42b1ebb"},
+    "recalibration_engine": {"path": "scripts/decide_recalibration.py", "sha256": "548d4c2553e113c5806604f7d98984f0cfd3ef792856eedc316359a904dc30ad"},
+    "registry_validator": {"path": "scripts/validate_benchmark_registry.py", "sha256": "7b3c8c936d93d64d15f1045510434a70131b520587d269ce7295f9efd46400c4"},
+    "normalized_schema": {"path": "resources/acp0_2_normalized_event_schema.json", "sha256": "a2b1fb47e403ca30ad39542e96d8a540c2574bafcd54fc638b520f93ebae761f"},
+    "ledger_schema": {"path": "resources/acp0_2_coverage_ledger_schema.json", "sha256": "d92a1fe5d9599b817260b76a75fc87430ea2966a85790cb216e5391a5139cff2"},
+    "fact_report_schema": {"path": "resources/acp0_3_fact_report_schema.json", "sha256": "911ee43b9a0c84e4e997d3ada39c8a91afa2349d4049f1f1ca862bb27d30eacc"},
+    "attribution_schema": {"path": "resources/acp1_0_attribution_schema.json", "sha256": "af690a24bfd8d1f0f29336a3cef11242ca9baa650c157226b3114549a248f280"},
+    "attribution_semantics": {"path": "resources/acp1_0_semantic_dictionary.json", "sha256": "ea05e3cc7b8159b1f60429be005f505faf4684cca48de666f0570b9a917399b5"}
+  },
+  "expected": {
+    "session_count": 12,
+    "observed_calls": 16,
+    "observed_matched_visible_estimated_tokens": 17651,
+    "coverage_status": "complete",
+    "unknown_count": 0,
+    "unknown_visible_estimated_tokens": 0,
+    "top1_share": 0.139085604215,
+    "top3_share": 0.374596340151,
+    "top10_share": 0.907710611297,
+    "call_hhi": 0.100553287061,
+    "tool_family_hhi": 1.0,
+    "exact_repeat_group_observation_visible_tokens": 5288,
+    "model_cycle_status": "unknown",
+    "session_total_status": "unknown"
+  },
+  "privacy": {
+    "source_or_output_body_allowed": false,
+    "full_command_allowed": false,
+    "prompt_or_transcript_allowed": false,
+    "absolute_path_allowed": false,
+    "raw_session_id_allowed": false
+  }
+}

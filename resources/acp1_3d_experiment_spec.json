@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-3d-controlled-ablation-spec-v1",
+  "experiment_id": "acp1-3d-qualified-natural-ablation-v1",
+  "upstream_registry_sha256": "b618e64409b5e3e9d75b9b2a412b6bbd58c486a363afa4f58968e8a17f58f0f8",
+  "subject_commit": "b506818b3db87be62064ad64e62b1ad262d5a4b9",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "medium",
+  "pilot": {"runs_per_arm_per_case": 1, "included_in_formal_statistics": false},
+  "formal": {
+    "blocks_per_case": 20,
+    "odd_block_order": ["control", "treatment"],
+    "even_block_order": ["treatment", "control"]
+  },
+  "identity": {
+    "method": "logical-command-terms-v1",
+    "multiple_matches": "ambiguous_not_selected",
+    "failure_markers": ["script failed", "script error"],
+    "treatment_has_no_minimum_result_size": true
+  },
+  "thresholds": {
+    "minimum_evidence_reduction_ratio": 0.35,
+    "control_correct_min": 19,
+    "treatment_correct_min": 19,
+    "accuracy_delta_min": -0.05,
+    "treatment_only_failures_max": 1,
+    "target_recurrence_min": 16,
+    "dominant_path_retention_delta_min": -0.10,
+    "paired_median_tool_call_delta_max": 0,
+    "paired_median_cycle_delta_max": 0,
+    "novel_treatment_path_repeated_min": 4,
+    "formal_completed_with_usage_required": 40
+  },
+  "session_cost_effect": {
+    "reduction_pooled_ratio_below": 0.98,
+    "neutral_pooled_ratio_min": 0.98,
+    "neutral_pooled_ratio_max": 1.02,
+    "increase_pooled_ratio_above": 1.02
+  },
+  "distribution_statistics": {
+    "fields": ["count", "min", "p25", "median", "mean", "p75", "max"],
+    "quartile_method": "nearest-rank-v1"
+  },
+  "cases": [
+    {
+      "case_id": "natural_signature_limit_v1",
+      "case_version": 1,
+      "question": "Inspect plugins/agent-token-manager/scripts/smart_read.py. According to signature_from_content, at most how many input lines are inspected? Reply with only the integer.",
+      "expected": "20",
+      "logical_target_id": "signature_from_content_evidence",
+      "candidate_command_terms": ["signature_from_content", "smart_read.py"],
+      "upstream_identity_sha256": "63fe8e7d4a3d556527803aad05e35d103440fb48ab3accce9c38d7f0313cc089",
+      "upstream_dominant_path_sha256": "f8c93476d7e2402f527d54854cd3eead714452c672ccb3e76a91a6d1ef61baa6",
+      "treatment": {
+        "method": "prefix-source-projection-v1",
+        "target": "plugins/agent-token-manager/scripts/smart_read.py",
+        "keep_first_lines": 100
+      }
+    },
+    {
+      "case_id": "natural_command_shape_v1",
+      "case_version": 1,
+      "question": "Locate command_shape used by the CO-1 Gate 2 runner. For command_shape(\"rg -n needle file.py\"), what is the first tuple element? Reply only with that string.",
+      "expected": "rg",
+      "logical_target_id": "command_shape_definition_evidence",
+      "candidate_command_terms": ["command_shape"],
+      "upstream_identity_sha256": "10bb00d25348e6c12a34d0fdca61821e947a8d2fc2526e9c8cfa4c7175f80482",
+      "upstream_dominant_path_sha256": "d7ee37e263496a5f1996e2c8b58f1f9afc12a263c4cbfb74f68604079f675a7b",
+      "treatment": {
+        "method": "hashed-nontarget-match-ablation-v1",
+        "preserved_target": "plugins/agent-token-manager/scripts/run_co1_gate2.py",
+        "match_terms": ["command_shape", "CO-1", "Gate 2"],
+        "digest": "sha256-relative-path-colon-one-based-line",
+        "ablate_when_first_byte_mod_2": 0
+      }
+    }
+  ],
+  "policy": {
+    "experimental_harness_only": true,
+    "production_slicing_or_replacement": false,
+    "collector_or_hook_mutation": false,
+    "pilot_changes_thresholds": false,
+    "global_savings_claim": false
+  }
+}

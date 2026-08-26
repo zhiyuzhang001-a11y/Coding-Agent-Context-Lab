@@ -1,0 +1,18 @@
+{
+  "description": "Collect privacy-safe, observe-only ACP tool-result telemetry.",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/python3 \"$PLUGIN_ROOT/scripts/acp_collector.py\"",
+            "timeout": 5,
+            "statusMessage": "Recording private tool telemetry"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+name = "zeta-nightly"
+batch_size = 84
+maximum_parallel_jobs = 7
+retention_days = 36
+retry_delay_seconds = 11
+artifact_limit = 220
+default_region = "central-3"
+failure_policy = "quarantine"
+schedule = "02:30"
+emit_metrics = true
+
+[resources]
+cpu_units = 12
+memory_gib = 24
+scratch_gib = 80
+
+[features]
+incremental_load = true
+legacy_export = false
+schema_validation = true
+quarantine_invalid = true
+regional_mirror = true
+
+[notifications]
+on_success = "jobs-success"
+on_failure = "jobs-alerts"
+on_quarantine = "data-quality"

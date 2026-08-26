@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "fixture_id": "acp0-2-synthetic-host-pipeline-v1",
+  "synthetic_only": true,
+  "collector_secret_hex": "73796e7468657469632d6163702d7365637265742d3030303030303030303031",
+  "host_events": [
+    {
+      "timestamp": "2000-01-02T00:00:00+00:00",
+      "nonce": "synthetic-nonce-0",
+      "private_markers": ["SYNTH_SESSION_ALPHA", "SYNTH_TOOL_0", "sed -n", "synthetic_alpha.py", "SYNTHETIC_PRIVATE_BODY_ALPHA", "/synthetic/private-repo"],
+      "event": {
+        "session_id": "SYNTH_SESSION_ALPHA",
+        "tool_use_id": "SYNTH_TOOL_0",
+        "tool_name": "Bash",
+        "tool_input": {"command": "sed -n '10,20p' src/synthetic_alpha.py"},
+        "tool_response": {"output": "SYNTHETIC_PRIVATE_BODY_ALPHA", "exit_code": 0},
+        "cwd": "/synthetic/private-repo"
+      }
+    },
+    {
+      "timestamp": "2000-01-02T00:00:01+00:00",
+      "nonce": "synthetic-nonce-1",
+      "private_markers": ["SYNTH_SESSION_ALPHA", "SYNTH_TOOL_1", "synthetic_beta.py", "SYNTHETIC_PRIVATE_BODY_BETA", "/synthetic/private-repo"],
+      "event": {
+        "session_id": "SYNTH_SESSION_ALPHA",
+        "tool_use_id": "SYNTH_TOOL_1",
+        "tool_name": "read_file",
+        "tool_input": {"path": "src/synthetic_beta.py"},
+        "tool_response": "SYNTHETIC_PRIVATE_BODY_BETA",
+        "cwd": "/synthetic/private-repo"
+      }
+    },
+    {
+      "timestamp": "2000-01-02T00:00:02+00:00",
+      "nonce": "synthetic-nonce-2",
+      "private_markers": ["SYNTHETIC_INPUT_SECRET", "SYNTHETIC_PRIVATE_BODY_UNKNOWN", "/synthetic/private-repo"],
+      "event": {
+        "tool_name": "custom_unknown_tool",
+        "tool_input": {"opaque": "SYNTHETIC_INPUT_SECRET"},
+        "tool_response": "SYNTHETIC_PRIVATE_BODY_UNKNOWN",
+        "cwd": "/synthetic/private-repo"
+      }
+    }
+  ],
+  "matched_event_indices": [0, 1],
+  "transcript_only_call": {
+    "schema_version": 1,
+    "schema_id": "transcript-call-v1",
+    "session_id_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "call_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "call_index": 0,
+    "tool_family": "bash",
+    "output_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "model_visible_chars": 40,
+    "estimated_model_visible_tokens": 10,
+    "estimation_method": "chars_div_4_v1"
+  },
+  "expected": {
+    "collector_event_count": 3,
+    "matched_event_count": 2,
+    "transcript_only_call_count": 1,
+    "call_coverage_status": "partial",
+    "linkage_coverage_status": "partial"
+  }
+}

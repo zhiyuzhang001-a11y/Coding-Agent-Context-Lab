@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-3d-frozen-ablation-spec-v1",
+  "baseline_id": "acp1-3d-qualified-natural-controlled-ablation-v1",
+  "logical_started_at": "2026-08-18T00:00:00Z",
+  "logical_completed_at": "2026-08-18T23:59:59Z",
+  "time_block": "2026-08-18",
+  "environment": {
+    "model_identifier": "gpt-5.4",
+    "reasoning_effort": "low"
+  },
+  "components": {
+    "experiment_spec": {
+      "path": "resources/acp1_3d_experiment_spec.json",
+      "sha256": "40cd3d5539e67bd1f73bdd262a3f3fcf9b9e9b14ccda6a1a060f194e42fcb2d9"
+    },
+    "pilot_result": {
+      "path": "resources/acp1_3d_pilot_results.json",
+      "sha256": "e5cdea119a42157c14f77b47b230ab9e8a538ebb4039fc51e164c6b2ba12613b"
+    },
+    "formal_result": {
+      "path": "resources/acp1_3d_results.json",
+      "sha256": "5f2b7d41b0f59b3b7310e90aa2b5d4ff404345ce5687ed111da85a68c0ab388a"
+    },
+    "candidate_registry": {
+      "path": "resources/acp1_3c_candidate_registry.json",
+      "sha256": "b618e64409b5e3e9d75b9b2a412b6bbd58c486a363afa4f58968e8a17f58f0f8"
+    },
+    "upstream_index": {
+      "path": "resources/acp1_3c_frozen_registry_index.json",
+      "sha256": "a4c599bd1084429a16cd6977d5128d1031d1fbaa03b907d26b329cbf1ce59090"
+    },
+    "upstream_manifest": {
+      "path": "resources/acp1_3c_frozen_experiment_manifest.json",
+      "sha256": "ddf15adaa883a16e192d7c4e2a53ba3a7a7ba3d51ceb43b029d98a0ebac4a45c"
+    },
+    "ablation_runner": {
+      "path": "scripts/run_acp1_3d_ablation.py",
+      "sha256": "5a826e202af6e73639f2888685712653149e5f7f92b312dd5f8463ac7e3c2738"
+    },
+    "collector": {
+      "path": "scripts/acp_collector.py",
+      "sha256": "81efee8b5ae05fe2f9c76f73e5edacec1e8269ae5923a6ebc0019f1479f96de2"
+    },
+    "hook_manifest": {
+      "path": "hooks/hooks.json",
+      "sha256": "797b72b678ddba104acd93285f3c34542e75a58f69016fb01c99bf4ebac394dd"
+    }
+  },
+  "private_source": {
+    "run_count": 84,
+    "pilot_run_count": 4,
+    "formal_run_count": 80,
+    "inventory_sha256": "3e07a79879e8c831c15c09248496db647169252d2880514e0ab99b188366b2e8"
+  },
+  "expected": {
+    "eligible_case_ids": [
+      "natural_signature_limit_v1",
+      "natural_command_shape_v1"
+    ],
+    "summary": {
+      "case_count": 2,
+      "fail_count": 0,
+      "inconclusive_count": 0,
+      "pass_count": 2
+    },
+    "policy": {
+      "collector_or_hook_mutation": false,
+      "experimental_harness_only": true,
+      "global_savings_claim": false,
+      "pilot_changes_thresholds": false,
+      "production_slicing_or_replacement": false
+    },
+    "cases": [
+      {
+        "case_id": "natural_signature_limit_v1",
+        "verdict": "PASS",
+        "control_correct": 20,
+        "treatment_correct": 20,
+        "treatment_only_failures": 0,
+        "median_evidence_reduction": 0.626099706744868,
+        "session_cost_effect": "observed_reduction",
+        "pooled_treatment_control_ratio": 0.9677916337419815
+      },
+      {
+        "case_id": "natural_command_shape_v1",
+        "verdict": "PASS",
+        "control_correct": 20,
+        "treatment_correct": 20,
+        "treatment_only_failures": 0,
+        "median_evidence_reduction": 0.49696233292831105,
+        "session_cost_effect": "observed_reduction",
+        "pooled_treatment_control_ratio": 0.8398894969201893
+      }
+    ]
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "fixture_id": "acp0-4-natural-paired-v1",
+  "subject_commit": "b506818",
+  "token_ratio_ceiling": 1.02,
+  "cases": [
+    {
+      "id": "single_file_signature_limit",
+      "category": "single_file_location",
+      "question": "Inspect plugins/agent-token-manager/scripts/smart_read.py. According to signature_from_content, at most how many input lines are inspected? Reply with only the integer.",
+      "expected": "20",
+      "order": ["off", "on"]
+    },
+    {
+      "id": "large_read_truncate_budget",
+      "category": "large_output_read",
+      "question": "Inspect truncate_lines in plugins/agent-token-manager/scripts/smart_read.py. When max_chars is 32, what exact string is returned as the first tuple element? Reply EMPTY if it is empty.",
+      "expected": "EMPTY",
+      "order": ["on", "off"]
+    },
+    {
+      "id": "bash_unit_test",
+      "category": "bash_or_tests",
+      "question": "Run only the unittest test_navigation_contract.py from plugins/agent-token-manager/tests. Reply PASS if it succeeds, otherwise reply FAIL.",
+      "expected": "PASS",
+      "order": ["off", "on"]
+    },
+    {
+      "id": "multi_file_definition_search",
+      "category": "multi_file_search",
+      "question": "Find which repository-relative Python file defines payload_bucket. Reply with only its repository-relative path.",
+      "expected": "plugins/agent-token-manager/scripts/run_m2e_cost_attribution.py",
+      "order": ["on", "off"]
+    },
+    {
+      "id": "debug_parser_dependency",
+      "category": "debugging",
+      "question": "Inspect parsed_words in plugins/agent-token-manager/scripts/context_optimizer_hook.py. Which module-qualified standard-library function actually splits a supported command? Reply with only that function name.",
+      "expected": "shlex.split",
+      "order": ["off", "on"]
+    },
+    {
+      "id": "cross_file_storage_table",
+      "category": "cross_file_reasoning",
+      "question": "Trace TaskStateStore.exists and identify the SQLite table it queries. Reply with only the table name.",
+      "expected": "navigation_tasks",
+      "order": ["on", "off"]
+    },
+    {
+      "id": "tool_failure_missing_path",
+      "category": "tool_failure",
+      "question": "Check whether plugins/agent-token-manager/scripts/definitely_missing_acp_fixture.py exists using a local shell command. Reply MISSING if it does not exist, otherwise reply EXISTS.",
+      "expected": "MISSING",
+      "order": ["off", "on"]
+    },
+    {
+      "id": "single_file_range_count",
+      "category": "single_file_location",
+      "question": "Inspect merged_line_count in plugins/agent-token-manager/scripts/python_syntax_slice.py. What integer does merged_line_count([(1, 3), (4, 5), (9, 10)]) return? Reply only with the integer.",
+      "expected": "7",
+      "order": ["on", "off"]
+    },
+    {
+      "id": "multi_file_command_shape",
+      "category": "multi_file_search",
+      "question": "Locate command_shape used by the CO-1 Gate 2 runner. For command_shape(\"rg -n needle file.py\"), what is the first tuple element? Reply only with that string.",
+      "expected": "rg",
+      "order": ["off", "on"]
+    },
+    {
+      "id": "cross_file_count_key",
+      "category": "cross_file_reasoning",
+      "question": "Inspect NavigationStore.counts and its returned mapping. What is the final dictionary key? Reply only with the key.",
+      "expected": "unresolved_relations",
+      "order": ["on", "off"]
+    },
+    {
+      "id": "debug_dynamic_join",
+      "category": "debugging",
+      "question": "Inspect result_text in plugins/agent-token-manager/scripts/serena_adapter_server.py. What separator joins text blocks? Reply NEWLINE if it is a newline character.",
+      "expected": "NEWLINE",
+      "order": ["off", "on"]
+    },
+    {
+      "id": "bash_compile_probe",
+      "category": "bash_or_tests",
+      "question": "Use Python's ast.parse to syntax-check plugins/agent-token-manager/scripts/navigation_contract.py without writing files. Reply PASS if parsing succeeds, otherwise reply FAIL.",
+      "expected": "PASS",
+      "order": ["on", "off"]
+    }
+  ]
+}

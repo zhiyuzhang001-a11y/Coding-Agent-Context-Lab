@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-4d-frozen-activation-audit-spec-v1",
+  "experiment_id": "acp1-4d-read-search-activation-audit-v1",
+  "components": {
+    "audit_spec": {"path": "resources/acp1_4d_activation_audit_spec.json", "sha256": "02aebdb80328f667daf15f44fedd9521077efd7e1a8f5d016ee8a1a8597edad9"},
+    "audit_runner": {"path": "scripts/audit_acp1_4d_activation.py", "sha256": "6bde26d498a1de2e2b0b4c7f4544be77b3e58793b2de3d008538bbcc7a0b87cf"},
+    "audit_result": {"path": "resources/acp1_4d_activation_audit.json", "sha256": "f40df337362d932e6a9930496966138e03bfa5a8400fdc6b4c602998f1eadd54"},
+    "upstream_index": {"path": "resources/acp1_4c_frozen_requalification_index.json", "sha256": "3f912b3e648de732fd7a58c0e8ca5249ff1800f2ffc24b3b7de88051bb43a92e"},
+    "upstream_manifest": {"path": "resources/acp1_4c_frozen_experiment_manifest.json", "sha256": "0e91246019ca9ecf0788a90d307c1e2594de66ce7a27bbb93ce0ca20547b05f9"},
+    "collector": {"path": "scripts/acp_collector.py", "sha256": "81efee8b5ae05fe2f9c76f73e5edacec1e8269ae5923a6ebc0019f1479f96de2"},
+    "hooks": {"path": "hooks/hooks.json", "sha256": "797b72b678ddba104acd93285f3c34542e75a58f69016fb01c99bf4ebac394dd"}
+  },
+  "private_source": {
+    "logical_id": "acp1-4d-activation-audit-source-subset-20260819",
+    "run_count": 60,
+    "inventory_sha256": "5da465b92a22cb5a7e92ce3262f717b987d9d02fb39e7d1f1e6f7db30832d5ea",
+    "paths_persisted": false
+  },
+  "expected": {
+    "summary": {"rule_mismatch": 2, "measurement_mismatch": 1, "fixed_structure_dominated": 0, "limited_safe_reduction": 0, "inconclusive": 0, "v2_eligible": 3},
+    "classifications": {
+      "read_context_router_limit_v1": "RULE_MISMATCH",
+      "search_budget_stop_v1": "RULE_MISMATCH",
+      "search_token_router_v1": "MEASUREMENT_MISMATCH"
+    }
+  }
+}

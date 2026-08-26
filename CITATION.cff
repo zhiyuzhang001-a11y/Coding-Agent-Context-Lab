@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this research archive, please cite it as follows."
+title: "Coding Agent Context Lab: Measurement, Evidence Reduction, and Intervention Boundaries"
+type: software
+authors:
+  - family-names: "Zhang"
+    given-names: "Zhiyu"
+version: "0.1.0-research-complete"
+date-released: 2026-08-19
+license: MIT
+abstract: >-
+  A reproducible research archive for coding-agent context-cost measurement,
+  evidence-reduction experiments, benchmark qualification, and negative results
+  on transparent intervention and end-to-end token savings.

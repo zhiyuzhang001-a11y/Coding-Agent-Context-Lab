@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-4-natural-generalization-spec-v1",
+  "experiment_id": "acp1-4-natural-ablation-generalization-v1",
+  "subject_commit": "b506818b3db87be62064ad64e62b1ad262d5a4b9",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "medium",
+  "scorer": "strip-outer-whitespace-exact-final-text-v1",
+  "qualification": {
+    "repetitions_per_case": 10,
+    "completed_with_usage": 10,
+    "correct_min": 9,
+    "candidate_recurrence_min": 8,
+    "ambiguous_max": 0,
+    "dominant_path_frequency_min": 8
+  },
+  "formal": {
+    "blocks_per_case": 10,
+    "schedule": "odd_control_treatment_even_treatment_control",
+    "control_correct_min": 9,
+    "treatment_correct_min": 9,
+    "accuracy_delta_min": -0.1,
+    "treatment_only_failures_max": 1,
+    "candidate_recurrence_min": 8,
+    "dominant_path_retention_delta_min": -0.1,
+    "paired_median_tool_call_delta_max": 0,
+    "paired_median_cycle_delta_max": 0,
+    "novel_treatment_path_repeated_min": 3,
+    "minimum_evidence_reduction_ratio": 0.35,
+    "completed_with_usage_required": 20
+  },
+  "generalization": {
+    "proposed_case_count": 8,
+    "qualified_case_min": 6,
+    "required_families": ["read", "search", "bash"],
+    "qualified_per_family_min": 2,
+    "pass_rate_min": 0.7,
+    "pass_per_family_min": 1
+  },
+  "cases": [
+    {
+      "case_id": "read_navigation_schema_v1",
+      "case_version": 1,
+      "family": "read",
+      "category": "single_file_contract_read",
+      "question": "Run exactly: sed -n '1,220p' plugins/agent-token-manager/scripts/navigation_contract.py . According to that evidence, what integer is SCHEMA_VERSION? Reply only with the integer.",
+      "expected": "1",
+      "logical_target_id": "navigation_contract_read_evidence",
+      "candidate_command_terms": ["sed", "navigation_contract.py", "1,220p"],
+      "minimum_result_chars": 1000,
+      "treatment": {"family": "deterministic_range_reduction", "method": "prefix-source-projection-v1", "target": "plugins/agent-token-manager/scripts/navigation_contract.py", "keep_first_lines": 70}
+    },
+    {
+      "case_id": "read_context_router_limit_v1",
+      "case_version": 1,
+      "family": "read",
+      "category": "single_file_router_read",
+      "question": "Run exactly: sed -n '1,180p' plugins/agent-token-manager/scripts/context_router.py . According to that evidence, what integer is DEFAULT_DIRECT_MAX_TOKENS? Reply only with the integer.",
+      "expected": "800",
+      "logical_target_id": "context_router_read_evidence",
+      "candidate_command_terms": ["sed", "context_router.py", "1,180p"],
+      "minimum_result_chars": 1000,
+      "treatment": {"family": "deterministic_range_reduction", "method": "prefix-source-projection-v1", "target": "plugins/agent-token-manager/scripts/context_router.py", "keep_first_lines": 70}
+    },
+    {
+      "case_id": "read_workspace_database_v1",
+      "case_version": 1,
+      "family": "read",
+      "category": "single_file_storage_read",
+      "question": "Run exactly: sed -n '1,180p' plugins/agent-token-manager/scripts/workspace_data.py . According to that evidence, what exact string is DATABASE_NAME? Reply only with the string.",
+      "expected": "navigation-v1.sqlite3",
+      "logical_target_id": "workspace_database_read_evidence",
+      "candidate_command_terms": ["sed", "workspace_data.py", "1,180p"],
+      "minimum_result_chars": 1000,
+      "treatment": {"family": "deterministic_range_reduction", "method": "prefix-source-projection-v1", "target": "plugins/agent-token-manager/scripts/workspace_data.py", "keep_first_lines": 75}
+    },
+    {
+      "case_id": "search_schema_version_v1",
+      "case_version": 1,
+      "family": "search",
+      "category": "multi_file_contract_search",
+      "question": "Run exactly: rg -n 'schema_version' plugins/agent-token-manager/scripts . In navigation_contract.py, Marker.schema_version defaults to what constant name? Reply only with the constant name.",
+      "expected": "SCHEMA_VERSION",
+      "logical_target_id": "schema_version_search_evidence",
+      "candidate_command_terms": ["rg", "schema_version", "agent-token-manager/scripts"],
+      "minimum_result_chars": 1000,
+      "treatment": {"family": "deterministic_result_row_reduction", "method": "hashed-nontarget-match-ablation-v1", "preserved_target": "plugins/agent-token-manager/scripts/navigation_contract.py", "match_terms": ["schema_version"], "ablate_when_first_byte_mod_2": 0}
+    },
+    {
+      "case_id": "search_budget_stop_v1",
+      "case_version": 1,
+      "family": "search",
+      "category": "multi_file_stop_reason_search",
+      "question": "Run exactly: rg -n 'budget_exhausted' plugins/agent-token-manager/scripts . What exact stop-reason string is assigned in task_navigator.py? Reply only with the string.",
+      "expected": "budget_exhausted",
+      "logical_target_id": "budget_stop_search_evidence",
+      "candidate_command_terms": ["rg", "budget_exhausted", "agent-token-manager/scripts"],
+      "minimum_result_chars": 300,
+      "treatment": {"family": "deterministic_result_row_reduction", "method": "hashed-nontarget-match-ablation-v1", "preserved_target": "plugins/agent-token-manager/scripts/task_navigator.py", "match_terms": ["budget_exhausted"], "ablate_when_first_byte_mod_2": 0}
+    },
+    {
+      "case_id": "search_token_router_v1",
+      "case_version": 1,
+      "family": "search",
+      "category": "multi_file_token_search",
+      "question": "Run exactly: rg -n 'token' plugins/agent-token-manager/scripts/context_router.py plugins/agent-token-manager/scripts/task_navigator.py plugins/agent-token-manager/scripts/compact_navigator.py . What integer is DEFAULT_DIRECT_MAX_TOKENS in context_router.py? Reply only with the integer.",
+      "expected": "800",
+      "logical_target_id": "token_router_search_evidence",
+      "candidate_command_terms": ["rg", "token", "context_router.py", "task_navigator.py", "compact_navigator.py"],
+      "minimum_result_chars": 1000,
+      "treatment": {"family": "deterministic_result_row_reduction", "method": "hashed-nontarget-match-ablation-v1", "preserved_target": "plugins/agent-token-manager/scripts/context_router.py", "match_terms": ["token"], "ablate_when_first_byte_mod_2": 0}
+    },
+    {
+      "case_id": "bash_task_navigator_tests_v1",
+      "case_version": 1,
+      "family": "bash",
+      "category": "verbose_test_evidence",
+      "question": "Run exactly: python3 -m unittest discover -s plugins/agent-token-manager/tests -p 'test_task_navigator.py' -v . Reply PASS if the command exits successfully, otherwise FAIL.",
+      "expected": "PASS",
+      "logical_target_id": "task_navigator_test_evidence",
+      "candidate_command_terms": ["unittest", "test_task_navigator.py", "-v"],
+      "minimum_result_chars": 600,
+      "treatment": {"family": "command_output_test_subset", "method": "python-unittest-method-subset-v1", "target": "plugins/agent-token-manager/tests/test_task_navigator.py", "preserve_digest_mod_2": 0}
+    },
+    {
+      "case_id": "bash_m2e_calibration_tests_v1",
+      "case_version": 1,
+      "family": "bash",
+      "category": "verbose_test_evidence",
+      "question": "Run exactly: python3 -m unittest discover -s plugins/agent-token-manager/tests -p 'test_m2e_calibration.py' -v . Reply PASS if the command exits successfully, otherwise FAIL.",
+      "expected": "PASS",
+      "logical_target_id": "m2e_calibration_test_evidence",
+      "candidate_command_terms": ["unittest", "test_m2e_calibration.py", "-v"],
+      "minimum_result_chars": 600,
+      "treatment": {"family": "command_output_test_subset", "method": "python-unittest-method-subset-v1", "target": "plugins/agent-token-manager/tests/test_m2e_calibration.py", "preserve_digest_mod_2": 0}
+    }
+  ],
+  "policy": {
+    "prospective_sampling_frame": true,
+    "all_attrition_preserved": true,
+    "pilot_changes_thresholds": false,
+    "collector_or_hook_mutation": false,
+    "production_slicing_or_replacement": false,
+    "real_time_recommendation": false,
+    "global_savings_claim": false
+  }
+}

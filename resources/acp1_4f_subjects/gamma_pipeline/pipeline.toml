@@ -1,0 +1,19 @@
+name = "gamma-pipeline"
+version = 1
+batch_size = 256
+parallel_workers = 4
+checkpoint_interval = 1000
+
+[source]
+format = "jsonl"
+compression = "gzip"
+
+[sink]
+format = "parquet"
+partition_key = "event_date"
+
+[retention]
+default_days = 30
+production_days = 45
+archive_days = 365
+

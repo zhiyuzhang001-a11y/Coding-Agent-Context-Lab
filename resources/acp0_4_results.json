@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp0-4-no-interference-result-v1",
+  "status": "failed_cost_neutrality",
+  "fixture_id": "acp0-4-natural-paired-v1",
+  "subject_commit": "b506818b3db87be62064ad64e62b1ad262d5a4b9",
+  "harness_commit_at_run": "e069f29b45bff2bbda6d6130212effb78063dbcf",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "medium",
+  "manifest_sha256": "abb4fb20f21a2401c808f6021a48b9a13ec61ce6effd8bb4edb9c27bc1539eb5",
+  "collector_sha256": "81efee8b5ae05fe2f9c76f73e5edacec1e8269ae5923a6ebc0019f1479f96de2",
+  "hooks_manifest_sha256": "797b72b678ddba104acd93285f3c34542e75a58f69016fb01c99bf4ebac394dd",
+  "checks": {
+    "all_runs_completed_with_usage": true,
+    "host_hard_gates_pass": true,
+    "correctness_zero_regression": true,
+    "collector_observed_every_on_tool_call": true,
+    "collector_never_invokes_tools": true,
+    "model_cycle_no_systematic_increase": true,
+    "tool_call_no_systematic_increase": true,
+    "median_token_ratio_within_ceiling": true,
+    "pooled_token_ratio_within_ceiling": false
+  },
+  "thresholds": {
+    "token_ratio_ceiling": 1.02,
+    "positive_cycle_or_call_direction_max": 6
+  },
+  "aggregate": {
+    "pair_count": 12,
+    "correct_pair_count": 12,
+    "median_paired_total_ratio": 0.9995859001911152,
+    "pooled_total_ratio": 1.0274198469172582,
+    "median_total_token_delta": -13.0,
+    "token_delta_directions": {"on_lower": 7, "equal": 0, "on_higher": 5},
+    "median_model_cycle_delta": 0.0,
+    "model_cycle_delta_directions": {"on_lower": 1, "equal": 10, "on_higher": 1},
+    "median_tool_call_delta": 0.0,
+    "tool_call_delta_directions": {"on_lower": 1, "equal": 10, "on_higher": 1},
+    "request_sequence_equal_count": 2,
+    "result_sequence_equal_count": 1,
+    "collector_event_count": 16,
+    "collector_duration_ms": 1.443
+  },
+  "largest_positive_pair": {
+    "case_id": "debug_dynamic_join",
+    "off_correct": true,
+    "on_correct": true,
+    "off_total_tokens": 15407,
+    "on_total_tokens": 47622,
+    "total_token_delta": 32215,
+    "off_model_cycles": 1,
+    "on_model_cycles": 3,
+    "off_tool_calls": 0,
+    "on_tool_calls": 2,
+    "collector_event_count": 2
+  },
+  "hard_probe_summary": {
+    "case_count": 5,
+    "collector_returns_success": true,
+    "collector_stdout_empty": true,
+    "collector_stderr_empty": true,
+    "controlled_result_hash_preserved": true,
+    "controlled_event_recorded_once": true
+  },
+  "artifact_directory": ".agent-token-manager/acp0-4-natural-20260817-run7",
+  "usage_source": "Codex cumulative turn.completed usage; cycle count from cumulative usage events",
+  "interpretation": {
+    "individual_natural_pair_differences_are_not_causally_attributed": true,
+    "unfavorable_pairs_removed": false,
+    "threshold_changed_after_run": false,
+    "acp0_measurement_foundation_complete": false
+  }
+}

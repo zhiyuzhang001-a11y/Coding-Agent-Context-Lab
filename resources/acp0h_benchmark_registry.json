@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp-benchmark-registry-v1",
+  "registry_version": "1.0.0",
+  "frozen_at": "2026-08-18",
+  "subject_commit": "b506818b3db87be62064ad64e62b1ad262d5a4b9",
+  "source_fixture": {
+    "path": "resources/acp0_4_cases.json",
+    "sha256": "abb4fb20f21a2401c808f6021a48b9a13ec61ce6effd8bb4edb9c27bc1539eb5",
+    "fixture_id": "acp0-4-natural-paired-v1"
+  },
+  "governance_policy": {
+    "policy_id": "acp-benchmark-governance-v1",
+    "new_case_workflow": ["ground_truth_audit", "native_calibration", "classification", "registry_freeze", "suite_admission"],
+    "new_stable_minimum_repetitions": 20,
+    "new_stable_minimum_correct": 19,
+    "stochastic_requires_preregistered_parity": true,
+    "historical_cases_are_never_deleted": true,
+    "migration_exception": {
+      "basis": "frozen_acp0_4a_historical_migration",
+      "minimum_repetitions": 5,
+      "requires_perfect_native_record": true,
+      "applies_only_to_registry_version": "1.0.0"
+    }
+  },
+  "cases": [
+    {
+      "case_id": "single_file_signature_limit", "version": 1,
+      "purpose": "Stable single-file evidence and exact integer correctness gate.",
+      "benchmark_role": "stable_gate",
+      "ground_truth": {"audit_status": "migrated_frozen", "source_pointer": "resources/acp0_4_cases.json#/cases/0", "question_sha256": "0f48d55fe6b8104b4861860de7766de7bad56f4839c5cbbf1744d71cc861071c", "expected_answer_sha256": "f5ca38f748a1d6eaf726b8a42fb575c3c71f1864a8143301782de13da2d9202b"},
+      "native_calibration": {"status": "qualified_stable", "basis": "historical_migration", "repetitions": 5, "correct": 5, "evidence_path": "resources/acp0_4a_results.json", "evidence_sha256": "d02022f32f9b56baaa7ff3c8d0be2e4058cfb6f12661467faac6a30e691bba99"},
+      "admission_status": "active", "introduced_at": "2026-08-17", "supersedes": null, "retired_reason": null,
+      "oracle_and_scorer_version": "strip-outer-whitespace-exact-final-text-v1", "expected_coverage_path": "local_tool_evidence",
+      "allowed_gate_usage": ["absolute_correctness", "cost_neutrality", "path_neutrality", "host_transparency", "collector_coverage"]
+    },
+    {
+      "case_id": "large_read_truncate_budget", "version": 1,
+      "purpose": "Stable large-output read evidence and exact empty-result correctness gate.",
+      "benchmark_role": "stable_gate",
+      "ground_truth": {"audit_status": "migrated_frozen", "source_pointer": "resources/acp0_4_cases.json#/cases/1", "question_sha256": "ea9bcdc15baf39c2be4e0143a209dd169c6ea2f8b6b78391bc21250abbb3a625", "expected_answer_sha256": "cc1d2f838445db7aec431df9ee8a871f40e7aa5e064fc056633ef8c60fab7b06"},
+      "native_calibration": {"status": "qualified_stable", "basis": "historical_migration", "repetitions": 5, "correct": 5, "evidence_path": "resources/acp0_4a_results.json", "evidence_sha256": "d02022f32f9b56baaa7ff3c8d0be2e4058cfb6f12661467faac6a30e691bba99"},
+      "admission_status": "active", "introduced_at": "2026-08-17", "supersedes": null, "retired_reason": null,
+      "oracle_and_scorer_version": "strip-outer-whitespace-exact-final-text-v1", "expected_coverage_path": "local_tool_evidence",
+      "allowed_gate_usage": ["absolute_correctness", "cost_neutrality", "path_neutrality", "host_transparency", "collector_coverage"]
+    },
+    {
+      "case_id": "bash_unit_test", "version": 1,
+      "purpose": "Coverage probe for Bash test execution and PASS/FAIL evidence.",
+      "benchmark_role": "coverage_probe",
+      "ground_truth": {"audit_status": "migrated_frozen", "source_pointer": "resources/acp0_4_cases.json#/cases/2", "question_sha256": "7fe4dbfcd6f8277b266d37c2a68c39780b32bfffc686c5271611fdce3006096d", "expected_answer_sha256": "2f9acb02faa121bb2a3621951f57b4c690655337edee2e5ac350be2b3be88ea8"},
+      "native_calibration": {"status": "qualified_stable", "basis": "historical_migration", "repetitions": 5, "correct": 5, "evidence_path": "resources/acp0_4a_results.json", "evidence_sha256": "d02022f32f9b56baaa7ff3c8d0be2e4058cfb6f12661467faac6a30e691bba99"},
+      "admission_status": "active", "introduced_at": "2026-08-17", "supersedes": null, "retired_reason": null,
+      "oracle_and_scorer_version": "strip-outer-whitespace-exact-final-text-v1", "expected_coverage_path": "local_tool_evidence",
+      "allowed_gate_usage": ["absolute_correctness", "path_neutrality", "host_transparency", "collector_coverage"]
+    },
+    {
+      "case_id": "multi_file_definition_search", "version": 1,
+      "purpose": "Stable multi-file definition search correctness gate.",
+      "benchmark_role": "stable_gate",
+      "ground_truth": {"audit_status": "migrated_frozen", "source_pointer": "resources/acp0_4_cases.json#/cases/3", "question_sha256": "ddd02b7f34165475590848674536066bdf5a46251d71c19530b805b3a7bce634", "expected_answer_sha256": "711282f732a73163cd322b3d5bd111f518c8a6229d092323080d7395c51e97fd"},
+      "native_calibration": {"status": "qualified_stable", "basis": "historical_migration", "repetitions": 5, "correct": 5, "evidence_path": "resources/acp0_4a_results.json", "evidence_sha256": "d02022f32f9b56baaa7ff3c8d0be2e4058cfb6f12661467faac6a30e691bba99"},
+      "admission_status": "active", "introduced_at": "2026-08-17", "supersedes": null, "retired_reason": null,
+      "oracle_and_scorer_version": "strip-outer-whitespace-exact-final-text-v1", "expected_coverage_path": "local_tool_evidence",
+      "allowed_gate_usage": ["absolute_correctness", "cost_neutrality", "path_neutrality", "host_transparency", "collector_coverage"]
+    },
+    {
+      "case_id": "debug_parser_dependency", "version": 1,
+      "purpose": "Stable parser dependency debugging correctness gate.",
+      "benchmark_role": "stable_gate",
+      "ground_truth": {"audit_status": "migrated_frozen", "source_pointer": "resources/acp0_4_cases.json#/cases/4", "question_sha256": "561a73a3936f3e430033da6e9233f72d3ef022c0db1b8a76588ebc1430589a2e", "expected_answer_sha256": "bba8ac58db7c1e37a45a0c13dcd52e6e6eba51932d5e80a06914780bd0017b06"},
+      "native_calibration": {"status": "qualified_stable", "basis": "historical_migration", "repetitions": 5, "correct": 5, "evidence_path": "resources/acp0_4a_results.json", "evidence_sha256": "d02022f32f9b56baaa7ff3c8d0be2e4058cfb6f12661467faac6a30e691bba99"},
+      "admission_status": "active", "introduced_at": "2026-08-17", "supersedes": null, "retired_reason": null,
+      "oracle_and_scorer_version": "strip-outer-whitespace-exact-final-text-v1", "expected_coverage_path": "local_tool_evidence",
+      "allowed_gate_usage": ["absolute_correctness", "cost_neutrality", "path_neutrality", "host_transparency", "collector_coverage"]
+    },
+    {
+      "case_id": "cross_file_storage_table", "version": 1,
+      "purpose": "Stable cross-file storage reasoning correctness gate.",
+      "benchmark_role": "stable_gate",
+      "ground_truth": {"audit_status": "migrated_frozen", "source_pointer": "resources/acp0_4_cases.json#/cases/5", "question_sha256": "7b5c3574ddacfa387d7de41f0dd661488830fcaa6c0284abc613f4ca3a32f929", "expected_answer_sha256": "eaad071ffdfc44da12d9cce48eabad6bade345a31a8b8ee3a535b59840bef84d"},
+      "native_calibration": {"status": "qualified_stable", "basis": "historical_migration", "repetitions": 5, "correct": 5, "evidence_path": "resources/acp0_4a_results.json", "evidence_sha256": "d02022f32f9b56baaa7ff3c8d0be2e4058cfb6f12661467faac6a30e691bba99"},
+      "admission_status": "active", "introduced_at": "2026-08-17", "supersedes": null, "retired_reason": null,
+      "oracle_and_scorer_version": "strip-outer-whitespace-exact-final-text-v1", "expected_coverage_path": "local_tool_evidence",
+      "allowed_gate_usage": ["absolute_correctness", "cost_neutrality", "path_neutrality", "host_transparency", "collector_coverage"]
+    },
+    {
+      "case_id": "tool_failure_missing_path", "version": 1,
+      "purpose": "Failure-injection probe for a required missing-path tool result.",
+      "benchmark_role": "failure_injection",
+      "ground_truth": {"audit_status": "migrated_frozen", "source_pointer": "resources/acp0_4_cases.json#/cases/6", "question_sha256": "3a495284666121a9dfeb5a45e98b9abf0cb113ef1245bc8a946d089a9061c143", "expected_answer_sha256": "8af1d328d75e91cf5fff2deab39607be475491d16c45e89a2721eb14bb9a701e"},
+      "native_calibration": {"status": "qualified_stable", "basis": "historical_migration", "repetitions": 5, "correct": 5, "evidence_path": "resources/acp0_4a_results.json", "evidence_sha256": "d02022f32f9b56baaa7ff3c8d0be2e4058cfb6f12661467faac6a30e691bba99"},
+      "admission_status": "active", "introduced_at": "2026-08-17", "supersedes": null, "retired_reason": null,
+      "oracle_and_scorer_version": "strip-outer-whitespace-exact-final-text-v1", "expected_coverage_path": "tool_failure_evidence",
+      "allowed_gate_usage": ["absolute_correctness", "path_neutrality", "host_transparency", "collector_coverage"]
+    },
+    {
+      "case_id": "single_file_range_count", "version": 1,
+      "purpose": "Stochastic correctness diagnostic for inclusive adjacent-range reasoning.",
+      "benchmark_role": "stochastic_diagnostic",
+      "ground_truth": {"audit_status": "audited_unambiguous", "source_pointer": "resources/acp0_4_cases.json#/cases/7", "question_sha256": "1b84519f0cebb1d5a8f89380ddca5dfc8016a74ac58ad2ea3f404df6e92a1f44", "expected_answer_sha256": "7902699be42c8a8e46fbbb4501726517e86b22c56a189f7625a6da49081b2451"},
+      "native_calibration": {"status": "qualified_stochastic", "basis": "prospective_native_calibration", "repetitions": 20, "correct": 14, "evidence_path": "resources/acp0_4b_native_calibration_results.json", "evidence_sha256": "b4b12e5ac831eb70480456bdf4440e91c321c4ed1d7301a378cff3e0d7adfd86"},
+      "admission_status": "diagnostic_only", "introduced_at": "2026-08-17", "supersedes": null, "retired_reason": null,
+      "oracle_and_scorer_version": "strip-outer-whitespace-exact-final-text-v1", "expected_coverage_path": "local_tool_evidence",
+      "allowed_gate_usage": ["distribution_parity", "host_transparency", "collector_coverage"]
+    },
+    {
+      "case_id": "multi_file_command_shape", "version": 1,
+      "purpose": "Stable multi-file command-shape search correctness gate.",
+      "benchmark_role": "stable_gate",
+      "ground_truth": {"audit_status": "migrated_frozen", "source_pointer": "resources/acp0_4_cases.json#/cases/8", "question_sha256": "9d8c0cf3b677b0b5d45a4acf9e716fdeb3a6627af9f44d8b72724a5f881fd695", "expected_answer_sha256": "5a5000a3f3ff868603876ea774d1d272912a4949e738597a944cfc6050b8d097"},
+      "native_calibration": {"status": "qualified_stable", "basis": "historical_migration", "repetitions": 5, "correct": 5, "evidence_path": "resources/acp0_4a_results.json", "evidence_sha256": "d02022f32f9b56baaa7ff3c8d0be2e4058cfb6f12661467faac6a30e691bba99"},
+      "admission_status": "active", "introduced_at": "2026-08-17", "supersedes": null, "retired_reason": null,
+      "oracle_and_scorer_version": "strip-outer-whitespace-exact-final-text-v1", "expected_coverage_path": "local_tool_evidence",
+      "allowed_gate_usage": ["absolute_correctness", "cost_neutrality", "path_neutrality", "host_transparency", "collector_coverage"]
+    },
+    {
+      "case_id": "cross_file_count_key", "version": 1,
+      "purpose": "Stable cross-file mapping-order reasoning correctness gate.",
+      "benchmark_role": "stable_gate",
+      "ground_truth": {"audit_status": "migrated_frozen", "source_pointer": "resources/acp0_4_cases.json#/cases/9", "question_sha256": "9c7b08e9137c898e5762e2922e422fa44ed2543eab419dc33881593aef849bf0", "expected_answer_sha256": "fff500dfb1f2eab8c89e4c40b2868203387a54922a953b5179ddc527510931da"},
+      "native_calibration": {"status": "qualified_stable", "basis": "historical_migration", "repetitions": 5, "correct": 5, "evidence_path": "resources/acp0_4a_results.json", "evidence_sha256": "d02022f32f9b56baaa7ff3c8d0be2e4058cfb6f12661467faac6a30e691bba99"},
+      "admission_status": "active", "introduced_at": "2026-08-17", "supersedes": null, "retired_reason": null,
+      "oracle_and_scorer_version": "strip-outer-whitespace-exact-final-text-v1", "expected_coverage_path": "local_tool_evidence",
+      "allowed_gate_usage": ["absolute_correctness", "cost_neutrality", "path_neutrality", "host_transparency", "collector_coverage"]
+    },
+    {
+      "case_id": "debug_dynamic_join", "version": 1,
+      "purpose": "Stable dynamic text-join debugging correctness gate.",
+      "benchmark_role": "stable_gate",
+      "ground_truth": {"audit_status": "migrated_frozen", "source_pointer": "resources/acp0_4_cases.json#/cases/10", "question_sha256": "8eec39950b74fe314a1a9fba7582f2f25561115eb4814f205c8ab9fc7543290e", "expected_answer_sha256": "25f3294754cc6ec3e527af947082441465e9ea74cee97ed72b34acf531f07d6e"},
+      "native_calibration": {"status": "qualified_stable", "basis": "historical_migration", "repetitions": 5, "correct": 5, "evidence_path": "resources/acp0_4a_results.json", "evidence_sha256": "d02022f32f9b56baaa7ff3c8d0be2e4058cfb6f12661467faac6a30e691bba99"},
+      "admission_status": "active", "introduced_at": "2026-08-17", "supersedes": null, "retired_reason": null,
+      "oracle_and_scorer_version": "strip-outer-whitespace-exact-final-text-v1", "expected_coverage_path": "local_tool_evidence",
+      "allowed_gate_usage": ["absolute_correctness", "cost_neutrality", "path_neutrality", "host_transparency", "collector_coverage"]
+    },
+    {
+      "case_id": "bash_compile_probe", "version": 1,
+      "purpose": "Coverage probe for read-only Python AST compilation through Bash.",
+      "benchmark_role": "coverage_probe",
+      "ground_truth": {"audit_status": "migrated_frozen", "source_pointer": "resources/acp0_4_cases.json#/cases/11", "question_sha256": "b7fb10624d58e60ace785927e112692b477739e62e827467e45f2989e793bdca", "expected_answer_sha256": "2f9acb02faa121bb2a3621951f57b4c690655337edee2e5ac350be2b3be88ea8"},
+      "native_calibration": {"status": "qualified_stable", "basis": "historical_migration", "repetitions": 5, "correct": 5, "evidence_path": "resources/acp0_4a_results.json", "evidence_sha256": "d02022f32f9b56baaa7ff3c8d0be2e4058cfb6f12661467faac6a30e691bba99"},
+      "admission_status": "active", "introduced_at": "2026-08-17", "supersedes": null, "retired_reason": null,
+      "oracle_and_scorer_version": "strip-outer-whitespace-exact-final-text-v1", "expected_coverage_path": "local_tool_evidence",
+      "allowed_gate_usage": ["absolute_correctness", "path_neutrality", "host_transparency", "collector_coverage"]
+    }
+  ],
+  "formal_baseline_inputs": [
+    {
+      "input_id": "co1_4_observe_replay",
+      "version": 1,
+      "purpose": "Frozen privacy-safe complete-coverage input for the first ACP-1.0 cost-attribution baseline.",
+      "benchmark_role": "coverage_probe",
+      "fixture_path": "resources/acp0_co1_4_replay_fixture.json",
+      "fixture_sha256": "369316f8312afae44393c2f8b478155c733943fc43f361a77c08b2d9f00da2d7",
+      "qualification_status": "qualified_measurement_fixture",
+      "admission_status": "active",
+      "expected_coverage_status": "complete",
+      "introduced_at": "2026-08-18",
+      "supersedes": null,
+      "retired_reason": null
+    }
+  ]
+}

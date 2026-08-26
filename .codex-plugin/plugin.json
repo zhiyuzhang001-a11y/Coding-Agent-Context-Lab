@@ -1,0 +1,26 @@
+{
+  "name": "agent-token-manager",
+  "version": "0.1.0+codex.20260819230000",
+  "description": "Research and measure coding-agent context cost with privacy-safe audit and budgeted navigation.",
+  "author": {
+    "name": "Zhiyu Zhang"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Agent Token Manager",
+    "shortDescription": "Audit agent context cost and navigation.",
+    "longDescription": "A completed research prototype for privacy-safe tool-output measurement, auditable context-intervention experiments, and feedback-driven source navigation under hard token budgets. It does not claim production-wide token savings.",
+    "developerName": "Zhiyu Zhang",
+    "category": "Productivity",
+    "capabilities": [
+      "Hooks",
+      "Analytics",
+      "Code Navigation"
+    ],
+    "defaultPrompt": [
+      "Show my tool-output token report.",
+      "Find repeated and oversized code reads.",
+      "Read this codebase with a strict token budget."
+    ]
+  }
+}

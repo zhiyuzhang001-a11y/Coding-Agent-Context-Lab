@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-4e-prospective-v2-spec-v1",
+  "experiment_id": "acp1-4e-read-search-v2-validation-v1",
+  "subject_commit": "b506818",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "medium",
+  "offline": {
+    "minimum_evidence_reduction_ratio": 0.35,
+    "token_router_censoring_ceiling_chars": 30000
+  },
+  "qualification": {
+    "repetitions_per_case": 10,
+    "completed_with_usage": 10,
+    "correct_min": 9,
+    "candidate_recurrence_min": 8,
+    "ambiguous_max": 0,
+    "dominant_path_frequency_min": 8,
+    "qualified_case_min_for_formal": 3
+  },
+  "formal": {
+    "blocks_per_case": 10,
+    "minimum_evidence_reduction_ratio": 0.35,
+    "candidate_recurrence_min": 8,
+    "control_correct_min": 9,
+    "treatment_correct_min": 9,
+    "accuracy_delta_min": -0.10,
+    "treatment_only_failures_max": 0,
+    "dominant_path_retention_delta_min": -0.10,
+    "paired_median_tool_call_delta_max": 0,
+    "paired_median_cycle_delta_max": 0,
+    "novel_treatment_path_repeated_min": 2,
+    "completed_with_usage_required": 20
+  },
+  "cases": [
+    {
+      "case_id": "read_context_router_limit_v2",
+      "case_version": 2,
+      "supersedes": "read_context_router_limit_v1",
+      "family": "read",
+      "category": "single_file_router_read",
+      "question": "Run exactly the command in this code block and do not append any argument:\n```sh\nsed -n '1,180p' plugins/agent-token-manager/scripts/context_router.py\n```\nAccording only to that evidence, what integer is DEFAULT_DIRECT_MAX_TOKENS? Reply only with the integer.",
+      "offline_command": "sed -n '1,180p' plugins/agent-token-manager/scripts/context_router.py",
+      "expected": "800",
+      "logical_target_id": "context_router_read_evidence_v2",
+      "candidate_command_terms": ["sed", "context_router.py", "1,180p"],
+      "minimum_result_chars": 500,
+      "treatment": {
+        "family": "narrow_prefix_projection_v2",
+        "method": "prefix-source-projection-v1",
+        "target": "plugins/agent-token-manager/scripts/context_router.py",
+        "keep_first_lines": 24
+      }
+    },
+    {
+      "case_id": "search_budget_stop_v2",
+      "case_version": 2,
+      "supersedes": "search_budget_stop_v1",
+      "family": "search",
+      "category": "multi_file_stop_reason_search",
+      "question": "Run exactly the command in this code block and do not append any argument:\n```sh\nrg -n 'budget_exhausted' plugins/agent-token-manager/scripts\n```\nAccording only to that evidence, what exact stop-reason string is assigned in task_navigator.py? Reply only with the string.",
+      "offline_command": "rg -n 'budget_exhausted' plugins/agent-token-manager/scripts",
+      "expected": "budget_exhausted",
+      "logical_target_id": "budget_stop_search_evidence_v2",
+      "candidate_command_terms": ["rg", "budget_exhausted", "agent-token-manager/scripts"],
+      "minimum_result_chars": 40,
+      "treatment": {
+        "family": "line_selective_term_projection_v2",
+        "method": "line-selective-term-projection-v2",
+        "scope": ["plugins/agent-token-manager/scripts"],
+        "term": "budget_exhausted",
+        "preserved_target": "plugins/agent-token-manager/scripts/task_navigator.py",
+        "preserved_line_regex": "stop_reason\\s*=\\s*[\"']budget_exhausted[\"']",
+        "preserve_first_matching_line_only": true
+      }
+    },
+    {
+      "case_id": "search_token_router_v2",
+      "case_version": 2,
+      "supersedes": "search_token_router_v1",
+      "family": "search",
+      "category": "multi_file_token_search",
+      "question": "Run exactly the command in this code block and do not append any argument:\n```sh\nrg -ni 'token' plugins/agent-token-manager/scripts/context_router.py plugins/agent-token-manager/scripts/task_navigator.py plugins/agent-token-manager/scripts/compact_navigator.py\n```\nAccording only to that evidence, what integer is DEFAULT_DIRECT_MAX_TOKENS in context_router.py? Reply only with the integer.",
+      "offline_command": "rg -ni 'token' plugins/agent-token-manager/scripts/context_router.py plugins/agent-token-manager/scripts/task_navigator.py plugins/agent-token-manager/scripts/compact_navigator.py",
+      "expected": "800",
+      "logical_target_id": "token_router_search_evidence_v2",
+      "candidate_command_terms": ["rg", "token", "context_router.py", "task_navigator.py", "compact_navigator.py"],
+      "minimum_result_chars": 40,
+      "treatment": {
+        "family": "line_selective_term_projection_v2",
+        "method": "line-selective-term-projection-v2",
+        "scope": [
+          "plugins/agent-token-manager/scripts/context_router.py",
+          "plugins/agent-token-manager/scripts/task_navigator.py",
+          "plugins/agent-token-manager/scripts/compact_navigator.py"
+        ],
+        "term": "token",
+        "preserved_target": "plugins/agent-token-manager/scripts/context_router.py",
+        "preserved_line_regex": "^DEFAULT_DIRECT_MAX_TOKENS\\s*=\\s*800$",
+        "preserve_first_matching_line_only": true
+      }
+    }
+  ],
+  "policy": {
+    "v1_history_changed": false,
+    "activation_gate_changed": false,
+    "failed_cases_replaced": false,
+    "collector_or_hook_mutation": false,
+    "production_slicing_or_replacement": false,
+    "real_time_recommendation": false,
+    "global_generalization_claim": false,
+    "global_savings_claim": false
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "dictionary_id": "acp1-3a-cycle-semantics-v1",
+  "cycle_identity": "one ordered host event_msg.token_count snapshot containing info.total_token_usage",
+  "linkage_rule": "thread.started.thread_id must equal exactly one transcript session_meta id/session_id",
+  "increment_rule": "ordinal one equals first cumulative counter; later ordinals equal current minus previous cumulative counter",
+  "usage_keys": ["input_tokens", "cached_input_tokens", "cache_write_input_tokens", "output_tokens", "reasoning_output_tokens", "total_tokens"],
+  "total_identity": "total_tokens equals input_tokens plus output_tokens",
+  "cached_input_semantics": "cached_input_tokens is a subset of input_tokens and is not semantic historical-context attribution",
+  "primary_arm": "off",
+  "replication_arm": "on",
+  "minimum_descriptive_sample": 5,
+  "unknowns": ["new_content_tokens", "historical_context_tokens", "semantic_history_reprocessing", "counterfactual_added_cycle_cost", "necessity", "avoidability"],
+  "forbidden_inference": ["waste", "avoidable", "savings", "causal_amplification", "timestamp_linkage"]
+}

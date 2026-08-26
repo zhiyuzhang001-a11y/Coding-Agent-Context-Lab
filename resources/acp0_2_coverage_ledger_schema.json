@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "coverage-ledger-v1",
+  "title": "ACP coverage ledger v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "schema_id", "normalizer_version", "collector_sha256", "fixture_id",
+    "metrics", "counts", "coverage_by_tool_family", "coverage_by_command_shape", "unknown",
+    "no_extrapolation_beyond_inputs"
+  ],
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "metric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "numerator", "denominator", "ratio", "unit", "denominator_source"],
+      "properties": {
+        "status": {"enum": ["complete", "partial", "unknown_denominator", "unsupported"]},
+        "numerator": {"type": "integer", "minimum": 0},
+        "denominator": {"type": ["integer", "null"], "minimum": 0},
+        "ratio": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+        "unit": {"enum": ["sessions", "calls", "events", "characters", "estimated_tokens"]},
+        "denominator_source": {"type": "string", "minLength": 1}
+      }
+    },
+    "dimension": {
+      "type": "object",
+      "required": ["event_count", "coverage_state_counts"],
+      "properties": {
+        "event_count": {"type": "integer", "minimum": 0},
+        "coverage_state_counts": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+        "raw_output_chars": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    }
+  },
+  "properties": {
+    "schema_version": {"const": 1},
+    "schema_id": {"const": "coverage-ledger-v1"},
+    "normalizer_version": {"const": "acp-normalizer-v0.1"},
+    "collector_sha256": {"$ref": "#/$defs/hash"},
+    "fixture_id": {"type": ["string", "null"]},
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "session_coverage", "call_coverage", "model_visible_token_coverage", "linkage_coverage",
+        "raw_char_linkage_coverage", "tool_family_classification_coverage"
+      ],
+      "properties": {
+        "session_coverage": {"$ref": "#/$defs/metric"},
+        "call_coverage": {"$ref": "#/$defs/metric"},
+        "model_visible_token_coverage": {"$ref": "#/$defs/metric"},
+        "linkage_coverage": {"$ref": "#/$defs/metric"},
+        "raw_char_linkage_coverage": {"$ref": "#/$defs/metric"},
+        "tool_family_classification_coverage": {"$ref": "#/$defs/metric"}
+      }
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["normalized_event_count", "transcript_call_count", "matched_event_count", "transcript_only_call_count", "rejected_input_count", "coverage_state_counts"],
+      "properties": {
+        "normalized_event_count": {"type": "integer", "minimum": 0},
+        "transcript_call_count": {"type": "integer", "minimum": 0},
+        "matched_event_count": {"type": "integer", "minimum": 0},
+        "transcript_only_call_count": {"type": "integer", "minimum": 0},
+        "rejected_input_count": {"type": "integer", "minimum": 0},
+        "coverage_state_counts": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}}
+      }
+    },
+    "coverage_by_tool_family": {"type": "object", "additionalProperties": {"$ref": "#/$defs/dimension"}},
+    "coverage_by_command_shape": {"type": "object", "additionalProperties": {"$ref": "#/$defs/dimension"}},
+    "unknown": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["count", "raw_output_chars", "estimated_raw_tokens", "estimated_model_visible_tokens", "reason_counts"],
+      "properties": {
+        "count": {"type": "integer", "minimum": 0},
+        "raw_output_chars": {"type": "integer", "minimum": 0},
+        "estimated_raw_tokens": {"type": "integer", "minimum": 0},
+        "estimated_model_visible_tokens": {"type": "integer", "minimum": 0},
+        "reason_counts": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}}
+      }
+    },
+    "no_extrapolation_beyond_inputs": {"const": true}
+  }
+}

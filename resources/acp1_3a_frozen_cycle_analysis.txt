@@ -1,0 +1,12 @@
+Model-cycle cost facts | coverage 120/120
+OFF (primary_native_analysis): 60 runs
+  cycle 1: n=60 increment_median=15549 status=sufficient_descriptive_sample
+  cycle 2: n=60 increment_median=15958.5 status=sufficient_descriptive_sample
+  cycle 3: n=22 increment_median=16969.5 status=sufficient_descriptive_sample
+  cycle 4: n=1 increment_median=23042 status=insufficient_descriptive_sample
+ON (independent_replication): 60 runs
+  cycle 1: n=60 increment_median=15556 status=sufficient_descriptive_sample
+  cycle 2: n=60 increment_median=15955 status=sufficient_descriptive_sample
+  cycle 3: n=23 increment_median=17043 status=sufficient_descriptive_sample
+  cycle 4: n=1 increment_median=23152 status=insufficient_descriptive_sample
+Fact-only; new-vs-history, causality, necessity, avoidability, and savings remain unknown.

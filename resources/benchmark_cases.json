@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "audit-core-symbols",
+      "path": "scripts/audit_tool_output.py",
+      "symbols": ["build_record", "is_read_like"],
+      "budget_tokens": 1000,
+      "expected_regions": ["build_record", "is_read_like"]
+    },
+    {
+      "id": "router-entrypoint",
+      "path": "scripts/context_router.py",
+      "symbols": ["route_read"],
+      "budget_tokens": 1000,
+      "expected_regions": ["route_read"]
+    }
+  ]
+}

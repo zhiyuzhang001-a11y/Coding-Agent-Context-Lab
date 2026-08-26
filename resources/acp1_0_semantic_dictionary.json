@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-0-semantic-dictionary-v1",
+  "output_schema_id": "cost-attribution-baseline-v1",
+  "generator_version": "acp-attributor-v0.1",
+  "canonical_input": "fact-report-v1",
+  "canonical_output": "json",
+  "metric_scope": {
+    "tool_family_visible_token_share": {
+      "numerator": "sum of estimated_model_visible_tokens for eligible calls in the tool family",
+      "denominator": "observed_matched_model_visible_estimated_tokens",
+      "not_session_total_share": true
+    },
+    "top_call_share": {
+      "eligible_call": "fact-report-v1 drilldowns.tool_calls row where row_kind=observed_event, linkage_status=matched, and estimated_model_visible_tokens is non-null",
+      "sort": ["estimated_model_visible_tokens_desc", "session_id_hash_asc", "call_index_asc_null_last", "event_or_call_id_asc"],
+      "top_k_numerator": "sum of the first min(k, eligible_call_count) sorted call values",
+      "denominator": "observed_matched_model_visible_estimated_tokens"
+    },
+    "top_k": {
+      "fixed_k": 10,
+      "reason": "fixed before attribution engine output; no per-run tuning"
+    },
+    "tool_family_hhi": {
+      "formula": "sum((family_visible_tokens / observed_matched_model_visible_estimated_tokens) ** 2)",
+      "status_when_denominator_zero": "unknown"
+    },
+    "call_hhi": {
+      "formula": "sum((eligible_call_visible_tokens / observed_matched_model_visible_estimated_tokens) ** 2)",
+      "status_when_denominator_zero": "unknown"
+    },
+    "top_percent_share": {
+      "eligible_call": "same frozen eligible-call set as top_call_share",
+      "selected_count": "ceil(percent * eligible_call_count), capped at eligible_call_count",
+      "percents": [0.1, 0.2],
+      "denominator": "observed_matched_model_visible_estimated_tokens"
+    },
+    "distribution": {
+      "members": ["count", "min", "median", "max", "p90"],
+      "p90_formula": "nearest_rank",
+      "p90_rank": "ceil(0.90 * n)",
+      "p90_minimum_sample_count": 10
+    },
+    "decimal_policy": {
+      "round_decimal_places": 12,
+      "integer_totals_unrounded": true
+    }
+  },
+  "cycle_policy": {
+    "consume_existing_cycle_identity_only": true,
+    "timestamp_inference": false,
+    "call_index_inference": false,
+    "missing_cycle_identity_status": "unknown"
+  },
+  "repetition_policy": {
+    "exact_payload_duplicate": "copy factual groups and counts from fact-report-v1",
+    "same_file_repeat": "copy factual groups and counts from fact-report-v1",
+    "range_overlap": "copy factual pairs and counts from fact-report-v1",
+    "necessity_or_actionability_inference": false
+  },
+  "coverage_policy": {
+    "every_key_metric_has_denominator": true,
+    "unknown_is_valid": true,
+    "no_extrapolation": true,
+    "traceability_source": "fact-report-v1 source_refs and JSON pointers"
+  },
+  "attribution_policy": {
+    "attributed_visible_tokens": "sum of eligible-call estimated_model_visible_tokens",
+    "unattributed_visible_tokens": "frozen transcript model-visible denominator minus attributed visible tokens",
+    "transcript_only_is_unattributed": true,
+    "ambiguous_is_unattributed": true,
+    "unsupported_is_unknown_not_zero": true,
+    "session_partition_key": "existing fact-report-v1 session_id_hash only",
+    "no_new_linkage": true
+  },
+  "repetition_volume_policy": {
+    "method": "sum known attributed visible tokens for the event_ids already listed in each fact-report-v1 repetition fact; never discover a new repetition relationship",
+    "partial_when_any_listed_event_has_unknown_visible_tokens": true,
+    "duplicate_does_not_imply_unnecessary": true
+  },
+  "forbidden_metric_or_field_names": [
+    "wasted_tokens",
+    "avoidable_tokens",
+    "duplicate_read_ratio",
+    "context_amplification",
+    "optimization_opportunity",
+    "recommendation",
+    "replacement",
+    "slicing"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-2-frozen-catalog-spec-v1",
+  "baseline_id": "acp1-2-co1-4-cost-necessity-hypothesis-catalog-v1",
+  "logical_started_at": "2026-08-18T05:30:00Z",
+  "logical_completed_at": "2026-08-18T05:30:00Z",
+  "time_block": "2026-08-18T05:30Z",
+  "components": {
+    "attribution": {"path": "resources/acp1_0_frozen_attribution.json", "sha256": "f71ca615902b9e2ed6cd31644d89a89eff188fa1758ad377d285756331419973"},
+    "repeated_evidence": {"path": "resources/acp1_1_frozen_analysis.json", "sha256": "dcd1722c782849cf5c9dfb6f8d15555a70b5de99f387ac70fc5ee455ad956c13"},
+    "coverage_ledger": {"path": "resources/acp1_0_frozen_coverage_ledger.json", "sha256": "2b33d3381455b5ec925a606c190d6ad8eea9144553607296a79acffcc59c3192"},
+    "upstream_baseline_index": {"path": "resources/acp1_1_frozen_baseline_index.json", "sha256": "034630b6a8474f1b6d0e7f245fa60098edab0a393642c97762b426123cb43fb9"},
+    "upstream_experiment_manifest": {"path": "resources/acp1_1_frozen_experiment_manifest.json", "sha256": "79f6add0c42cbc357e308d0c317d933c98ffca4ee09602d544af32d08735364a"},
+    "registry": {"path": "resources/acp0h_benchmark_registry.json", "sha256": "41fb30ae3090d0ee41557a9c60830a45e54316ebe9f35d5ae67c84c45e53e7c9"},
+    "hypothesis_fixture": {"path": "resources/acp1_2_hypothesis_fixture.json", "sha256": "58aaf4b9196c6803a88174456455ad2eefede1a3650e8c73945dfa312993f510"},
+    "semantic_dictionary": {"path": "resources/acp1_2_semantic_dictionary.json", "sha256": "e6fca60263525d8ff9e217ce357d6fa4f85eebad3074f2870d781e56394f4d35"},
+    "catalog_schema": {"path": "resources/acp1_2_hypothesis_catalog_schema.json", "sha256": "627d4edc2b27ffdd902150f653e9f0c5de6a4c5f41a43f9e48e56fb39beee7a0"},
+    "generator": {"path": "scripts/acp_hypothesis_catalog.py", "sha256": "2fd12ef2ace7d75b35b17c475f1c3a8f5af3681dc66803b0906b418a85f91f9f"},
+    "renderer": {"path": "scripts/acp_hypothesis_renderer.py", "sha256": "9e2fb86696a97d0854a46d161d964dd1394dd4c607a34dc7c61fa1be797e8697"},
+    "manifest_generator": {"path": "scripts/build_experiment_manifest.py", "sha256": "75756c29345521540a4dffb85ba0534e0547a62c2d704c5cd72272e4c42b1ebb"},
+    "collector": {"path": "scripts/acp_collector.py", "sha256": "81efee8b5ae05fe2f9c76f73e5edacec1e8269ae5923a6ebc0019f1479f96de2"},
+    "hooks_manifest": {"path": "hooks/hooks.json", "sha256": "797b72b678ddba104acd93285f3c34542e75a58f69016fb01c99bf4ebac394dd"}
+  },
+  "governance": {
+    "registry_version": "1.0.0",
+    "formal_input_id": "co1_4_observe_replay",
+    "formal_input_version": 1,
+    "upstream_baseline_id": "acp1-1-co1-4-within-session-repetition-v1"
+  },
+  "expected": {
+    "catalog_status": "candidates_present",
+    "candidate_count": 5,
+    "high_cost_call_candidate_count": 5,
+    "cost_concentration_candidate_count": 0,
+    "repeated_or_overlapping_evidence_candidate_count": 0,
+    "unique_target_call_count": 5,
+    "unique_target_observed_exposure_tokens": 10735,
+    "unique_target_observed_share": 0.608180839612,
+    "necessity_status": "unknown",
+    "causal_status": "untested",
+    "validation_feasibility": "blocked",
+    "intervention_executed": false,
+    "avoidable_or_savings_estimate_produced": false
+  }
+}

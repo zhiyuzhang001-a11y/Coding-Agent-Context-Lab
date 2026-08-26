@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-token-manager.local/schemas/m2e-cost-attribution-v1.json",
+  "title": "M2e-0.1a Cost Attribution",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "benchmark",
+    "measurement_contract",
+    "selection",
+    "runs",
+    "aggregate"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "benchmark": {"const": "m2e-0.1a-cost-attribution"},
+    "measurement_contract": {
+      "type": "object",
+      "required": ["model_total", "payload_tokens", "operation_usage", "causal_attribution", "privacy"]
+    },
+    "selection": {"type": "string"},
+    "runs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "run_id",
+          "case_id",
+          "arm",
+          "model_usage",
+          "completed_command_results",
+          "operation_invocations",
+          "estimated_payload_tokens",
+          "duplicate_model_visible_payload",
+          "duplicate_source_read",
+          "effective_evidence",
+          "trace"
+        ],
+        "properties": {
+          "arm": {"enum": ["native", "m2d"]},
+          "completed_command_results": {"type": "integer", "minimum": 0},
+          "trace": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "sequence",
+                "command_sha256",
+                "output_sha256",
+                "estimated_output_tokens",
+                "operations",
+                "payload_bucket",
+                "duplicate_model_visible_payload",
+                "repeated_source_command",
+                "effective_evidence"
+              ],
+              "properties": {
+                "command_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+                "output_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+                "estimated_output_tokens": {"type": "integer", "minimum": 0},
+                "operations": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+              }
+            }
+          }
+        }
+      }
+    },
+    "aggregate": {
+      "type": "object",
+      "required": ["arms", "pairs", "paired_ratio_median", "comparison"]
+    }
+  }
+}

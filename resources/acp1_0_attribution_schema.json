@@ -1,0 +1,230 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "cost-attribution-baseline-v1",
+  "title": "ACP-1.0 coverage-aware factual cost attribution baseline",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "schema_id", "generator_version", "source_fact_report_sha256",
+    "measurement_contract_id", "scope_and_denominators", "coverage_summary",
+    "session_attribution", "tool_family_attribution", "call_attribution",
+    "top_calls_and_concentration", "cycle_structure_or_unknown",
+    "objective_repetition_facts", "unknown_volume_and_reasons", "traceability_index", "policy"
+  ],
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "status": {"enum": ["complete", "partial", "unknown", "unsupported"]},
+    "source_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["artifact", "json_pointer"],
+      "properties": {
+        "artifact": {"const": "fact_report"},
+        "json_pointer": {"type": "string"}
+      }
+    },
+    "metric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "unit", "status", "denominator_name", "source_refs"],
+      "properties": {
+        "value": {"type": ["integer", "number", "string", "null"]},
+        "unit": {"type": "string", "minLength": 1},
+        "status": {"$ref": "#/$defs/status"},
+        "denominator_name": {"type": ["string", "null"]},
+        "source_refs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/source_ref"}},
+        "note": {"type": "string", "minLength": 1}
+      }
+    },
+    "distribution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["count", "min", "median", "max", "p90"],
+      "properties": {
+        "count": {"type": "integer", "minimum": 0},
+        "min": {"type": ["integer", "number", "null"]},
+        "median": {"type": ["integer", "number", "null"]},
+        "max": {"type": ["integer", "number", "null"]},
+        "p90": {"type": ["integer", "number", "null"]}
+      }
+    }
+  },
+  "properties": {
+    "schema_version": {"const": 1},
+    "schema_id": {"const": "cost-attribution-baseline-v1"},
+    "generator_version": {"const": "acp-attributor-v0.1"},
+    "source_fact_report_sha256": {"$ref": "#/$defs/hash"},
+    "measurement_contract_id": {"const": "acp-measurement-v1"},
+    "scope_and_denominators": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "observed_calls", "observed_matched_model_visible_estimated_tokens",
+        "session_total_tokens", "model_cycles"
+      ],
+      "properties": {
+        "observed_calls": {"$ref": "#/$defs/metric"},
+        "observed_matched_model_visible_estimated_tokens": {"$ref": "#/$defs/metric"},
+        "session_total_tokens": {"$ref": "#/$defs/metric"},
+        "model_cycles": {"$ref": "#/$defs/metric"}
+      }
+    },
+    "coverage_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "metrics", "unknown_count", "unknown_estimated_model_visible_tokens", "source_refs"],
+      "properties": {
+        "status": {"$ref": "#/$defs/status"},
+        "metrics": {"type": "object"},
+        "unknown_count": {"type": "integer", "minimum": 0},
+        "unknown_estimated_model_visible_tokens": {"type": "integer", "minimum": 0},
+        "source_refs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/source_ref"}}
+      }
+    },
+    "session_attribution": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "session_id_hash", "observed_event_count", "denominator_visible_estimated_tokens",
+          "attributed_visible_estimated_tokens", "unattributed_visible_estimated_tokens",
+          "attribution_coverage", "status", "source_refs"
+        ],
+        "properties": {
+          "session_id_hash": {"$ref": "#/$defs/hash"},
+          "observed_event_count": {"type": "integer", "minimum": 0},
+          "denominator_visible_estimated_tokens": {"type": ["integer", "null"], "minimum": 0},
+          "attributed_visible_estimated_tokens": {"type": ["integer", "null"], "minimum": 0},
+          "unattributed_visible_estimated_tokens": {"type": ["integer", "null"], "minimum": 0},
+          "attribution_coverage": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+          "status": {"$ref": "#/$defs/status"},
+          "source_refs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/source_ref"}}
+        }
+      }
+    },
+    "tool_family_attribution": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["tool_family", "call_count", "visible_estimated_tokens", "visible_token_share", "distribution", "source_refs"],
+        "properties": {
+          "tool_family": {"type": "string", "minLength": 1},
+          "call_count": {"$ref": "#/$defs/metric"},
+          "visible_estimated_tokens": {"$ref": "#/$defs/metric"},
+          "visible_token_share": {"$ref": "#/$defs/metric"},
+          "distribution": {"$ref": "#/$defs/distribution"},
+          "source_refs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/source_ref"}}
+        }
+      }
+    },
+    "call_attribution": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "row_kind", "call_id", "session_id_hash", "call_index", "tool_family",
+          "coverage_state", "attributed_visible_estimated_tokens", "unattributed_visible_estimated_tokens",
+          "rank", "visible_token_share", "status", "source_refs"
+        ],
+        "properties": {
+          "row_kind": {"enum": ["observed_event", "transcript_only_call"]},
+          "call_id": {"type": ["string", "null"]},
+          "session_id_hash": {"$ref": "#/$defs/hash"},
+          "call_index": {"type": ["integer", "null"], "minimum": 0},
+          "tool_family": {"type": "string", "minLength": 1},
+          "coverage_state": {"type": "string", "minLength": 1},
+          "attributed_visible_estimated_tokens": {"type": ["integer", "null"], "minimum": 0},
+          "unattributed_visible_estimated_tokens": {"type": ["integer", "null"], "minimum": 0},
+          "rank": {"type": ["integer", "null"], "minimum": 1},
+          "visible_token_share": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+          "status": {"$ref": "#/$defs/status"},
+          "source_refs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/source_ref"}}
+        }
+      }
+    },
+    "top_calls_and_concentration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "eligible_call_count", "top_calls", "top1_share", "top3_share", "topk_share",
+        "top10_percent_share", "top20_percent_share", "call_hhi", "tool_family_hhi"
+      ],
+      "properties": {
+        "eligible_call_count": {"type": "integer", "minimum": 0},
+        "top_calls": {"type": "array", "items": {"type": "object"}},
+        "top1_share": {"$ref": "#/$defs/metric"},
+        "top3_share": {"$ref": "#/$defs/metric"},
+        "topk_share": {"$ref": "#/$defs/metric"},
+        "top10_percent_share": {"$ref": "#/$defs/metric"},
+        "top20_percent_share": {"$ref": "#/$defs/metric"},
+        "call_hhi": {"$ref": "#/$defs/metric"},
+        "tool_family_hhi": {"$ref": "#/$defs/metric"}
+      }
+    },
+    "cycle_structure_or_unknown": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "cycles", "reason", "source_refs"],
+      "properties": {
+        "status": {"$ref": "#/$defs/status"},
+        "cycles": {"type": "array", "items": {"type": "object"}},
+        "reason": {"type": "string", "minLength": 1},
+        "source_refs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/source_ref"}}
+      }
+    },
+    "objective_repetition_facts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["disclaimer", "exact_payload_duplicate", "same_file_repeat", "range_overlap"],
+      "properties": {
+        "disclaimer": {"type": "string", "minLength": 1},
+        "exact_payload_duplicate": {"type": "object"},
+        "same_file_repeat": {"type": "object"},
+        "range_overlap": {"type": "object"}
+      }
+    },
+    "unknown_volume_and_reasons": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["count", "estimated_model_visible_tokens", "reason_counts", "source_refs"],
+      "properties": {
+        "count": {"type": "integer", "minimum": 0},
+        "estimated_model_visible_tokens": {"type": "integer", "minimum": 0},
+        "reason_counts": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+        "source_refs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/source_ref"}}
+      }
+    },
+    "traceability_index": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["metric_path", "source_refs"],
+        "properties": {
+          "metric_path": {"type": "string", "minLength": 1},
+          "source_refs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/source_ref"}}
+        }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fact_only", "no_new_correlation", "no_extrapolation", "tool_visible_share_is_not_session_share",
+        "repetition_does_not_imply_waste", "canonical_fact_source", "online_effect"
+      ],
+      "properties": {
+        "fact_only": {"const": true},
+        "no_new_correlation": {"const": true},
+        "no_extrapolation": {"const": true},
+        "tool_visible_share_is_not_session_share": {"const": true},
+        "repetition_does_not_imply_waste": {"const": true},
+        "canonical_fact_source": {"const": "json"},
+        "online_effect": {"const": false}
+      }
+    }
+  }
+}

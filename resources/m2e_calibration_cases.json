@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "benchmark": "m2e-calibration-v0",
+  "cases": [
+    {
+      "id": "locate-audit-summary",
+      "kind": "locate",
+      "workspace": ".",
+      "prompt": "Find the implementation that turns privacy-preserving tool audit records into a report containing repeated-result and oversized-read metrics. Explain where the behavior is implemented and cite the decisive code evidence. Do not modify files. Return the required structured result.",
+      "expected_paths": ["scripts/report_audit.py"],
+      "expected_symbols": ["summarize"],
+      "allowed_changes": [],
+      "test_command": null,
+      "timeout_seconds": 240
+    },
+    {
+      "id": "edit-empty-audit-share",
+      "kind": "edit",
+      "workspace": "resources/m2e_calibration_fixture",
+      "prompt": "Fix the calibration audit report so an empty collection of tool outputs reports a zero read share instead of raising an exception. Preserve the existing behavior for non-empty collections and run the focused tests. Return the required structured result.",
+      "expected_paths": ["audit_report.py"],
+      "expected_symbols": ["summarize_audit"],
+      "allowed_changes": ["audit_report.py"],
+      "test_command": ["python3", "-m", "unittest", "discover", "-s", "tests", "-v"],
+      "timeout_seconds": 300
+    }
+  ]
+}

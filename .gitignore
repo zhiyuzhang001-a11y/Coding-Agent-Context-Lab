@@ -1,0 +1,12 @@
+.DS_Store
+.pytest_cache/
+__pycache__/
+*.py[cod]
+*.sqlite3
+.agent-token-manager/
+.evaluation-data/
+.evaluation-tools/
+.venv/
+dist/
+build/
+*.egg-info/

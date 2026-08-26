@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "acp-calibration-state-v1",
+  "title": "ACP recalibration comparison state v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "schema_id", "codex_version", "host_binary_sha256",
+    "model_identifier", "hook_api_version", "os", "architecture", "config_digest",
+    "sandbox_digest", "environment_allowlist_digest", "collector_online_path_digest",
+    "measurement_semantics_digest", "collector_sha256", "normalizer_sha256",
+    "reporter_sha256", "attributor_sha256", "renderer_sha256", "event_schema_sha256",
+    "normalized_schema_sha256", "ledger_schema_sha256", "fact_report_schema_sha256",
+    "attribution_schema_sha256", "fixture_sha256", "expected_attribution_sha256"
+  ],
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "digest_or_unknown": {
+      "oneOf": [
+        {"$ref": "#/$defs/sha256"},
+        {"const": "unknown"}
+      ]
+    },
+    "known_or_unknown": {"type": "string", "minLength": 1, "maxLength": 160}
+  },
+  "properties": {
+    "schema_version": {"const": 1},
+    "schema_id": {"const": "acp-calibration-state-v1"},
+    "codex_version": {"$ref": "#/$defs/known_or_unknown"},
+    "host_binary_sha256": {"$ref": "#/$defs/digest_or_unknown"},
+    "model_identifier": {"$ref": "#/$defs/known_or_unknown"},
+    "hook_api_version": {"$ref": "#/$defs/known_or_unknown"},
+    "os": {"$ref": "#/$defs/known_or_unknown"},
+    "architecture": {"$ref": "#/$defs/known_or_unknown"},
+    "config_digest": {"$ref": "#/$defs/digest_or_unknown"},
+    "sandbox_digest": {"$ref": "#/$defs/digest_or_unknown"},
+    "environment_allowlist_digest": {"$ref": "#/$defs/digest_or_unknown"},
+    "collector_online_path_digest": {"$ref": "#/$defs/digest_or_unknown"},
+    "measurement_semantics_digest": {"$ref": "#/$defs/digest_or_unknown"},
+    "collector_sha256": {"$ref": "#/$defs/digest_or_unknown"},
+    "normalizer_sha256": {"$ref": "#/$defs/digest_or_unknown"},
+    "reporter_sha256": {"$ref": "#/$defs/digest_or_unknown"},
+    "attributor_sha256": {"$ref": "#/$defs/digest_or_unknown"},
+    "renderer_sha256": {"$ref": "#/$defs/digest_or_unknown"},
+    "event_schema_sha256": {"$ref": "#/$defs/digest_or_unknown"},
+    "normalized_schema_sha256": {"$ref": "#/$defs/digest_or_unknown"},
+    "ledger_schema_sha256": {"$ref": "#/$defs/digest_or_unknown"},
+    "fact_report_schema_sha256": {"$ref": "#/$defs/digest_or_unknown"},
+    "attribution_schema_sha256": {"$ref": "#/$defs/digest_or_unknown"},
+    "fixture_sha256": {"$ref": "#/$defs/digest_or_unknown"},
+    "expected_attribution_sha256": {"$ref": "#/$defs/digest_or_unknown"}
+  }
+}

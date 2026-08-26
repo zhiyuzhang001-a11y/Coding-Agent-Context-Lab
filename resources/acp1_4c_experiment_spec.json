@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-4c-bash-requalification-spec-v1",
+  "experiment_id": "acp1-4c-bash-v2-requalification-v1",
+  "subject_commit": "b506818b3db87be62064ad64e62b1ad262d5a4b9",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "medium",
+  "scorer": "strip-outer-whitespace-exact-final-text-v1",
+  "qualification": {
+    "repetitions_per_case": 10,
+    "completed_with_usage": 10,
+    "correct_min": 9,
+    "candidate_recurrence_min": 8,
+    "ambiguous_max": 0,
+    "dominant_path_frequency_min": 8,
+    "qualified_case_min_for_formal": 2
+  },
+  "formal": {
+    "blocks_per_case": 10,
+    "control_correct_min": 9,
+    "treatment_correct_min": 9,
+    "accuracy_delta_min": -0.1,
+    "treatment_only_failures_max": 1,
+    "candidate_recurrence_min": 8,
+    "dominant_path_retention_delta_min": -0.1,
+    "paired_median_tool_call_delta_max": 0,
+    "paired_median_cycle_delta_max": 0,
+    "novel_treatment_path_repeated_min": 3,
+    "minimum_evidence_reduction_ratio": 0.35,
+    "completed_with_usage_required": 20
+  },
+  "generalization": {
+    "required_families": ["read", "search", "bash"],
+    "qualified_per_family_min": 2,
+    "pass_rate_min": 0.7,
+    "pass_per_family_min": 1
+  },
+  "cases": [
+    {
+      "case_id": "bash_json_gate2_status_v2",
+      "case_version": 2,
+      "family": "bash",
+      "category": "read_only_json_cli",
+      "command": "python3 -m json.tool plugins/agent-token-manager/resources/co1_gate2_results.json",
+      "question": "Run exactly the command on the next line, with no extra argument:\npython3 -m json.tool plugins/agent-token-manager/resources/co1_gate2_results.json\nAccording to its JSON output, what is the exact top-level status value? Reply only with the value.",
+      "expected": "failed",
+      "logical_target_id": "gate2_json_cli_evidence",
+      "candidate_command_terms": ["python3", "json.tool", "co1_gate2_results.json"],
+      "minimum_result_chars": 1000,
+      "treatment": {"family": "structured_json_list_projection", "method": "json-list-prefix-projection-v1", "target": "plugins/agent-token-manager/resources/co1_gate2_results.json", "list_key": "pairs", "keep_first_items": 3}
+    },
+    {
+      "case_id": "bash_json_cost_schema_title_v2",
+      "case_version": 2,
+      "family": "bash",
+      "category": "read_only_json_cli",
+      "command": "python3 -m json.tool plugins/agent-token-manager/resources/m2e_cost_attribution_schema.json",
+      "question": "Run exactly the command on the next line, with no extra argument:\npython3 -m json.tool plugins/agent-token-manager/resources/m2e_cost_attribution_schema.json\nAccording to its JSON output, what is the exact top-level title? Reply only with the value.",
+      "expected": "M2e-0.1a Cost Attribution",
+      "logical_target_id": "cost_schema_json_cli_evidence",
+      "candidate_command_terms": ["python3", "json.tool", "m2e_cost_attribution_schema.json"],
+      "minimum_result_chars": 1000,
+      "treatment": {"family": "structured_json_object_projection", "method": "json-object-key-projection-v1", "target": "plugins/agent-token-manager/resources/m2e_cost_attribution_schema.json", "object_key": "properties", "keep_keys": ["schema_version", "benchmark"]}
+    },
+    {
+      "case_id": "bash_python_schema_scan_v2",
+      "case_version": 2,
+      "family": "bash",
+      "category": "read_only_python_cli_scan",
+      "command": "python3 -c \"from pathlib import Path; roots=sorted(Path('plugins/agent-token-manager/scripts').glob('*.py')); [print(f'{path}:{number}:{line}') for path in roots for number,line in enumerate(path.read_text().splitlines(),1) if 'schema_version' in line.lower()]\"",
+      "question": "Run exactly the command on the next line, with no extra argument:\npython3 -c \"from pathlib import Path; roots=sorted(Path('plugins/agent-token-manager/scripts').glob('*.py')); [print(f'{path}:{number}:{line}') for path in roots for number,line in enumerate(path.read_text().splitlines(),1) if 'schema_version' in line.lower()]\"\nAccording to its output, Marker.schema_version in navigation_contract.py defaults to what constant name? Reply only with the constant name.",
+      "expected": "SCHEMA_VERSION",
+      "logical_target_id": "python_schema_scan_evidence",
+      "candidate_command_terms": ["python3", "schema_version", "glob", "agent-token-manager/scripts"],
+      "minimum_result_chars": 1000,
+      "treatment": {"family": "deterministic_result_row_reduction", "method": "hashed-nontarget-match-ablation-v1", "preserved_target": "plugins/agent-token-manager/scripts/navigation_contract.py", "match_terms": ["schema_version"], "ablate_when_first_byte_mod_2": 0}
+    }
+  ],
+  "policy": {
+    "bash_only_requalification": true,
+    "old_cases_preserved": true,
+    "old_results_rescored": false,
+    "acp1_4_history_changed": false,
+    "collector_or_hook_mutation": false,
+    "production_slicing_or_replacement": false,
+    "real_time_recommendation": false,
+    "global_savings_claim": false
+  }
+}

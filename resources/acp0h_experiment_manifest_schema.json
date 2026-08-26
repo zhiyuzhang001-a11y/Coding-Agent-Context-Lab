@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "experiment-manifest-v1",
+  "title": "ACP experiment manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "schema_id", "manifest_generator_version", "experiment_id",
+    "phase", "started_at", "completed_at", "time_block", "environment",
+    "environment_manifest_sha256", "artifacts", "chain_sha256", "privacy_policy"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "schema_id": {"const": "experiment-manifest-v1"},
+    "manifest_generator_version": {"const": "acp-experiment-manifest-v0.1"},
+    "experiment_id": {"$ref": "#/$defs/sha256"},
+    "phase": {"type": "string", "minLength": 1, "maxLength": 96},
+    "started_at": {"type": "string", "format": "date-time"},
+    "completed_at": {"type": "string", "format": "date-time"},
+    "time_block": {"type": "string", "minLength": 1, "maxLength": 96},
+    "environment": {"$ref": "#/$defs/environment"},
+    "environment_manifest_sha256": {"$ref": "#/$defs/sha256"},
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fixture", "runner", "spec", "raw_private_artifact", "normalized_result",
+        "coverage_ledger", "fact_report", "public_compact_result"
+      ],
+      "properties": {
+        "fixture": {"$ref": "#/$defs/artifact"},
+        "runner": {"$ref": "#/$defs/artifact"},
+        "spec": {"$ref": "#/$defs/artifact"},
+        "raw_private_artifact": {"$ref": "#/$defs/artifact"},
+        "normalized_result": {"$ref": "#/$defs/artifact"},
+        "coverage_ledger": {"$ref": "#/$defs/artifact"},
+        "fact_report": {"$ref": "#/$defs/artifact"},
+        "public_compact_result": {"$ref": "#/$defs/artifact"}
+      }
+    },
+    "chain_sha256": {"$ref": "#/$defs/sha256"},
+    "privacy_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "paths_persisted", "raw_environment_persisted", "sensitive_bodies_persisted",
+        "hashes_only_for_artifacts"
+      ],
+      "properties": {
+        "paths_persisted": {"const": false},
+        "raw_environment_persisted": {"const": false},
+        "sensitive_bodies_persisted": {"const": false},
+        "hashes_only_for_artifacts": {"const": true}
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "digest_or_unknown": {
+      "oneOf": [
+        {"$ref": "#/$defs/sha256"},
+        {"const": "unknown"}
+      ]
+    },
+    "known_or_unknown": {"type": "string", "minLength": 1, "maxLength": 160},
+    "environment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "codex_version", "host_binary_sha256", "model_identifier", "reasoning_effort",
+        "os", "architecture", "hook_api_version", "config_digest", "sandbox_digest",
+        "environment_allowlist_digest", "collector_sha256", "normalizer_sha256",
+        "reporter_sha256"
+      ],
+      "properties": {
+        "codex_version": {"$ref": "#/$defs/known_or_unknown"},
+        "host_binary_sha256": {"$ref": "#/$defs/digest_or_unknown"},
+        "model_identifier": {"$ref": "#/$defs/known_or_unknown"},
+        "reasoning_effort": {"$ref": "#/$defs/known_or_unknown"},
+        "os": {"$ref": "#/$defs/known_or_unknown"},
+        "architecture": {"$ref": "#/$defs/known_or_unknown"},
+        "hook_api_version": {"$ref": "#/$defs/known_or_unknown"},
+        "config_digest": {"$ref": "#/$defs/digest_or_unknown"},
+        "sandbox_digest": {"$ref": "#/$defs/digest_or_unknown"},
+        "environment_allowlist_digest": {"$ref": "#/$defs/digest_or_unknown"},
+        "collector_sha256": {"$ref": "#/$defs/digest_or_unknown"},
+        "normalizer_sha256": {"$ref": "#/$defs/digest_or_unknown"},
+        "reporter_sha256": {"$ref": "#/$defs/digest_or_unknown"}
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "sha256", "visibility"],
+      "properties": {
+        "status": {"enum": ["produced", "not_produced", "unknown"]},
+        "sha256": {
+          "oneOf": [
+            {"$ref": "#/$defs/sha256"},
+            {"type": "null"}
+          ]
+        },
+        "visibility": {"enum": ["public", "private"]}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"status": {"const": "produced"}}},
+          "then": {"properties": {"sha256": {"$ref": "#/$defs/sha256"}}},
+          "else": {"properties": {"sha256": {"type": "null"}}}
+        }
+      ]
+    }
+  }
+}

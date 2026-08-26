@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp0-4b-native-calibration-v1",
+  "status": "complete",
+  "case_id": "single_file_range_count",
+  "expected": "7",
+  "subject_commit": "b506818b3db87be62064ad64e62b1ad262d5a4b9",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "medium",
+  "run_count": 20,
+  "correct_count": 14,
+  "wrong_count": 6,
+  "accuracy": 0.7,
+  "classification": "stochastic_diagnostic",
+  "classification_threshold": {
+    "empirically_stable_minimum_correct": 19,
+    "denominator": 20
+  },
+  "answer_shape_counts": {
+    "correct": 14,
+    "endpoint_like": 3,
+    "first_cluster_only_like": 1,
+    "off_by_one_like": 2
+  },
+  "tool_call_distribution": {"count": 20, "mean": 1.0, "median": 1.0, "min": 1, "max": 1, "mad": 0.0},
+  "model_cycle_distribution": {"count": 20, "mean": 2.0, "median": 2.0, "min": 2, "max": 2, "mad": 0.0},
+  "token_distribution": {"count": 20, "mean": 31593.75, "median": 31612.5, "min": 31341, "max": 31984, "mad": 156.0},
+  "answers_by_repetition": ["8", "7", "10", "7", "7", "10", "7", "7", "7", "7", "10", "8", "7", "7", "7", "7", "7", "7", "5", "7"],
+  "all_runs_included": true,
+  "single_run_reruns": false,
+  "interpretation": "Native correctness is materially variable on this unambiguous case; classification is an engineering diagnostic, not a statistical proof of an internal reasoning cause",
+  "private_artifact_directory": ".agent-token-manager/acp0-4b-20260818/native-calibration"
+}

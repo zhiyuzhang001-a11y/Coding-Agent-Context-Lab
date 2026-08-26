@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "fixture": "plugins/agent-token-manager/resources/co1_gate2_fixture.py",
+  "syntax_budget_chars": 1500,
+  "cases": [
+    {
+      "id": "function_answer",
+      "kind": "answer",
+      "activated": true,
+      "canary": "CO1_CANARY_FUNCTION_91A7",
+      "question": "What exact string does normalize_name return for the input '  Ada Lovelace  '? Reply with only that string.",
+      "expected": "ada-lovelace"
+    },
+    {
+      "id": "method_answer",
+      "kind": "answer",
+      "activated": true,
+      "canary": "CO1_CANARY_METHOD_B204",
+      "question": "What exact string does Router().route('/Health') return? Reply with only that string.",
+      "expected": "route:health"
+    },
+    {
+      "id": "global_context",
+      "kind": "answer",
+      "activated": true,
+      "canary": "CO1_CANARY_GLOBAL_C31F",
+      "question": "What integer does Calculator().compute(6) return? Confirm any referenced module policy value before answering. Reply with only the integer.",
+      "expected": "42"
+    },
+    {
+      "id": "local_edit",
+      "kind": "edit",
+      "activated": true,
+      "canary": "CO1_CANARY_EDIT_D482",
+      "question": "Change only format_label so it returns the stripped value in uppercase instead of lowercase. Run python3 plugins/agent-token-manager/resources/co1_gate2_fixture_test.py. Reply exactly DONE after the test passes.",
+      "expected": "DONE",
+      "allowed_path": "plugins/agent-token-manager/resources/co1_gate2_fixture.py",
+      "test_command": "python3 plugins/agent-token-manager/resources/co1_gate2_fixture_test.py"
+    },
+    {
+      "id": "ambiguous_range",
+      "kind": "answer",
+      "activated": false,
+      "expected_fail_open_reason": "syntax_range_ambiguous",
+      "canary": "CO1_CANARY_AMBIGUOUS_E593",
+      "question": "What integer is left_value() + right_value()? Reply with only the integer.",
+      "expected": "5"
+    },
+    {
+      "id": "over_budget",
+      "kind": "answer",
+      "activated": false,
+      "expected_fail_open_reason": "syntax_slice_over_budget",
+      "canary": "CO1_CANARY_BUDGET_F6A4",
+      "question": "What integer does large_total() return? Reply with only the integer.",
+      "expected": "820"
+    }
+  ]
+}

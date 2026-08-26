@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-3b-frozen-feasibility-spec-v1",
+  "baseline_id": "acp1-3b-controlled-evidence-feasibility-v1",
+  "logical_started_at": "2026-08-18T10:00:00Z",
+  "logical_completed_at": "2026-08-18T10:00:00Z",
+  "time_block": "2026-08-18T10:00Z",
+  "environment": {
+    "model_identifier": "gpt-5.6-sol",
+    "reasoning_effort": "medium"
+  },
+  "private_source": {
+    "logical_id": "acp1-3b-controlled-evidence-20260818-live",
+    "run_count": 30,
+    "inventory_sha256": "ffd685c8b320ac86888616d3af12dc2f536a4a7773e812788e46a6e7ef478bcf"
+  },
+  "components": {
+    "experiment_spec": {
+      "path": "resources/acp1_3b_experiment_spec.json",
+      "sha256": "14ceca058fbec201b8ae9b11c57455b3bb3b6868526467fd86e664ac8d6e0639"
+    },
+    "feasibility_runner": {
+      "path": "scripts/run_acp1_3b_feasibility.py",
+      "sha256": "9dcd8d59b08a54f61df0cf8bc1796f687c7a5435a6dd1ad15d5fea304343e8bb"
+    },
+    "public_result": {
+      "path": "resources/acp1_3b_results.json",
+      "sha256": "e30f095f7adb24415522c5d903b60cc743906f5a37938d9a398387b3ec415f44"
+    },
+    "upstream_index": {
+      "path": "resources/acp1_3a_frozen_baseline_index.json",
+      "sha256": "0715444a6d373727298b968ac6294ba57c1e794cf1e814b87359d2262c51b110"
+    },
+    "upstream_manifest": {
+      "path": "resources/acp1_3a_frozen_experiment_manifest.json",
+      "sha256": "0bee7c218d1bbfe893473327ad577701536b588db5c607f8bb6c7810dcc33720"
+    },
+    "manifest_generator": {
+      "path": "scripts/build_experiment_manifest.py",
+      "sha256": "75756c29345521540a4dffb85ba0534e0547a62c2d704c5cd72272e4c42b1ebb"
+    },
+    "collector": {
+      "path": "scripts/acp_collector.py",
+      "sha256": "81efee8b5ae05fe2f9c76f73e5edacec1e8269ae5923a6ebc0019f1479f96de2"
+    },
+    "hooks_manifest": {
+      "path": "hooks/hooks.json",
+      "sha256": "797b72b678ddba104acd93285f3c34542e75a58f69016fb01c99bf4ebac394dd"
+    }
+  },
+  "expected": {
+    "status": "mechanism_feasible_under_synthetic_frozen_scope",
+    "qualification_run_count": 20,
+    "qualification_correct_count": 20,
+    "qualification_exact_single_command_count": 20,
+    "paired_run_count": 10,
+    "control_correct_count": 5,
+    "treatment_correct_count": 5,
+    "control_success_semantics_count": 5,
+    "treatment_success_semantics_count": 5,
+    "control_target_visible_median": 3919,
+    "treatment_target_visible_median": 1969,
+    "control_total_token_median": 37219,
+    "treatment_total_token_median": 34127,
+    "observed_visible_estimate_reduction_ratio": 0.49757591222250575
+  }
+}

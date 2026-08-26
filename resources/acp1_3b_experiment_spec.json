@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-3b-controlled-intervention-spec-v1",
+  "experiment_id": "acp1-3b-controlled-evidence-ledger-v1",
+  "case_id": "controlled_evidence_ledger_lookup_v1",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "medium",
+  "command": "sed -n '1,9999p' evidence_ledger.txt",
+  "question": "Run exactly this shell command once: sed -n '1,9999p' evidence_ledger.txt. Do not run any other command or tool. According to the evidence ledger, what exact value is assigned to deployment_key? Reply only with that value.",
+  "expected": "ORCHID-7319",
+  "payload": {
+    "target_line": "deployment_key = ORCHID-7319",
+    "control_irrelevant_record_count": 120,
+    "treatment_irrelevant_record_count": 60,
+    "treatment_is_deterministic_control_subset": true,
+    "minimum_visible_estimate_reduction_ratio": 0.40,
+    "estimation_method": "chars_div_4_v1"
+  },
+  "native_qualification": {
+    "arm": "control",
+    "repetitions": 20,
+    "minimum_correct": 19,
+    "minimum_exact_single_command_runs": 19,
+    "all_runs_must_complete_with_usage": true,
+    "all_target_calls_must_have_success_semantics": true
+  },
+  "paired_feasibility": {
+    "arms": ["control", "treatment"],
+    "repetitions_per_arm": 5,
+    "schedule": "repetition_then_control_treatment",
+    "all_runs_included": true,
+    "cost_or_correctness_improvement_gate": false
+  },
+  "privacy": {
+    "public_transcript_body": false,
+    "public_prompt_body": false,
+    "public_tool_output_body": false,
+    "public_absolute_path": false,
+    "public_raw_session_id": false
+  },
+  "forbidden_mechanisms": ["hook_result_replacement", "decision_block", "transparent_smart_read_reopen", "online_collector_modification"]
+}

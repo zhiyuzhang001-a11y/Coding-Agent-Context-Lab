@@ -1,0 +1,11 @@
+ACP Cost Necessity Hypothesis Catalog [cost-necessity-hypothesis-catalog-v1]
+status=candidates_present
+candidates=5
+high_cost_candidates=5
+concentration_candidates=0
+repeated_evidence_candidates=0
+unique_target_exposure_tokens=10735
+necessity_status=unknown
+causal_status=untested
+validation_feasibility=blocked
+interpretation=offline_experiment_candidates_only

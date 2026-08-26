@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-4f-f1-frozen-early-stop-index-v1",
+  "experiment_id": "acp1-4f-combined-prospective-generalization-v2.1",
+  "status": "f1_stopped_under_frozen_native_scope",
+  "verdict": "INSUFFICIENT_NATIVE_COVERAGE",
+  "planned_run_count": 120,
+  "attempted_run_count": 55,
+  "completed_run_count": 54,
+  "interrupted_run_count": 1,
+  "artifacts": {
+    "f0_index": {"path": "resources/acp1_4f_f0_frozen_index.json", "sha256": "a7cf74be567c281385b2388056ea9e2de70fbd2e9fed3aef62af7991dfa47dd6"},
+    "contract": {"path": "resources/acp1_4f_frozen_contract.json", "sha256": "90aea5df50dbf79f0aa85db0e89448c956018296703c753a57c518b9efdf2962"},
+    "oracle_registry": {"path": "resources/acp1_4f_oracle_registry.json", "sha256": "2cf58fc2bf42efd2174e6523b6f65b5016fad6f452689c1c3b4397c3df047c9d"},
+    "native_runner": {"path": "scripts/run_acp1_4f_native_qualification.py", "sha256": "119b2740067b0ab7243599383c246acfe3eeee415d2d1456a7acea0000d10d52"},
+    "early_stop_result": {"path": "resources/acp1_4f_f1_early_stop.json", "sha256": "c1f2d75aae12fbbf0c714955a7d7f0de21dcc63cc4218be913377efc1cbc2780"}
+  },
+  "private_source": {
+    "logical_id": "acp1-4f-native-v21-early-stop-20260819",
+    "completed_result_inventory_sha256": "2dad2422363ba330a761659842d91c9dc98166c2cbf4813381fbb65298d6c634",
+    "completed_run_count": 54,
+    "interrupted_run_count": 1,
+    "paths_persisted": false
+  },
+  "next_phase": {
+    "f2_authorized": false,
+    "pilot_authorized": false,
+    "formal_authorized": false,
+    "v2_1_resume_allowed": false,
+    "new_version_requires_new_preregistration": true
+  }
+}
+

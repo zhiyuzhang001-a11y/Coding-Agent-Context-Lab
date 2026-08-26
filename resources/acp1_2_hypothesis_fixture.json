@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "fixture_id": "acp1-2-hypothesis-contract-v1",
+  "cases": {
+    "high_cost_boundary": {"tokens": 1000, "share": 0.1, "expected_candidate": true},
+    "high_cost_below_share": {"tokens": 2000, "share": 0.099999999999, "expected_candidate": false},
+    "high_cost_below_tokens": {"tokens": 999, "share": 0.2, "expected_candidate": false},
+    "concentration_hhi_boundary": {"call_hhi": 0.18, "top3_share": 0.2, "expected_candidate": true},
+    "concentration_top3_boundary": {"call_hhi": 0.1, "top3_share": 0.6, "expected_candidate": true},
+    "concentration_below": {"call_hhi": 0.179999999999, "top3_share": 0.599999999999, "expected_candidate": false},
+    "repeat_zero": {"unique_repeated_observation_count": 0, "expected_candidate_count": 0},
+    "repeat_one_with_three_relations": {"unique_repeated_observation_count": 1, "relation_count": 3, "expected_candidate_count": 1},
+    "empty_catalog": {"expected_status": "empty_no_preregistered_trigger"}
+  },
+  "expected_feasibility": {
+    "status": "blocked",
+    "reason_codes": ["missing_controlled_intervention_interface", "missing_replayable_task_context"]
+  },
+  "privacy": {
+    "contains_source_body": false,
+    "contains_prompt_or_transcript": false,
+    "contains_absolute_path": false,
+    "contains_raw_session_identifier": false
+  }
+}

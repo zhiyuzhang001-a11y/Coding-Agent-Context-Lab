@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp0-4b-prospective-correctness-v1",
+  "status": "pass",
+  "acp0_graduation": "pass",
+  "measurement_foundation_complete": true,
+  "case_id": "single_file_range_count",
+  "subject_commit": "b506818b3db87be62064ad64e62b1ad262d5a4b9",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "medium",
+  "benchmark_validity": {
+    "specification": "unambiguous_existing_case",
+    "native_calibration_correct": 14,
+    "native_calibration_runs": 20,
+    "classification": "stochastic_diagnostic"
+  },
+  "prospective_correctness": {
+    "criterion": "accuracy_on_minus_off_at_least_negative_0_10",
+    "off_correct": 12,
+    "off_runs": 20,
+    "off_accuracy": 0.6,
+    "on_correct": 13,
+    "on_runs": 20,
+    "on_accuracy": 0.65,
+    "accuracy_delta_on_minus_off": 0.05,
+    "minimum_accuracy_delta": -0.1,
+    "gate_pass": true
+  },
+  "answer_shape_counts": {
+    "off": {"correct": 12, "endpoint_like": 6, "off_by_one_like": 2},
+    "on": {"correct": 13, "endpoint_like": 5, "first_cluster_only_like": 1, "off_by_one_like": 1}
+  },
+  "behavioral_checks": {
+    "all_40_runs_present": true,
+    "all_runs_completed_with_usage": true,
+    "host_hard_gates_pass": true,
+    "collector_observed_every_on_tool_call": true,
+    "collector_never_invokes_tools": true,
+    "off_tool_calls": {"min": 1, "max": 1},
+    "on_tool_calls": {"min": 1, "max": 1},
+    "off_model_cycles": {"min": 2, "max": 2},
+    "on_model_cycles": {"min": 2, "max": 2}
+  },
+  "inherited_acp0_4a_evidence": {
+    "cost_gate_pass": true,
+    "pooled_token_ratio": 1.0070100602358796,
+    "token_ratio_ceiling": 1.02,
+    "path_gate_pass": true,
+    "conditional_path_coverage": 0.95,
+    "host_gate_pass": true,
+    "old_status_remains": "INCONCLUSIVE_GRADUATION_FAIL"
+  },
+  "scope": {
+    "correctness_runs_enter_cost_or_path_gate": false,
+    "old_acp0_4_result_rewritten": false,
+    "old_acp0_4a_result_rewritten": false,
+    "collector_changed": false,
+    "acp1_started": false
+  },
+  "collector_sha256": "81efee8b5ae05fe2f9c76f73e5edacec1e8269ae5923a6ebc0019f1479f96de2",
+  "hooks_manifest_sha256": "797b72b678ddba104acd93285f3c34542e75a58f69016fb01c99bf4ebac394dd",
+  "private_artifact_directory": ".agent-token-manager/acp0-4b-20260818/paired-validation"
+}

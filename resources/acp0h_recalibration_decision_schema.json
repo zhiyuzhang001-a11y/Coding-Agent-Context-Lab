@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "recalibration-decision-v1",
+  "title": "ACP recalibration decision v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "schema_id", "policy_id", "previous_state_sha256",
+    "current_state_sha256", "recalibration_required", "required_mode", "reasons",
+    "required_suites", "unchanged_fields"
+  ],
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "properties": {
+    "schema_version": {"const": 1},
+    "schema_id": {"const": "recalibration-decision-v1"},
+    "policy_id": {"const": "acp-recalibration-policy-v1"},
+    "previous_state_sha256": {"$ref": "#/$defs/sha256"},
+    "current_state_sha256": {"$ref": "#/$defs/sha256"},
+    "recalibration_required": {"type": "boolean"},
+    "required_mode": {"enum": ["none", "smoke", "full_paired"]},
+    "reasons": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["field", "reason_code", "required_mode"],
+        "properties": {
+          "field": {"type": "string", "minLength": 1},
+          "reason_code": {"type": "string", "pattern": "^[a-z0-9_]+_changed$"},
+          "required_mode": {"enum": ["smoke", "full_paired"]}
+        }
+      }
+    },
+    "required_suites": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"enum": ["smoke-calibration-v1", "paired-no-interference-v1"]}
+    },
+    "unchanged_fields": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    }
+  }
+}

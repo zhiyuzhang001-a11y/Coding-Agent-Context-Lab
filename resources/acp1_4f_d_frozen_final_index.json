@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-4f-d-frozen-final-index-v1",
+  "protocol_id": "acp1-4f-d-development-protocol-v1",
+  "pool_id": "acp1-4f-d-24-case-development-pool-v1",
+  "status": "complete_under_frozen_development_protocol",
+  "verdict": "BENCHMARK_SEMANTICS_NOT_SUPPORTED",
+  "agent_run_count": 110,
+  "completed_run_count": 110,
+  "failed_run_count": 0,
+  "hard_agent_run_cap": 240,
+  "automatic_futility_stop_applied": true,
+  "artifacts": {
+    "frozen_protocol_index": {
+      "path": "resources/acp1_4f_d_frozen_protocol_index.json",
+      "sha256": "bf702740ad0eed3472747904ca564277845ef5845d795e1868574cd5345a8263"
+    },
+    "frozen_screen_index": {
+      "path": "resources/acp1_4f_d_frozen_screen_index.json",
+      "sha256": "4975623edc0503df9eba351cc74b99e72dd01007d00b65306de59df980bf638e"
+    },
+    "extension_authorization_index": {
+      "path": "resources/acp1_4f_d_extension_authorization_index.json",
+      "sha256": "13560ddad3ae797fe199591fedf0cbe3eb583d9ae52a88136e92507213c263e4"
+    },
+    "final_registry": {
+      "path": "resources/acp1_4f_d_extension_registry.json",
+      "sha256": "7dfa5235b6ed0c1534d185592fd1f602b60a86c51b366e36c932764e99b6d627"
+    }
+  },
+  "private_source": {
+    "logical_id": "acp1-4f-d-complete-v1-20260819",
+    "completed_result_inventory_sha256": "89a1d376775c95f35d62c2e7c6a11d7fa6bdba00960cb8fe4200d0caacc2a83a",
+    "completed_run_count": 110,
+    "checkpoint_sha256": "5da0f26b5a188eddfcd05e7113ce3886fe69f6789763ccc646d9c74b40ddde42",
+    "paths_persisted_publicly": false
+  },
+  "outcome": {
+    "qualified_case_count": 4,
+    "rejected_case_count": 20,
+    "qualified_cases_by_observed_family": {
+      "search_like": 4,
+      "read_like": 0,
+      "structured_bash_like": 0
+    },
+    "correctness": "110/110",
+    "evidence_opportunity_identified": "110/110",
+    "compatible_carrier_identified": "110/110",
+    "measurement_unknown": 0,
+    "truncation_unresolved": 0,
+    "reason_code_counts": {
+      "F_EVIDENCE_TOO_SMALL": 20,
+      "F_INTERVENTION_NOT_MEANINGFUL": 20,
+      "F_TOOL_PATH_UNSTABLE": 1
+    }
+  },
+  "decision": {
+    "supported_observed_family_count": 1,
+    "minimum_supported_families_for_subset": 2,
+    "v3_authorized": false,
+    "new_holdout_authorized": false,
+    "r1_s1_b1_frozen": true,
+    "intervention_tested": false
+  }
+}

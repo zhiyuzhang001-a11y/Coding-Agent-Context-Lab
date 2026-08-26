@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-4f-d-case-pool-v1",
+  "pool_id": "acp1-4f-d-24-case-development-pool-v1",
+  "status": "frozen_before_first_agent_run",
+  "cases": [
+    {
+      "case_id": "d_read_delta_timeout_v1",
+      "case_version": 1,
+      "project_form": "delta_web",
+      "intended_evidence_form": "read_like",
+      "answer_uniqueness": "verified",
+      "subject_path": "delta_web/settings.py",
+      "prompt": "Inspect delta_web/settings.py. What integer is REQUEST_TIMEOUT_SECONDS? Reply only with the integer.",
+      "request_identity": {"subject_scopes": ["delta_web/settings.py"], "request_anchors": ["REQUEST_TIMEOUT_SECONDS"], "query_terms": [], "structural_fields": []}
+    },
+    {
+      "case_id": "d_read_delta_cache_limit_v1",
+      "case_version": 1,
+      "project_form": "delta_web",
+      "intended_evidence_form": "read_like",
+      "answer_uniqueness": "verified",
+      "subject_path": "delta_web/settings.py",
+      "prompt": "Inspect delta_web/settings.py. What integer is CACHE_ENTRY_LIMIT? Reply only with the integer.",
+      "request_identity": {"subject_scopes": ["delta_web/settings.py"], "request_anchors": ["CACHE_ENTRY_LIMIT"], "query_terms": [], "structural_fields": []}
+    },
+    {
+      "case_id": "d_search_delta_maintenance_v1",
+      "case_version": 1,
+      "project_form": "delta_web",
+      "intended_evidence_form": "search_like",
+      "answer_uniqueness": "verified",
+      "subject_path": "delta_web",
+      "prompt": "Inspect the maintenance entries in delta_web. What status is assigned to maintenance_access? Reply only with the status.",
+      "request_identity": {"subject_scopes": ["delta_web"], "request_anchors": ["maintenance_access"], "query_terms": ["maintenance"], "structural_fields": []}
+    },
+    {
+      "case_id": "d_search_delta_retired_v1",
+      "case_version": 1,
+      "project_form": "delta_web",
+      "intended_evidence_form": "search_like",
+      "answer_uniqueness": "verified",
+      "subject_path": "delta_web",
+      "prompt": "Inspect the retired endpoint entries in delta_web. Which owner is assigned to retired_endpoint? Reply only with the owner.",
+      "request_identity": {"subject_scopes": ["delta_web"], "request_anchors": ["retired_endpoint"], "query_terms": ["retired_endpoint"], "structural_fields": []}
+    },
+    {
+      "case_id": "d_bash_delta_summary_v1",
+      "case_version": 1,
+      "project_form": "delta_web",
+      "intended_evidence_form": "structured_bash_like",
+      "answer_uniqueness": "verified",
+      "subject_path": "delta_web/validate_service.py",
+      "prompt": "Inspect delta_web's service validation report. What is its summary_status? Reply only with the value.",
+      "request_identity": {"subject_scopes": ["delta_web"], "request_anchors": [], "query_terms": [], "structural_fields": ["summary_status"]}
+    },
+    {
+      "case_id": "d_bash_delta_failures_v1",
+      "case_version": 1,
+      "project_form": "delta_web",
+      "intended_evidence_form": "structured_bash_like",
+      "answer_uniqueness": "verified",
+      "subject_path": "delta_web/validate_service.py",
+      "prompt": "Inspect delta_web's service validation report. What integer is failing_check_count? Reply only with the integer.",
+      "request_identity": {"subject_scopes": ["delta_web"], "request_anchors": [], "query_terms": [], "structural_fields": ["failing_check_count"]}
+    },
+    {
+      "case_id": "d_read_epsilon_page_size_v1",
+      "case_version": 1,
+      "project_form": "epsilon_cli",
+      "intended_evidence_form": "read_like",
+      "answer_uniqueness": "verified",
+      "subject_path": "epsilon_cli/config.json",
+      "prompt": "Inspect epsilon_cli/config.json. What integer is default_page_size? Reply only with the integer.",
+      "request_identity": {"subject_scopes": ["epsilon_cli/config.json"], "request_anchors": ["default_page_size"], "query_terms": [], "structural_fields": []}
+    },
+    {
+      "case_id": "d_read_epsilon_retention_v1",
+      "case_version": 1,
+      "project_form": "epsilon_cli",
+      "intended_evidence_form": "read_like",
+      "answer_uniqueness": "verified",
+      "subject_path": "epsilon_cli/config.json",
+      "prompt": "Inspect epsilon_cli/config.json. What integer is history_retention_days? Reply only with the integer.",
+      "request_identity": {"subject_scopes": ["epsilon_cli/config.json"], "request_anchors": ["history_retention_days"], "query_terms": [], "structural_fields": []}
+    },
+    {
+      "case_id": "d_search_epsilon_archive_v1",
+      "case_version": 1,
+      "project_form": "epsilon_cli",
+      "intended_evidence_form": "search_like",
+      "answer_uniqueness": "verified",
+      "subject_path": "epsilon_cli",
+      "prompt": "Inspect the archive command entries in epsilon_cli. What category is assigned to archive? Reply only with the category.",
+      "request_identity": {"subject_scopes": ["epsilon_cli"], "request_anchors": ["archive"], "query_terms": ["archive"], "structural_fields": []}
+    },
+    {
+      "case_id": "d_search_epsilon_legacy_v1",
+      "case_version": 1,
+      "project_form": "epsilon_cli",
+      "intended_evidence_form": "search_like",
+      "answer_uniqueness": "verified",
+      "subject_path": "epsilon_cli",
+      "prompt": "Inspect the legacy_sync entries in epsilon_cli. What visibility is assigned to legacy_sync? Reply only with the visibility.",
+      "request_identity": {"subject_scopes": ["epsilon_cli"], "request_anchors": ["legacy_sync"], "query_terms": ["legacy_sync"], "structural_fields": []}
+    },
+    {
+      "case_id": "d_bash_epsilon_status_v1",
+      "case_version": 1,
+      "project_form": "epsilon_cli",
+      "intended_evidence_form": "structured_bash_like",
+      "answer_uniqueness": "verified",
+      "subject_path": "epsilon_cli/verify_manifest.py",
+      "prompt": "Inspect epsilon_cli's manifest verification report. What is manifest_status? Reply only with the value.",
+      "request_identity": {"subject_scopes": ["epsilon_cli"], "request_anchors": [], "query_terms": [], "structural_fields": ["manifest_status"]}
+    },
+    {
+      "case_id": "d_bash_epsilon_invalid_v1",
+      "case_version": 1,
+      "project_form": "epsilon_cli",
+      "intended_evidence_form": "structured_bash_like",
+      "answer_uniqueness": "verified",
+      "subject_path": "epsilon_cli/verify_manifest.py",
+      "prompt": "Inspect epsilon_cli's manifest verification report. What integer is invalid_entry_count? Reply only with the integer.",
+      "request_identity": {"subject_scopes": ["epsilon_cli"], "request_anchors": [], "query_terms": [], "structural_fields": ["invalid_entry_count"]}
+    },
+    {
+      "case_id": "d_read_zeta_batch_v1",
+      "case_version": 1,
+      "project_form": "zeta_jobs",
+      "intended_evidence_form": "read_like",
+      "answer_uniqueness": "verified",
+      "subject_path": "zeta_jobs/pipeline.toml",
+      "prompt": "Inspect zeta_jobs/pipeline.toml. What integer is batch_size? Reply only with the integer.",
+      "request_identity": {"subject_scopes": ["zeta_jobs/pipeline.toml"], "request_anchors": ["batch_size"], "query_terms": [], "structural_fields": []}
+    },
+    {
+      "case_id": "d_read_zeta_parallel_v1",
+      "case_version": 1,
+      "project_form": "zeta_jobs",
+      "intended_evidence_form": "read_like",
+      "answer_uniqueness": "verified",
+      "subject_path": "zeta_jobs/pipeline.toml",
+      "prompt": "Inspect zeta_jobs/pipeline.toml. What integer is maximum_parallel_jobs? Reply only with the integer.",
+      "request_identity": {"subject_scopes": ["zeta_jobs/pipeline.toml"], "request_anchors": ["maximum_parallel_jobs"], "query_terms": [], "structural_fields": []}
+    },
+    {
+      "case_id": "d_search_zeta_retention_v1",
+      "case_version": 1,
+      "project_form": "zeta_jobs",
+      "intended_evidence_form": "search_like",
+      "answer_uniqueness": "verified",
+      "subject_path": "zeta_jobs",
+      "prompt": "Inspect the retention entries in zeta_jobs. What production_state is assigned to retention_cleanup? Reply only with the value.",
+      "request_identity": {"subject_scopes": ["zeta_jobs"], "request_anchors": ["retention_cleanup"], "query_terms": ["retention"], "structural_fields": []}
+    },
+    {
+      "case_id": "d_search_zeta_quarantine_v1",
+      "case_version": 1,
+      "project_form": "zeta_jobs",
+      "intended_evidence_form": "search_like",
+      "answer_uniqueness": "verified",
+      "subject_path": "zeta_jobs",
+      "prompt": "Inspect the quarantine entries in zeta_jobs. What production_state is assigned to quarantine_router? Reply only with the value.",
+      "request_identity": {"subject_scopes": ["zeta_jobs"], "request_anchors": ["quarantine_router"], "query_terms": ["quarantine"], "structural_fields": []}
+    },
+    {
+      "case_id": "d_bash_zeta_status_v1",
+      "case_version": 1,
+      "project_form": "zeta_jobs",
+      "intended_evidence_form": "structured_bash_like",
+      "answer_uniqueness": "verified",
+      "subject_path": "zeta_jobs/validate_jobs.py",
+      "prompt": "Inspect zeta_jobs' validation report. What is pipeline_status? Reply only with the value.",
+      "request_identity": {"subject_scopes": ["zeta_jobs"], "request_anchors": [], "query_terms": [], "structural_fields": ["pipeline_status"]}
+    },
+    {
+      "case_id": "d_bash_zeta_invalid_v1",
+      "case_version": 1,
+      "project_form": "zeta_jobs",
+      "intended_evidence_form": "structured_bash_like",
+      "answer_uniqueness": "verified",
+      "subject_path": "zeta_jobs/validate_jobs.py",
+      "prompt": "Inspect zeta_jobs' validation report. What integer is invalid_shard_count? Reply only with the integer.",
+      "request_identity": {"subject_scopes": ["zeta_jobs"], "request_anchors": [], "query_terms": [], "structural_fields": ["invalid_shard_count"]}
+    },
+    {
+      "case_id": "d_read_eta_borrow_v1",
+      "case_version": 1,
+      "project_form": "eta_library",
+      "intended_evidence_form": "read_like",
+      "answer_uniqueness": "verified",
+      "subject_path": "eta_library/metadata.py",
+      "prompt": "Inspect eta_library/metadata.py. What integer is DEFAULT_BORROW_DAYS? Reply only with the integer.",
+      "request_identity": {"subject_scopes": ["eta_library/metadata.py"], "request_anchors": ["DEFAULT_BORROW_DAYS"], "query_terms": [], "structural_fields": []}
+    },
+    {
+      "case_id": "d_read_eta_search_limit_v1",
+      "case_version": 1,
+      "project_form": "eta_library",
+      "intended_evidence_form": "read_like",
+      "answer_uniqueness": "verified",
+      "subject_path": "eta_library/metadata.py",
+      "prompt": "Inspect eta_library/metadata.py. What integer is SEARCH_RESULT_LIMIT? Reply only with the integer.",
+      "request_identity": {"subject_scopes": ["eta_library/metadata.py"], "request_anchors": ["SEARCH_RESULT_LIMIT"], "query_terms": [], "structural_fields": []}
+    },
+    {
+      "case_id": "d_search_eta_rare_v1",
+      "case_version": 1,
+      "project_form": "eta_library",
+      "intended_evidence_form": "search_like",
+      "answer_uniqueness": "verified",
+      "subject_path": "eta_library",
+      "prompt": "Inspect the rare_collection entries in eta_library. What access is assigned to rare_collection? Reply only with the value.",
+      "request_identity": {"subject_scopes": ["eta_library"], "request_anchors": ["rare_collection"], "query_terms": ["rare_collection"], "structural_fields": []}
+    },
+    {
+      "case_id": "d_search_eta_legacy_v1",
+      "case_version": 1,
+      "project_form": "eta_library",
+      "intended_evidence_form": "search_like",
+      "answer_uniqueness": "verified",
+      "subject_path": "eta_library",
+      "prompt": "Inspect the legacy_import entries in eta_library. What state is assigned to legacy_import? Reply only with the value.",
+      "request_identity": {"subject_scopes": ["eta_library"], "request_anchors": ["legacy_import"], "query_terms": ["legacy_import"], "structural_fields": []}
+    },
+    {
+      "case_id": "d_bash_eta_status_v1",
+      "case_version": 1,
+      "project_form": "eta_library",
+      "intended_evidence_form": "structured_bash_like",
+      "answer_uniqueness": "verified",
+      "subject_path": "eta_library/audit_library.py",
+      "prompt": "Inspect eta_library's catalog audit report. What is catalog_status? Reply only with the value.",
+      "request_identity": {"subject_scopes": ["eta_library"], "request_anchors": [], "query_terms": [], "structural_fields": ["catalog_status"]}
+    },
+    {
+      "case_id": "d_bash_eta_unindexed_v1",
+      "case_version": 1,
+      "project_form": "eta_library",
+      "intended_evidence_form": "structured_bash_like",
+      "answer_uniqueness": "verified",
+      "subject_path": "eta_library/audit_library.py",
+      "prompt": "Inspect eta_library's catalog audit report. What integer is unindexed_collection_count? Reply only with the integer.",
+      "request_identity": {"subject_scopes": ["eta_library"], "request_anchors": [], "query_terms": [], "structural_fields": ["unindexed_collection_count"]}
+    }
+  ]
+}

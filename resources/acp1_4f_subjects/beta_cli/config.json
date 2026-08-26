@@ -1,0 +1,20 @@
+{
+  "application": "beta-cli",
+  "output": {
+    "color": "auto",
+    "format": "table",
+    "result_limit": 64,
+    "show_timing": false
+  },
+  "network": {
+    "connect_timeout_seconds": 10,
+    "read_timeout_seconds": 45,
+    "retry_count": 3
+  },
+  "features": {
+    "archive": true,
+    "completion": true,
+    "experimental_sync": false
+  }
+}
+

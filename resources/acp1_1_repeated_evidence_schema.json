@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.invalid/acp1_1_repeated_evidence_schema.json",
+  "title": "repeated-evidence-analysis-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "schema_id", "engine_version", "source_and_scope",
+    "denominator_and_coverage", "repeat_groups", "call_relations",
+    "unique_repeated_observations", "path_repeat_facts", "range_relation_facts",
+    "observation_volume", "unknowns", "traceability", "policy"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "schema_id": {"const": "repeated-evidence-analysis-v1"},
+    "engine_version": {"const": "acp-repeated-evidence-v0.1"},
+    "source_and_scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "normalized_batch_sha256", "coverage_ledger_sha256", "attribution_sha256",
+        "relation_scope", "cross_session_relations_created", "source_range_convention",
+        "canonical_range_convention"
+      ],
+      "properties": {
+        "normalized_batch_sha256": {"$ref": "#/$defs/hash"},
+        "coverage_ledger_sha256": {"$ref": "#/$defs/hash"},
+        "attribution_sha256": {"$ref": "#/$defs/hash"},
+        "relation_scope": {"const": "within_session"},
+        "cross_session_relations_created": {"const": false},
+        "source_range_convention": {"const": "one_based_closed"},
+        "canonical_range_convention": {"const": "one_based_half_open"}
+      }
+    },
+    "denominator_and_coverage": {"type": "object"},
+    "repeat_groups": {"type": "array", "items": {"type": "object"}},
+    "call_relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "relation_id", "relation_type", "session_id_hash", "earlier_call_id",
+          "later_call_id", "earlier_call_index", "later_call_index", "evidence_basis",
+          "evidence_identity", "path_hash", "earlier_range", "later_range",
+          "overlap_line_count", "containment_direction", "observed_payload_equality",
+          "content_stability", "cross_cycle", "earlier_visible_estimated_tokens",
+          "later_visible_estimated_tokens", "source_refs"
+        ],
+        "properties": {
+          "relation_id": {"$ref": "#/$defs/hash"},
+          "relation_type": {"enum": ["exact_payload_repeat", "same_path_repeat", "exact_range_repeat", "range_contains", "range_overlap"]},
+          "session_id_hash": {"$ref": "#/$defs/hash"},
+          "earlier_call_id": {"$ref": "#/$defs/hash"},
+          "later_call_id": {"$ref": "#/$defs/hash"},
+          "earlier_call_index": {"type": "integer", "minimum": 0},
+          "later_call_index": {"type": "integer", "minimum": 0},
+          "evidence_basis": {
+            "type": "array", "minItems": 1, "uniqueItems": true,
+            "items": {"enum": ["output_hash", "path_identity", "explicit_range"]}
+          },
+          "evidence_identity": {"$ref": "#/$defs/hash"},
+          "path_hash": {"anyOf": [{"$ref": "#/$defs/hash"}, {"type": "null"}]},
+          "earlier_range": {"$ref": "#/$defs/nullableRange"},
+          "later_range": {"$ref": "#/$defs/nullableRange"},
+          "overlap_line_count": {"type": ["integer", "null"], "minimum": 1},
+          "containment_direction": {"enum": ["earlier_contains_later", "later_contains_earlier", null]},
+          "observed_payload_equality": {"type": "boolean"},
+          "content_stability": {"const": "unknown"},
+          "cross_cycle": {"const": "unknown"},
+          "earlier_visible_estimated_tokens": {"type": "integer", "minimum": 0},
+          "later_visible_estimated_tokens": {"type": "integer", "minimum": 0},
+          "source_refs": {"type": "array", "minItems": 1, "items": {"type": "object"}}
+        }
+      }
+    },
+    "unique_repeated_observations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["session_id_hash", "call_id", "call_index", "visible_estimated_tokens", "relation_count", "relation_types", "relation_ids", "counted_once", "source_refs"],
+        "properties": {
+          "session_id_hash": {"$ref": "#/$defs/hash"},
+          "call_id": {"$ref": "#/$defs/hash"},
+          "call_index": {"type": "integer", "minimum": 0},
+          "visible_estimated_tokens": {"type": "integer", "minimum": 0},
+          "relation_count": {"type": "integer", "minimum": 1},
+          "relation_types": {"type": "array", "minItems": 1, "uniqueItems": true},
+          "relation_ids": {"type": "array", "minItems": 1, "uniqueItems": true},
+          "counted_once": {"const": true},
+          "source_refs": {"type": "array"}
+        }
+      }
+    },
+    "path_repeat_facts": {"type": "object"},
+    "range_relation_facts": {"type": "object"},
+    "observation_volume": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "relation_count", "relation_type_counts", "unique_repeated_observation_count",
+        "unique_repeated_observation_tokens", "repeated_observation_share",
+        "denominator_visible_estimated_tokens", "denominator_name", "token_counting_rule"
+      ],
+      "properties": {
+        "relation_count": {"type": "integer", "minimum": 0},
+        "relation_type_counts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["exact_payload_repeat", "same_path_repeat", "exact_range_repeat", "range_contains", "range_overlap"],
+          "properties": {
+            "exact_payload_repeat": {"type": "integer", "minimum": 0},
+            "same_path_repeat": {"type": "integer", "minimum": 0},
+            "exact_range_repeat": {"type": "integer", "minimum": 0},
+            "range_contains": {"type": "integer", "minimum": 0},
+            "range_overlap": {"type": "integer", "minimum": 0}
+          }
+        },
+        "unique_repeated_observation_count": {"type": "integer", "minimum": 0},
+        "unique_repeated_observation_tokens": {"type": "integer", "minimum": 0},
+        "repeated_observation_share": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+        "denominator_visible_estimated_tokens": {"type": "integer", "minimum": 0},
+        "denominator_name": {"const": "observed_matched_model_visible_estimated_tokens"},
+        "token_counting_rule": {"const": "each eligible later call counted once regardless of relation multiplicity"}
+      }
+    },
+    "unknowns": {"type": "object"},
+    "traceability": {"type": "array", "items": {"type": "object"}},
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fact_only", "no_new_correlation", "no_cross_session_relation",
+        "multiple_relations_do_not_multiply_tokens",
+        "path_or_range_does_not_prove_content_stability",
+        "repetition_does_not_imply_unnecessary", "no_diagnosis", "online_effect"
+      ],
+      "properties": {
+        "fact_only": {"const": true},
+        "no_new_correlation": {"const": true},
+        "no_cross_session_relation": {"const": true},
+        "multiple_relations_do_not_multiply_tokens": {"const": true},
+        "path_or_range_does_not_prove_content_stability": {"const": true},
+        "repetition_does_not_imply_unnecessary": {"const": true},
+        "no_diagnosis": {"const": true},
+        "online_effect": {"const": false}
+      }
+    }
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "range": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start_line", "end_line_exclusive"],
+      "properties": {
+        "start_line": {"type": "integer", "minimum": 1},
+        "end_line_exclusive": {"type": "integer", "minimum": 2}
+      }
+    },
+    "nullableRange": {"anyOf": [{"$ref": "#/$defs/range"}, {"type": "null"}]}
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "schema_id": "cycle-cost-observations-v1",
+  "extractor_version": "acp-cycle-cost-v0.1",
+  "runs": [
+    {
+      "run_id_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "case_id": "case_a",
+      "arm": "off",
+      "cycle_count": 2,
+      "cycles": [
+        {"ordinal": 1, "cumulative_usage": {"input_tokens": 90, "cached_input_tokens": 40, "cache_write_input_tokens": 0, "output_tokens": 10, "reasoning_output_tokens": 0, "total_tokens": 100}, "incremental_usage": {"input_tokens": 90, "cached_input_tokens": 40, "cache_write_input_tokens": 0, "output_tokens": 10, "reasoning_output_tokens": 0, "total_tokens": 100}},
+        {"ordinal": 2, "cumulative_usage": {"input_tokens": 205, "cached_input_tokens": 100, "cache_write_input_tokens": 0, "output_tokens": 15, "reasoning_output_tokens": 0, "total_tokens": 220}, "incremental_usage": {"input_tokens": 115, "cached_input_tokens": 60, "cache_write_input_tokens": 0, "output_tokens": 5, "reasoning_output_tokens": 0, "total_tokens": 120}}
+      ],
+      "source_pair_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    {
+      "run_id_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "case_id": "case_a",
+      "arm": "on",
+      "cycle_count": 2,
+      "cycles": [
+        {"ordinal": 1, "cumulative_usage": {"input_tokens": 91, "cached_input_tokens": 40, "cache_write_input_tokens": 0, "output_tokens": 10, "reasoning_output_tokens": 0, "total_tokens": 101}, "incremental_usage": {"input_tokens": 91, "cached_input_tokens": 40, "cache_write_input_tokens": 0, "output_tokens": 10, "reasoning_output_tokens": 0, "total_tokens": 101}},
+        {"ordinal": 2, "cumulative_usage": {"input_tokens": 207, "cached_input_tokens": 101, "cache_write_input_tokens": 0, "output_tokens": 15, "reasoning_output_tokens": 0, "total_tokens": 222}, "incremental_usage": {"input_tokens": 116, "cached_input_tokens": 61, "cache_write_input_tokens": 0, "output_tokens": 5, "reasoning_output_tokens": 0, "total_tokens": 121}}
+      ],
+      "source_pair_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    }
+  ],
+  "source_summary": {
+    "run_count": 2,
+    "exact_linked_run_count": 2,
+    "arm_counts": {"off": 1, "on": 1},
+    "case_count": 1,
+    "case_ids": ["case_a"],
+    "model_identifier": "fixture-model",
+    "reasoning_effort": "fixture-effort",
+    "subject_commit": "fixture-commit",
+    "codex_version": "fixture-version",
+    "private_summary_sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+    "private_source_inventory_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+  },
+  "policy": {
+    "exact_id_linkage_only": true,
+    "timestamp_linkage": false,
+    "private_bodies_emitted": false,
+    "absolute_paths_emitted": false,
+    "raw_session_identifiers_emitted": false,
+    "online_effect": false
+  }
+}

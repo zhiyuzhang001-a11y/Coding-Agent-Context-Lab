@@ -1,0 +1,10 @@
+ACP Repeated Evidence Map [repeated-evidence-analysis-v1]
+scope=within_session
+eligible_tokens=17651
+relations=0
+unique_repeated_observations=0
+unique_repeated_observation_tokens=0
+repeated_observation_share=0.0
+path_coverage=unknown
+range_coverage=unknown
+interpretation=factual_relations_only

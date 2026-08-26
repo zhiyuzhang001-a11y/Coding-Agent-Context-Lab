@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "schema_id": "acp1-4c-frozen-requalification-spec-v1",
+  "experiment_id": "acp1-4c-bash-requalification-v1",
+  "components": {
+    "bash_v1_audit": {"path": "resources/acp1_4c_bash_audit.json", "sha256": "29a49d30a01c62afdb9ff33265546f69ed862acaec9dfa1ca96792c1e7928a90"},
+    "experiment_spec": {"path": "resources/acp1_4c_experiment_spec.json", "sha256": "454012f7c42edb622c97b14091ab9fd2a6268b6e3efa0a3b2f6b65807aa53138"},
+    "experiment_runner": {"path": "scripts/run_acp1_4c_bash_requalification.py", "sha256": "0176d17fff90b281bfc6d89057d992ce5fab1e9359c3549e56950ba3a6803ccd"},
+    "qualification_result": {"path": "resources/acp1_4c_qualification_results.json", "sha256": "6445ef94c074a127fc9e34fde1b22dd93a33c054923120eaa1bcc8a26469c5c8"},
+    "bash_v2_registry": {"path": "resources/acp1_4c_bash_v2_registry.json", "sha256": "37d1931c12e22c8e9d2fb4acceae696fb30378cf5045176e8bf5ff5fa863bdaa"},
+    "pilot_result": {"path": "resources/acp1_4c_pilot_results.json", "sha256": "19b6582bb8d7c6a4cc18881cb1426ed666dce293d9ac9cd7939a7be8fa9a81fb"},
+    "formal_result": {"path": "resources/acp1_4c_results.json", "sha256": "b95680b3264a53fa3979d0e643405f1b762d145d877d341ec31e83b805b7f2d2"},
+    "upstream_index": {"path": "resources/acp1_4_frozen_generalization_index.json", "sha256": "67eccea11c5488c6f2d225353506e9c5be3f8dcc269905d291d307fbebd70876"},
+    "upstream_manifest": {"path": "resources/acp1_4_frozen_experiment_manifest.json", "sha256": "5716bd57de9d575088b32ae0608dc6be73f8d7705b7ad44e9d3954cb43a76419"},
+    "collector": {"path": "scripts/acp_collector.py", "sha256": "81efee8b5ae05fe2f9c76f73e5edacec1e8269ae5923a6ebc0019f1479f96de2"},
+    "hooks": {"path": "hooks/hooks.json", "sha256": "797b72b678ddba104acd93285f3c34542e75a58f69016fb01c99bf4ebac394dd"}
+  },
+  "private_source": {
+    "logical_id": "acp1-4c-bash-requalification-20260819-live",
+    "inventory_sha256": "0a6818c99d1ab743d40d65bb0d7b17a024be09bc5b79d96dd31e82daac84ca6b",
+    "run_count": 194,
+    "paths_persisted": false
+  },
+  "expected": {
+    "bash_funnel": {"proposed": 3, "qualified": 2, "diagnostic_only": 0, "rejected": 1},
+    "formal_funnel": {"combined_formal_cases": 8, "read_cases": 3, "search_cases": 3, "bash_cases": 2, "pass": 5, "fail": 0, "inconclusive": 3},
+    "bash_coverage_status": "REPAIRED",
+    "generalization_verdict": "INSUFFICIENT_COVERAGE"
+  },
+  "policy": {
+    "old_acp1_4_history_changed": false,
+    "thresholds_changed": false,
+    "production_slicing_or_replacement": false,
+    "real_time_recommendation": false,
+    "global_savings_claim": false
+  }
+}

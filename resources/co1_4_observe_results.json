@@ -1,0 +1,366 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "checks": {
+    "call_coverage_at_least_0_90": true,
+    "weighted_coverage_at_least_0_90": true,
+    "correlation_at_least_0_95": true,
+    "observation_is_command_independent": true
+  },
+  "run_count": 12,
+  "code_bearing_call_count": 16,
+  "model_visible_code_tokens": 17651,
+  "hook_observed_call_count": 16,
+  "hook_observed_model_visible_tokens": 17651,
+  "call_coverage": 1.0,
+  "weighted_coverage": 1.0,
+  "end_to_end_correlation": 1.0,
+  "family_call_counts": {
+    "compound_shell": 11,
+    "rg": 1,
+    "sed": 4
+  },
+  "family_model_visible_tokens": {
+    "compound_shell": 15318,
+    "rg": 337,
+    "sed": 1996
+  },
+  "runs": [
+    {
+      "run_id": "fail_class_state",
+      "cli_call_count": 1,
+      "hook_record_count": 1,
+      "model_visible_call_count": 1,
+      "calls": [
+        {
+          "call_index": 0,
+          "family": "compound_shell",
+          "code_bearing": true,
+          "request_sha256": "37dde6abedebd7c721efd9da9f6f2350e73f16053782df642031a69b880f2877",
+          "raw_sha256": "3725ee6f5a3f47db5c4ba1efbec8cee7c0bb494ad31a5f34b643fe3bf67e20dd",
+          "raw_chars": 254,
+          "model_visible_chars": 301,
+          "model_visible_tokens": 76,
+          "command_correlated": true,
+          "hook_observed": true,
+          "raw_present_in_model_visible": true,
+          "hook_tool_name": "Bash",
+          "hook_decision": "none"
+        }
+      ]
+    },
+    {
+      "run_id": "fail_dynamic_semantics",
+      "cli_call_count": 1,
+      "hook_record_count": 1,
+      "model_visible_call_count": 1,
+      "calls": [
+        {
+          "call_index": 0,
+          "family": "compound_shell",
+          "code_bearing": true,
+          "request_sha256": "a2c169d9c0373015240857db4b17453059f86e102ee23c8875e2eb88356fa6ad",
+          "raw_sha256": "e1b9c7b96c04127f4125573841c1b66a87c4144b0763422e9947124db26a1553",
+          "raw_chars": 1749,
+          "model_visible_chars": 1796,
+          "model_visible_tokens": 449,
+          "command_correlated": true,
+          "hook_observed": true,
+          "raw_present_in_model_visible": true,
+          "hook_tool_name": "Bash",
+          "hook_decision": "none"
+        }
+      ]
+    },
+    {
+      "run_id": "fail_external_helper",
+      "cli_call_count": 1,
+      "hook_record_count": 1,
+      "model_visible_call_count": 1,
+      "calls": [
+        {
+          "call_index": 0,
+          "family": "rg",
+          "code_bearing": true,
+          "request_sha256": "3c69a508d8dc110ac863165dd463e650185fc69424b647d8d245166cf48ecb8b",
+          "raw_sha256": "5fbacd0d32ec4e28979783703409e3553c852d303e671308750a2f106d07401e",
+          "raw_chars": 1299,
+          "model_visible_chars": 1346,
+          "model_visible_tokens": 337,
+          "command_correlated": true,
+          "hook_observed": true,
+          "raw_present_in_model_visible": true,
+          "hook_tool_name": "Bash",
+          "hook_decision": "none"
+        }
+      ]
+    },
+    {
+      "run_id": "fail_import_dependency",
+      "cli_call_count": 2,
+      "hook_record_count": 2,
+      "model_visible_call_count": 2,
+      "calls": [
+        {
+          "call_index": 0,
+          "family": "compound_shell",
+          "code_bearing": true,
+          "request_sha256": "fecd5d6bec50d002cffcca9f444d70e2b7f786925fc61237d50cc862110d82c0",
+          "raw_sha256": "6733151337ce0060ac3335606ccb8901c42ceb4b90b039734dc31b94398a5536",
+          "raw_chars": 111,
+          "model_visible_chars": 158,
+          "model_visible_tokens": 40,
+          "command_correlated": true,
+          "hook_observed": true,
+          "raw_present_in_model_visible": true,
+          "hook_tool_name": "Bash",
+          "hook_decision": "none"
+        },
+        {
+          "call_index": 1,
+          "family": "sed",
+          "code_bearing": true,
+          "request_sha256": "989a43d2b192b8c0f6f2165b2f6285e1eaaa8638f0adb0df97aea745667ddc3f",
+          "raw_sha256": "b665f3d89f746794ac73d1a249eebdcafee89409291462402015f01143d01a48",
+          "raw_chars": 1906,
+          "model_visible_chars": 1953,
+          "model_visible_tokens": 489,
+          "command_correlated": true,
+          "hook_observed": true,
+          "raw_present_in_model_visible": true,
+          "hook_tool_name": "Bash",
+          "hook_decision": "none"
+        }
+      ]
+    },
+    {
+      "run_id": "fail_sibling_method",
+      "cli_call_count": 1,
+      "hook_record_count": 1,
+      "model_visible_call_count": 1,
+      "calls": [
+        {
+          "call_index": 0,
+          "family": "compound_shell",
+          "code_bearing": true,
+          "request_sha256": "b225599a5e5a9f5bf0db8a761f51493cbfcba73fbd07f74f76d9bc1584d09cc0",
+          "raw_sha256": "b4de01c24a210a0fb3d3cb06dd335f7f61be6d7529429b8b13630c8daecad807",
+          "raw_chars": 1415,
+          "model_visible_chars": 1462,
+          "model_visible_tokens": 366,
+          "command_correlated": true,
+          "hook_observed": true,
+          "raw_present_in_model_visible": true,
+          "hook_tool_name": "Bash",
+          "hook_decision": "none"
+        }
+      ]
+    },
+    {
+      "run_id": "fail_task_intent",
+      "cli_call_count": 2,
+      "hook_record_count": 2,
+      "model_visible_call_count": 2,
+      "calls": [
+        {
+          "call_index": 0,
+          "family": "compound_shell",
+          "code_bearing": true,
+          "request_sha256": "6680aa76d7315730d38fd126d280a88de0606eb05001f3a0dee9dedc53038ab0",
+          "raw_sha256": "c8d33d5f350dc3a6cbcdbeb92038cb177fc245cd634f4f4cd8eb587ebcbe2610",
+          "raw_chars": 8235,
+          "model_visible_chars": 8282,
+          "model_visible_tokens": 2071,
+          "command_correlated": true,
+          "hook_observed": true,
+          "raw_present_in_model_visible": true,
+          "hook_tool_name": "Bash",
+          "hook_decision": "none"
+        },
+        {
+          "call_index": 1,
+          "family": "sed",
+          "code_bearing": true,
+          "request_sha256": "dd84d83bb6cc8d6d373cded81abade9a426704975a7fa57d8db59b9e0a4bac65",
+          "raw_sha256": "d728533fef412ebf011fff9659f39e116681da3bdc7d46238dc2e25dfd036360",
+          "raw_chars": 2245,
+          "model_visible_chars": 2292,
+          "model_visible_tokens": 573,
+          "command_correlated": true,
+          "hook_observed": true,
+          "raw_present_in_model_visible": true,
+          "hook_tool_name": "Bash",
+          "hook_decision": "none"
+        }
+      ]
+    },
+    {
+      "run_id": "hit_base_value",
+      "cli_call_count": 2,
+      "hook_record_count": 2,
+      "model_visible_call_count": 2,
+      "calls": [
+        {
+          "call_index": 0,
+          "family": "compound_shell",
+          "code_bearing": true,
+          "request_sha256": "6680aa76d7315730d38fd126d280a88de0606eb05001f3a0dee9dedc53038ab0",
+          "raw_sha256": "c8d33d5f350dc3a6cbcdbeb92038cb177fc245cd634f4f4cd8eb587ebcbe2610",
+          "raw_chars": 8235,
+          "model_visible_chars": 8282,
+          "model_visible_tokens": 2071,
+          "command_correlated": true,
+          "hook_observed": true,
+          "raw_present_in_model_visible": true,
+          "hook_tool_name": "Bash",
+          "hook_decision": "none"
+        },
+        {
+          "call_index": 1,
+          "family": "sed",
+          "code_bearing": true,
+          "request_sha256": "dd84d83bb6cc8d6d373cded81abade9a426704975a7fa57d8db59b9e0a4bac65",
+          "raw_sha256": "d728533fef412ebf011fff9659f39e116681da3bdc7d46238dc2e25dfd036360",
+          "raw_chars": 2245,
+          "model_visible_chars": 2292,
+          "model_visible_tokens": 573,
+          "command_correlated": true,
+          "hook_observed": true,
+          "raw_present_in_model_visible": true,
+          "hook_tool_name": "Bash",
+          "hook_decision": "none"
+        }
+      ]
+    },
+    {
+      "run_id": "hit_merged_spans",
+      "cli_call_count": 1,
+      "hook_record_count": 1,
+      "model_visible_call_count": 1,
+      "calls": [
+        {
+          "call_index": 0,
+          "family": "compound_shell",
+          "code_bearing": true,
+          "request_sha256": "c27490fceb43b39682c30104ec6956bfc0f4c1632b78d6d9b66d698f26498bd8",
+          "raw_sha256": "66e4fd5717d27d00316c979bb463be1a6601430e37ad7e550848d00d4540f48e",
+          "raw_chars": 8297,
+          "model_visible_chars": 8344,
+          "model_visible_tokens": 2086,
+          "command_correlated": true,
+          "hook_observed": true,
+          "raw_present_in_model_visible": true,
+          "hook_tool_name": "Bash",
+          "hook_decision": "none"
+        }
+      ]
+    },
+    {
+      "run_id": "hit_normalize_term",
+      "cli_call_count": 1,
+      "hook_record_count": 1,
+      "model_visible_call_count": 1,
+      "calls": [
+        {
+          "call_index": 0,
+          "family": "compound_shell",
+          "code_bearing": true,
+          "request_sha256": "c16fce35e6a29e2cc898e29f9beac847f82bcda3cbbe277d831a4893d6c845e1",
+          "raw_sha256": "132b5211354cec29391d6a1b308fc67d24c481ea151c533f25304c529953ac28",
+          "raw_chars": 6976,
+          "model_visible_chars": 7023,
+          "model_visible_tokens": 1756,
+          "command_correlated": true,
+          "hook_observed": true,
+          "raw_present_in_model_visible": true,
+          "hook_tool_name": "Bash",
+          "hook_decision": "none"
+        }
+      ]
+    },
+    {
+      "run_id": "hit_payload_bucket",
+      "cli_call_count": 1,
+      "hook_record_count": 1,
+      "model_visible_call_count": 1,
+      "calls": [
+        {
+          "call_index": 0,
+          "family": "compound_shell",
+          "code_bearing": true,
+          "request_sha256": "716d7aee053bd1dc9c65ae5f16f4eabaecbe1fdeecc1a538848f9537419bcd1d",
+          "raw_sha256": "89ea52388eff8b7cd6196ba260cb6daced0844778a5d7441faedbcf9d9abfeb1",
+          "raw_chars": 9773,
+          "model_visible_chars": 9820,
+          "model_visible_tokens": 2455,
+          "command_correlated": true,
+          "hook_observed": true,
+          "raw_present_in_model_visible": true,
+          "hook_tool_name": "Bash",
+          "hook_decision": "none"
+        }
+      ]
+    },
+    {
+      "run_id": "hit_signature_limit",
+      "cli_call_count": 1,
+      "hook_record_count": 1,
+      "model_visible_call_count": 1,
+      "calls": [
+        {
+          "call_index": 0,
+          "family": "compound_shell",
+          "code_bearing": true,
+          "request_sha256": "6bc82a66126cfeaf3b3d258e36b53091f52d52961d8ac5dd8d69598bb93aef75",
+          "raw_sha256": "e0f082aa322b04b0e445fc580d1ac8856b1182c9baf28bbf33b84f749bd3015e",
+          "raw_chars": 7536,
+          "model_visible_chars": 7583,
+          "model_visible_tokens": 1896,
+          "command_correlated": true,
+          "hook_observed": true,
+          "raw_present_in_model_visible": true,
+          "hook_tool_name": "Bash",
+          "hook_decision": "none"
+        }
+      ]
+    },
+    {
+      "run_id": "hit_truncate_small_budget",
+      "cli_call_count": 2,
+      "hook_record_count": 2,
+      "model_visible_call_count": 2,
+      "calls": [
+        {
+          "call_index": 0,
+          "family": "compound_shell",
+          "code_bearing": true,
+          "request_sha256": "6befab0b58b41ef7b621ff385c53338931edcf5a84a8310a42c2b4f9a11b2b42",
+          "raw_sha256": "5be44b77e8beb1d87127729e90f495ccd18471f8544042ef71b7190d053c40d4",
+          "raw_chars": 8158,
+          "model_visible_chars": 8205,
+          "model_visible_tokens": 2052,
+          "command_correlated": true,
+          "hook_observed": true,
+          "raw_present_in_model_visible": true,
+          "hook_tool_name": "Bash",
+          "hook_decision": "none"
+        },
+        {
+          "call_index": 1,
+          "family": "sed",
+          "code_bearing": true,
+          "request_sha256": "0990b6f23f299130c3da93f87e9edac3f30cc89b575749e5dffb53e7399b4825",
+          "raw_sha256": "4f845401d4649e03bd360592da25d9775cb3e4935f68dc06c155a41d64b1dcad",
+          "raw_chars": 1397,
+          "model_visible_chars": 1444,
+          "model_visible_tokens": 361,
+          "command_correlated": true,
+          "hook_observed": true,
+          "raw_present_in_model_visible": true,
+          "hook_tool_name": "Bash",
+          "hook_decision": "none"
+        }
+      ]
+    }
+  ]
+}

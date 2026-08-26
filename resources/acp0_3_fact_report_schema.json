@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fact-report-v1",
+  "title": "ACP four-layer fact report v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "schema_id", "reporter_version", "generated_from", "report_scope",
+    "layers", "drilldowns", "duplicate_facts", "report_policy"
+  ],
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["artifact", "json_pointer", "event_ids"],
+      "properties": {
+        "artifact": {"enum": ["normalized_batch", "coverage_ledger"]},
+        "json_pointer": {"type": "string"},
+        "event_ids": {"type": "array", "items": {"$ref": "#/$defs/hash"}, "uniqueItems": true}
+      }
+    },
+    "fact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "unit", "status", "source_refs"],
+      "properties": {
+        "value": {},
+        "unit": {"type": "string", "minLength": 1},
+        "status": {"enum": ["complete", "partial", "unknown", "unsupported"]},
+        "source_refs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/source_ref"}},
+        "note": {"type": "string", "minLength": 1}
+      }
+    },
+    "fact_map": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"$ref": "#/$defs/fact"}
+    },
+    "row": {"type": "object"},
+    "rows": {"type": "array", "items": {"$ref": "#/$defs/row"}}
+  },
+  "properties": {
+    "schema_version": {"const": 1},
+    "schema_id": {"const": "fact-report-v1"},
+    "reporter_version": {"const": "acp-reporter-v0.1"},
+    "generated_from": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pipeline_schema_id", "normalizer_version", "collector_sha256",
+        "normalized_batch_sha256", "coverage_ledger_sha256", "fixture_id"
+      ],
+      "properties": {
+        "pipeline_schema_id": {"const": "acp0-2-pipeline-v1"},
+        "normalizer_version": {"const": "acp-normalizer-v0.1"},
+        "collector_sha256": {"$ref": "#/$defs/hash"},
+        "normalized_batch_sha256": {"$ref": "#/$defs/hash"},
+        "coverage_ledger_sha256": {"$ref": "#/$defs/hash"},
+        "fixture_id": {"type": ["string", "null"]}
+      }
+    },
+    "report_scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "session_count", "top_call_limit"],
+      "properties": {
+        "kind": {"enum": ["fixture_run_set", "input_run_set"]},
+        "session_count": {"type": "integer", "minimum": 0},
+        "top_call_limit": {"type": "integer", "minimum": 1}
+      }
+    },
+    "layers": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observed_tool_result_cost", "model_visible_tool_context", "session_level_cost", "profiler_cost"],
+      "properties": {
+        "observed_tool_result_cost": {"$ref": "#/$defs/fact_map"},
+        "model_visible_tool_context": {"$ref": "#/$defs/fact_map"},
+        "session_level_cost": {"$ref": "#/$defs/fact_map"},
+        "profiler_cost": {"$ref": "#/$defs/fact_map"}
+      }
+    },
+    "drilldowns": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sessions", "model_cycles", "tool_calls", "tool_families", "command_shapes",
+        "distributions", "largest_calls", "evidence_coverage"
+      ],
+      "properties": {
+        "sessions": {"$ref": "#/$defs/rows"},
+        "model_cycles": {"type": "object"},
+        "tool_calls": {"$ref": "#/$defs/rows"},
+        "tool_families": {"$ref": "#/$defs/rows"},
+        "command_shapes": {"$ref": "#/$defs/rows"},
+        "distributions": {"type": "object"},
+        "largest_calls": {"type": "object"},
+        "evidence_coverage": {"type": "object"}
+      }
+    },
+    "duplicate_facts": {"type": "object"},
+    "report_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fact_only", "no_new_correlation", "no_extrapolation_beyond_inputs", "canonical_fact_source"],
+      "properties": {
+        "fact_only": {"const": true},
+        "no_new_correlation": {"const": true},
+        "no_extrapolation_beyond_inputs": {"const": true},
+        "canonical_fact_source": {"const": "json"}
+      }
+    }
+  }
+}
