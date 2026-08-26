@@ -1,6 +1,6 @@
 {
   "name": "agent-token-manager",
-  "version": "0.1.0",
+  "version": "0.1.0+codex.20260826093757",
   "description": "Research and measure coding-agent context cost with privacy-safe audit and budgeted navigation.",
   "author": {
     "name": "Zhiyu Zhang"

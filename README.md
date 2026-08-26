@@ -1,5 +1,10 @@
 # Coding Agent Context Lab
 
+[![tests](https://github.com/zhiyuzhang001-a11y/Coding-Agent-Context-Lab/actions/workflows/tests.yml/badge.svg)](https://github.com/zhiyuzhang001-a11y/Coding-Agent-Context-Lab/actions/workflows/tests.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
+[![Status: Research Complete](https://img.shields.io/badge/status-research_complete-blue.svg)](docs/conclusions/PROJECT_CLOSURE_AND_VALUE.md)
+[![Release](https://img.shields.io/badge/release-v0.1.0--research--complete-6f42c1.svg)](https://github.com/zhiyuzhang001-a11y/Coding-Agent-Context-Lab/releases/tag/v0.1.0-research-complete)
+
 > A reproducible study of context-cost measurement, evidence reduction, and the limits of transparent intervention in coding agents.
 
 本仓库是 **Agent Token Manager** 项目的结项研究归档。项目最初希望通过缩短源码读取、搜索结果和工具输出，降低编码 Agent 的 Token 消耗。实验最终没有验证出一个能够在当前 Host 上透明运行、保持工具成功语义，并降低端到端总成本的通用产品。
@@ -102,6 +107,10 @@ python3 scripts/check_publication.py
 ## 建议引用
 
 引用本项目时，请将它描述为编码 Agent 上下文测量与干预边界研究，而不是已验证的 Token 节省产品。机器可读引用信息见 [`CITATION.cff`](CITATION.cff)。
+
+## 最终发布
+
+项目的冻结公开版本为 [`v0.1.0-research-complete`](https://github.com/zhiyuzhang001-a11y/Coding-Agent-Context-Lab/releases/tag/v0.1.0-research-complete)。发布内容、验证结果与维护边界见 [`RELEASE_NOTES.md`](RELEASE_NOTES.md)。此后只接受安全、兼容性、可复现性和文档修复，不将未验证的局部缩减结果重新表述为通用 Token 节省。
 
 ## License
 
