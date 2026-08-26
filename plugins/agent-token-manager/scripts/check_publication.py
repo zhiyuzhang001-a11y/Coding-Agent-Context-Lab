@@ -4,12 +4,13 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 import sys
 from pathlib import Path
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(os.environ.get("PUBLICATION_ROOT", Path.cwd())).resolve()
 IGNORED_PARTS = {".git", ".pytest_cache", "__pycache__", ".agent-token-manager"}
 FORBIDDEN_NAMES = {".DS_Store"}
 FORBIDDEN_SUFFIXES = {".pyc", ".sqlite", ".sqlite3"}

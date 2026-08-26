@@ -1,0 +1,4 @@
+interface:
+  display_name: "Context Cost Audit"
+  short_description: "Summarize observed tool-result payloads with limits."
+  default_prompt: "Summarize the tool-output audit for this task and explain the measurement limits."

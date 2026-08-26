@@ -6,6 +6,17 @@
 
 这不是一个“自动节省 Token”的成品，也不作生产或账单级节省承诺。它保留的是一套可复现的测量方法、干预实验、失败边界和研究工具。
 
+## 怎么使用
+
+先按目标选择入口：
+
+- **了解结论**：直接阅读 [`docs/conclusions/PROJECT_CLOSURE_AND_VALUE.md`](docs/conclusions/PROJECT_CLOSURE_AND_VALUE.md)，无需安装。
+- **验证公开证据**：克隆后运行 publication check 和 pytest。
+- **尝试预算化代码读取**：使用 `context_router.py` 或 Task Navigator 处理自己的本地仓库。
+- **在 Codex 中使用**：从本仓库 marketplace 安装 `agent-token-manager`，启用 observe-only 审计与两个研究型 Skill。
+
+完整命令、安装、更新、卸载和结果解释见 **[`docs/USAGE.md`](docs/USAGE.md)**。
+
 ## 最重要的结论
 
 1. **局部文本变短，不等于整个任务更省。** 冻结校准中，M2d 虽减少了单次返回的源码，但增加了导航往返；相对 Native 的配对会话 Token 比率中位数为 `3.131x`。
@@ -43,23 +54,27 @@
 ├── CITATION.cff
 ├── SECURITY.md
 ├── CONTRIBUTING.md
+├── .agents/plugins/       # Codex marketplace manifest
 ├── docs/
 │   ├── INDEX.md
+│   ├── USAGE.md
 │   ├── MEASUREMENT_BOUNDARIES.md
 │   ├── REPRODUCING.md
 │   ├── conclusions/       # 最终结论与冻结 verdict
 │   ├── methodology/       # 验证范围、合同与测量边界
 │   ├── results/           # 各阶段结果和 readiness 记录
 │   └── history/           # 实施计划、路线和历史状态
-├── scripts/               # collector、归因、导航和实验 runner
-├── resources/             # schema、fixtures、registries、冻结索引
+├── plugins/
+│   └── agent-token-manager/
+│       ├── scripts/       # collector、归因、导航和实验 runner
+│       ├── resources/     # schema、fixtures、registries、冻结索引
+│       ├── skills/        # 两个可选 Codex Skill
+│       └── hooks/         # observe-only Hook
 ├── tests/                 # 离线测试
-├── skills/                # 预算化代码阅读 Skill
-├── hooks/                 # observe-only Hook 配置
-└── .codex-plugin/         # 历史插件 manifest
+└── scripts -> plugins/... # 冻结合同兼容链接
 ```
 
-根目录少量 `ACP_*.md` 符号链接是冻结合同的兼容入口；可读文档的规范位置仍在 `docs/`。`plugins/agent-token-manager/resources` 同样只为旧 fixture 路径提供兼容链接，不是第二份数据副本。
+根目录少量 `ACP_*.md` 及 `scripts/resources/skills/hooks` 符号链接用于保持冻结合同的原始路径；规范实现位于 `plugins/agent-token-manager/`，不是重复数据。
 
 完整阅读入口见 [`docs/INDEX.md`](docs/INDEX.md)。
 

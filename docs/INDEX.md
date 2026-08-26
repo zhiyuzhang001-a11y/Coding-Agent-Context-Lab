@@ -3,10 +3,11 @@
 ## 建议阅读顺序
 
 1. [`conclusions/PROJECT_CLOSURE_AND_VALUE.md`](conclusions/PROJECT_CLOSURE_AND_VALUE.md)：项目最终定位、已证明与未证明事项。
-2. [`MEASUREMENT_BOUNDARIES.md`](MEASUREMENT_BOUNDARIES.md)：Token 统计、来源归因和因果节省之间的边界。
-3. [`conclusions/TRANSPARENT_SMART_READ_FROZEN.md`](conclusions/TRANSPARENT_SMART_READ_FROZEN.md)：当前 Host replacement 为什么被冻结。
-4. [`conclusions/ACP_1_4F_D_RESULTS.md`](conclusions/ACP_1_4F_D_RESULTS.md)：最终 benchmark-development verdict。
-5. [`REPRODUCING.md`](REPRODUCING.md)：测试、数据和复现入口。
+2. [`USAGE.md`](USAGE.md)：按阅读、验证、代码导航、插件和实验复用选择入口。
+3. [`MEASUREMENT_BOUNDARIES.md`](MEASUREMENT_BOUNDARIES.md)：Token 统计、来源归因和因果节省之间的边界。
+4. [`conclusions/TRANSPARENT_SMART_READ_FROZEN.md`](conclusions/TRANSPARENT_SMART_READ_FROZEN.md)：当前 Host replacement 为什么被冻结。
+5. [`conclusions/ACP_1_4F_D_RESULTS.md`](conclusions/ACP_1_4F_D_RESULTS.md)：最终 benchmark-development verdict。
+6. [`REPRODUCING.md`](REPRODUCING.md)：测试、数据和复现入口。
 
 ## 目录职责
 

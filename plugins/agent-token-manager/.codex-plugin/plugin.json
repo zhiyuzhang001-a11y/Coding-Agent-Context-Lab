@@ -1,6 +1,6 @@
 {
   "name": "agent-token-manager",
-  "version": "0.1.0+codex.20260819230000",
+  "version": "0.1.0",
   "description": "Research and measure coding-agent context cost with privacy-safe audit and budgeted navigation.",
   "author": {
     "name": "Zhiyu Zhang"
@@ -18,9 +18,8 @@
       "Code Navigation"
     ],
     "defaultPrompt": [
-      "Show my tool-output token report.",
-      "Find repeated and oversized code reads.",
-      "Read this codebase with a strict token budget."
+      "Summarize my observed tool-result payloads and explain the measurement limits.",
+      "Read this codebase with a strict evidence budget."
     ]
   }
 }
