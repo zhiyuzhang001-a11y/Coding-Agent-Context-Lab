@@ -7,6 +7,48 @@
 
 > A reproducible study of context-cost measurement, evidence reduction, and the limits of transparent intervention in coding agents.
 
+**Research complete · Maintenance only.** The archive documents how to measure
+coding-agent context costs, test targeted evidence reduction, and report where
+the intervention fails. The study did not validate a transparent general-purpose
+optimizer or end-to-end token savings.
+
+```mermaid
+flowchart LR
+    Observe["Observe tool results and host logs"] --> Coverage["Normalize events and record coverage"]
+    Coverage --> Compare["Compare frozen baseline and intervention"]
+    Compare --> Gates["Check correctness, host behavior and evidence size"]
+    Gates --> Report["Publish bounded findings and negative results"]
+```
+
+## Inspect the archive
+
+Start with the [closure report](docs/conclusions/PROJECT_CLOSURE_AND_VALUE.md)
+for the frozen conclusions, [measurement boundaries](docs/MEASUREMENT_BOUNDARIES.md)
+for what can be attributed, and the [reproduction guide](docs/REPRODUCING.md) for
+offline checks and exclusions.
+
+To exercise the two bundled navigation smoke cases using Python 3.11 or later:
+
+```bash
+python3 scripts/run_benchmarks.py --pretty
+```
+
+The output includes this summary excerpt:
+
+```json
+{
+  "status": "passed",
+  "case_count": 2,
+  "passed_count": 2
+}
+```
+
+These cases check retrieval of named source regions in the bundled code. The
+reported elapsed times and token estimates are local diagnostics. The smoke test
+does not replay the historical host experiments or measure session savings.
+
+## 中文研究摘要
+
 本仓库是 **Agent Token Manager** 项目的结项研究归档。项目最初希望通过缩短源码读取、搜索结果和工具输出，降低编码 Agent 的 Token 消耗。实验最终没有验证出一个能够在当前 Host 上透明运行、保持工具成功语义，并降低端到端总成本的通用产品。
 
 这不是一个“自动节省 Token”的成品，也不作生产或账单级节省承诺。它保留的是一套可复现的测量方法、干预实验、失败边界和研究工具。
